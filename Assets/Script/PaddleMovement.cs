@@ -2,33 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaddleMovement : MonoBehaviour {
+public class PaddleMovement : MonoBehaviour,IMove {
 
     float paddleSpeed = 5.0f;
+	private bool _canMovePaddle = true;
 
-    void Update()
+	void Update()
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            paddleMove(true);
+			Movement(true);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            paddleMove(false);
+			Movement(false);
         }
     }
 
 
-    public void paddleMove(bool isMoveUp)
-    {
-        Vector3 position = this.transform.position;
-       
-        if(isMoveUp)
-            position.y = position.y + ( paddleSpeed*Time.deltaTime );
-        else
-            position.y = position.y - ( paddleSpeed * Time.deltaTime ); ;
+	public void Movement(bool isMoveUp)
+	{
+		if (CanMove() == false)
+			return;
 
-        this.transform.position = position;
-    }
+		Vector3 position = this.transform.position;
 
+		if (isMoveUp)
+			position.y = position.y + (paddleSpeed * Time.deltaTime);
+		else
+			position.y = position.y - (paddleSpeed * Time.deltaTime); ;
+
+		this.transform.position = position;
+	}
+
+	public void StopMovement()
+	{
+		_canMovePaddle = false;
+	}
+
+	public void StartMovement()
+	{
+		_canMovePaddle = true;
+	}
+
+	public bool CanMove()
+	{
+		return _canMovePaddle;
+	}
 }
