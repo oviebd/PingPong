@@ -6,11 +6,14 @@ public class GameManager : MonoBehaviour {
 
 	public Paddle leftPaddle;
     public Paddle rightPaddle;
-    public Ball ball;
+    [SerializeField] private  GameObject _ballPrefab;
+	[SerializeField] private GameObject _ballParent;
 
     // Use this for initialization
 	void Start () {
 		BoundaryController.BallCollisionWithLeftRightWall += BallCollisionWithLeftRightWall;
+		//GameObject ballObj = InstantiatorHelper.InstantiateObject(_ballPrefab, _ballParent);
+		//FindObjectOfType<BallController>().InstantiateBall();
 	}
 
 	public void BallCollisionWithLeftRightWall(GameEnums.PlayerEnum winnerPlayer)
