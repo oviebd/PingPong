@@ -9,19 +9,39 @@ public class PaddleMovement : MonoBehaviour,IMove {
 	private GameEnums.PaddleInput _paddleInputState;
 	private GameEnums.PaddleInput _stuckPaddleInputState = GameEnums.PaddleInput.none;
 
+	BallMovement _ballMovement;
+	public bool isItAutoMoveable = false;
+
+
 	void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+		if (isItAutoMoveable)
+		{
+			AutomaticPaddleMoveMent();
+			return;
+		}
+			
+		if (Input.GetKey(KeyCode.UpArrow))
         {
-			_paddleInputState = GameEnums.PaddleInput.inputUp;
-			SetMovement(true);
+			MoveUp();
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-			_paddleInputState = GameEnums.PaddleInput.inputDown;
-			SetMovement(false);
+			MoveDown();
         }
     }
+
+	public void MoveUp()
+	{
+		_paddleInputState = GameEnums.PaddleInput.inputUp;
+		SetMovement(true);
+	}
+
+	public void MoveDown()
+	{
+		_paddleInputState = GameEnums.PaddleInput.inputDown;
+		SetMovement(false);
+	}
 
 	public void SetMovement(bool isMoveUp)
 	{
@@ -56,4 +76,39 @@ public class PaddleMovement : MonoBehaviour,IMove {
 
 		_canMovePaddle = canMove;
 	}
+
+	
+
+	void AutomaticPaddleMoveMent()
+	{
+		if(_ballMovement == null)
+		{
+			_ballMovement  = FindObjectOfType<BallMovement>();
+		}
+		if (_ballMovement == null)
+			return;
+
+		MovePaddleAI(_ballMovement);
+	}
+
+	void MovePaddleAI(BallMovement ballMovement)
+	{
+		Vector2 ballPosition = ballMovement.gameObject.transform.position;
+		Vector2 paddlePosition = this.gameObject.transform.position;
+
+		float d = Vector2.Distance(ballPosition,paddlePosition);
+		//Debug.Log("Distance : " + d);
+
+		if( d<= 7.0f)
+		{
+			if(paddlePosition.y < ballPosition.y )
+				MoveUp();
+			
+			if (paddlePosition.y > ballPosition.y)
+				MoveDown();
+		}
+
+	}
+
+	
 }

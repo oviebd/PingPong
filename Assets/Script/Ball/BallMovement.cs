@@ -25,7 +25,8 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	{
 		_canBallMove = true;
 		_rb.isKinematic = !_canBallMove;
-		_rb.velocity = _rb.velocity;
+		_rb.AddForce(_initialVelocity);
+		//_rb.velocity = _rb.velocity;
 	}
 
 	public void StopMove()
@@ -41,7 +42,18 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 	public void onCollide(Collision2D colidedObj2D)
 	{
+		if (colidedObj2D.gameObject.GetComponent<Rigidbody2D>() )
+		{
+			/*Debug.Log("Prev Velocity ; " + _rb.velocity);
+			float playerVelocity = colidedObj2D.gameObject.GetComponent<Rigidbody2D>().velocity.y;
+			float newYVelocity = (playerVelocity / 3.0f) + (_rb.velocity.y / 2.0f);
+			_rb.velocity = new Vector2(_rb.velocity.x, newYVelocity);
+			Debug.Log("New Velocity ; " + _rb.velocity);*/
+		}
+
 		if (Mathf.Abs(_rb.velocity.x) <= _maxVelocity.x && Mathf.Abs(_rb.velocity.y) <= _maxVelocity.y)
-			_rb.velocity = _rb.velocity * (1.1f);
+		    _rb.velocity = _rb.velocity * (1.1f);
+
+
 	}
 }

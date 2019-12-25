@@ -16,7 +16,7 @@ public class Type1Ball : IBallBuilder
 	}
 	public void SetInitialVelocity()
 	{
-		ball.initialVelocity = new Vector2(6.0f, 6.0f); ;
+		ball.initialVelocity = new Vector2(10.0f, 6.0f); ;
 	}
 
 	public void SetMaxVelocity()
