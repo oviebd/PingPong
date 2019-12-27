@@ -6,9 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Paddle : MonoBehaviour, IColliderEnter
 {
-	public delegate void onPaddleCollidedWithBall(GameEnums.PlayerEnum player);
-	public static  event onPaddleCollidedWithBall scoreUpdate;
-
 	public GameEnums.PlayerEnum player;
 	private IMove _movement;
 
@@ -25,11 +22,7 @@ public class Paddle : MonoBehaviour, IColliderEnter
 
 	void SetcollisionOperation(string collidedObjTag)
 	{
-		if (collidedObjTag == GameEnums.Tag.ball.ToString() )
-		{
-			scoreUpdate(player);
-		}
-		else if (collidedObjTag == GameEnums.Tag.wall.ToString())
+	    if (collidedObjTag == GameEnums.Tag.wall.ToString())
 		{
 			if (_movement != null)
 				_movement.SetMoveEnableDisable(false);

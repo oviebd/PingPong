@@ -467,7 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 0
 --- !u!114 &362783207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f91fa4381563a428aa2ba5952161bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 1
+  player: 0
 --- !u!50 &1299731297
 Rigidbody2D:
   serializedVersion: 4
@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 0
 --- !u!114 &1299731299
 MonoBehaviour:
   m_ObjectHideFlags: 0
