@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour {
 
 	public static ScoreManager instance;
 
-	public delegate void OnCheckWinningPoint();
+	public delegate void OnCheckWinningPoint(GameEnums.Walls nextWallDirection);
 	public static event OnCheckWinningPoint CheckWinningPoint;
 
 	public Text scoreText;
@@ -22,10 +22,15 @@ public class ScoreManager : MonoBehaviour {
 
 		BoundaryController.updateScoreManagerData += onUpdateScoreManagerData;
 	}
+	void OnDestroy()
+	{
+		BoundaryController.updateScoreManagerData -= onUpdateScoreManagerData;
+	}
 
-	public void onUpdateScoreManagerData(GameEnums.PlayerEnum scoringPlayer, GameEnums.Walls nextWall)
+   void onUpdateScoreManagerData(GameEnums.PlayerEnum scoringPlayer, GameEnums.Walls nextWall)
 	{
 		UpdateScore(scoringPlayer);
+		CheckWinningPoint(nextWall);
 	}
 	public void UpdateScore(GameEnums.PlayerEnum player)
 	{
@@ -35,8 +40,6 @@ public class ScoreManager : MonoBehaviour {
 			scoreLeftSidePlayer = scoreLeftSidePlayer + 1;
 
 		showScoreText();
-		CheckWinningPoint();
-
 	}
 
 
@@ -54,5 +57,6 @@ public class ScoreManager : MonoBehaviour {
 	{
 		return scoreLeftSidePlayer;
 	}
+	
 
 }

@@ -19,6 +19,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		_maxVelocity   = this._ball.maximumVelocity;
 		_initialPosition = this.gameObject.transform.position;
 		//_rb.velocity = _initialVelocity;
+		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
 	   StartMove(true);
 	}
 
@@ -59,14 +60,25 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		    _rb.velocity = _rb.velocity * (1.1f);
 	}
 
-	public void ResetPosition()
+	public void ResetPosition(GameEnums.Walls nextWall)
 	{
 	 	Renderer renderes = this.gameObject.GetComponent<SpriteRenderer>();
 		renderes.enabled = false;
 		this.gameObject.transform.position = _initialPosition;
 		renderes.enabled = true;
 
+		SetInitialVelocityBasedonDirection(nextWall);
 		StartMove(true);
+	}
 
+	void SetInitialVelocityBasedonDirection(GameEnums.Walls nextWall)
+	{
+		if (_initialVelocity.x < 0)
+			_initialVelocity = _initialVelocity * (-1);  //Made all velocity positive
+		//If wall is right direction is already positive , if next wall is left then made velocity negative
+		if (nextWall == GameEnums.Walls.left)
+		{
+			_initialVelocity = _initialVelocity * (-1);
+		}
 	}
 }

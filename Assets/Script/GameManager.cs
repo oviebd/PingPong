@@ -10,21 +10,21 @@ public class GameManager : MonoBehaviour {
 
 		if (instance == null)
 			instance = new GameManager();
-
 		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall += NotifyGameManagerForBallCollisionOnLeftRightWall;
 	}
 
-	public void RespawnBall()
+	void OnDestroy()
 	{
-		//BallController.instance.InstantiateBall();
+		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall -= NotifyGameManagerForBallCollisionOnLeftRightWall;
 	}
-    void	NotifyGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls collidedWall)
+
+	void	NotifyGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls nextWallDirection)
 	{
-		//Debug.Log("Is Player WIn ; " + isWinning);
+	  // Debug.Log("Next Wall " + nextWallDirection);
 		if (isWinning)
 			playerWin(winnerPlayer);
 		else
-			BallController.instance.ResetBall();
+			BallController.instance.ResetBall(nextWallDirection);
 	}
 
 	void playerWin(GameEnums.PlayerEnum winnerPlayer)

@@ -474,7 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &362783207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &1299731299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727657a190e39417ebaecf95a358ca37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isItAutoMoveable: 1
+  isItAutoMoveable: 0
 --- !u!1 &1411701664
 GameObject:
   m_ObjectHideFlags: 0

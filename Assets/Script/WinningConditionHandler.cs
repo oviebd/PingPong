@@ -18,12 +18,17 @@ public class WinningConditionHandler : MonoBehaviour {
 		ScoreManager.CheckWinningPoint += CheckWinningPoint;
 	}
 
+	void OnDestroy()
+	{
+		ScoreManager.CheckWinningPoint -= CheckWinningPoint;
+	}
+
 	public void SetWinningPoint(int winningPoint)
 	{
 		this._winningPoint = winningPoint;
 	}
 
-	public void CheckWinningPoint()
+	public void CheckWinningPoint(GameEnums.Walls nextWallDirection)
 	{
 		if (ScoreManager.instance.GetRightSidePlayerScore() >= _winningPoint)
 		{
@@ -34,7 +39,7 @@ public class WinningConditionHandler : MonoBehaviour {
 			PlayerWin(GameEnums.PlayerEnum.Player2_Left);
 		}
 		else
-			notifyGameManagerForBallCollisionOnLeftRightWall(false, GameEnums.PlayerEnum.Player1_Right, GameEnums.Walls.left); //As it is not winning sisuation so wall is important but player is not
+			notifyGameManagerForBallCollisionOnLeftRightWall(false, GameEnums.PlayerEnum.Player1_Right, nextWallDirection); //As it is not winning sisuation so wall is important but player is not
 	}
 
 	void PlayerWin(GameEnums.PlayerEnum winnerPlayer)
