@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 
 	void	NotifyGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls nextWallDirection)
 	{
-	  // Debug.Log("Next Wall " + nextWallDirection);
+		// Debug.Log("Next Wall " + nextWallDirection);
 		if (isWinning)
 			playerWin(winnerPlayer);
 		else
@@ -31,10 +31,5 @@ public class GameManager : MonoBehaviour {
 	{
 
 	}
-
-
-
-
-
 
 }

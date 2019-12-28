@@ -11,13 +11,14 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	private Vector2 _initialVelocity ;
 	private Vector2 _maxVelocity;
 	private Vector3 _initialPosition;
-
+	private Renderer rendere;
 	public void setBall(Ball ball)
 	{
 		this._ball = ball;
 		_initialVelocity = this._ball.initialVelocity;
 		_maxVelocity   = this._ball.maximumVelocity;
 		_initialPosition = this.gameObject.transform.position;
+		 rendere = this.gameObject.GetComponent<SpriteRenderer>();
 		//_rb.velocity = _initialVelocity;
 		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
 	   StartMove(true);
@@ -62,11 +63,15 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 	public void ResetPosition(GameEnums.Walls nextWall)
 	{
-	 	Renderer renderes = this.gameObject.GetComponent<SpriteRenderer>();
-		renderes.enabled = false;
+		rendere.enabled = false;
 		this.gameObject.transform.position = _initialPosition;
-		renderes.enabled = true;
+		StartCoroutine(waitAndResetPosition(nextWall));
+	}
 
+	IEnumerator waitAndResetPosition(GameEnums.Walls nextWall)
+	{
+		yield return new WaitForSeconds(.5f);
+		rendere.enabled = true;
 		SetInitialVelocityBasedonDirection(nextWall);
 		StartMove(true);
 	}
@@ -75,10 +80,18 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	{
 		if (_initialVelocity.x < 0)
 			_initialVelocity = _initialVelocity * (-1);  //Made all velocity positive
-		//If wall is right direction is already positive , if next wall is left then made velocity negative
+		 //If wall is right direction is already positive , if next wall is left then made velocity negative
+
+	   _initialVelocity = 	GenerateRandomVelocity(_initialVelocity);
 		if (nextWall == GameEnums.Walls.left)
-		{
 			_initialVelocity = _initialVelocity * (-1);
-		}
+		
+	}
+	
+	Vector2 GenerateRandomVelocity(Vector2 velocity)
+	{
+		float x = Random.Range(_initialVelocity.x / 1.5f, _maxVelocity.x / 2);
+		float y = Random.Range(_initialVelocity.y / 1.5f, _maxVelocity.y / 2);
+		return new Vector2(x, y);
 	}
 }
