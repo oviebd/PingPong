@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour {
 
 	public static ScoreManager instance;
+
+	public delegate void OnCheckWinningPoint();
+	public static event OnCheckWinningPoint CheckWinningPoint;
+
 	public Text scoreText;
 	private int scoreRightSidePlayer = 0;
 	private int scoreLeftSidePlayer = 0;
@@ -16,9 +20,13 @@ public class ScoreManager : MonoBehaviour {
 		if (instance == null)
 			instance = new ScoreManager();
 
-		BoundaryController.scoreUpdate += UpdateScore;
+		BoundaryController.updateScoreManagerData += onUpdateScoreManagerData;
 	}
 
+	public void onUpdateScoreManagerData(GameEnums.PlayerEnum scoringPlayer, GameEnums.Walls nextWall)
+	{
+		UpdateScore(scoringPlayer);
+	}
 	public void UpdateScore(GameEnums.PlayerEnum player)
 	{
 		if (player == GameEnums.PlayerEnum.Player1_Right)
@@ -27,7 +35,10 @@ public class ScoreManager : MonoBehaviour {
 			scoreLeftSidePlayer = scoreLeftSidePlayer + 1;
 
 		showScoreText();
+		CheckWinningPoint();
+
 	}
+
 
 	void showScoreText()
 	{

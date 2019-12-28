@@ -17,7 +17,7 @@ public class Paddle : MonoBehaviour, IColliderEnter
 	{
 		string collidedObjTag = collision2D.gameObject.tag;
 		SetcollisionOperation(collidedObjTag);
-	//	Debug.Log("collider tag'; " + collidedObjTag + "  ball tag  " + GameEnums.Tag.ball.ToString());		
+	  // Debug.Log("collider tag'; " + collidedObjTag + "  ball tag  " + GameEnums.Tag.ball.ToString());		
 	}
 
 	void SetcollisionOperation(string collidedObjTag)

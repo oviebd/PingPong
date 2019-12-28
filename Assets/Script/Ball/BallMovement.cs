@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour, IColliderEnter
 {
-
 	private Ball _ball = new Ball();
 	private bool _canBallMove;
 	[SerializeField] private Rigidbody2D _rb;
 
 	private Vector2 _initialVelocity ;
 	private Vector2 _maxVelocity;
+	private Vector3 _initialPosition;
 
 	public void setBall(Ball ball)
 	{
 		this._ball = ball;
 		_initialVelocity = this._ball.initialVelocity;
 		_maxVelocity   = this._ball.maximumVelocity;
-		_rb.velocity = _initialVelocity;
-	//	StartMove();
+		_initialPosition = this.gameObject.transform.position;
+		//_rb.velocity = _initialVelocity;
+	   StartMove(true);
 	}
 
-	public void StartMove()
+	public void StartMove(bool isItFirstTime = false)
 	{
 		_canBallMove = true;
 		_rb.isKinematic = !_canBallMove;
-		_rb.AddForce(_initialVelocity);
-		//_rb.velocity = _rb.velocity;
+		//_rb.AddForce(_initialVelocity);
+		if (isItFirstTime)
+			_rb.velocity = _initialVelocity;
+		else
+			_rb.velocity = _rb.velocity;
 	}
 
 	public void StopMove()
@@ -53,7 +57,16 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 		if (Mathf.Abs(_rb.velocity.x) <= _maxVelocity.x && Mathf.Abs(_rb.velocity.y) <= _maxVelocity.y)
 		    _rb.velocity = _rb.velocity * (1.1f);
+	}
 
+	public void ResetPosition()
+	{
+	 	Renderer renderes = this.gameObject.GetComponent<SpriteRenderer>();
+		renderes.enabled = false;
+		this.gameObject.transform.position = _initialPosition;
+		renderes.enabled = true;
+
+		StartMove(true);
 
 	}
 }

@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 239195635}
   - component: {fileID: 239195636}
   - component: {fileID: 239195637}
+  - component: {fileID: 239195638}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -286,11 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1392584b2910e5943a9f54354b0d4c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPaddle: {fileID: 0}
-  rightPaddle: {fileID: 0}
-  _ballPrefab: {fileID: 1542563877020982, guid: d0a184d49b075eb4bafb9b42660b02e0,
-    type: 2}
-  _ballParent: {fileID: 1471961451}
 --- !u!114 &239195636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +313,17 @@ MonoBehaviour:
   _ballPrefab: {fileID: 1542563877020982, guid: d0a184d49b075eb4bafb9b42660b02e0,
     type: 2}
   _ballParent: {fileID: 1471961451}
+--- !u!114 &239195638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 239195633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14988f547d8be0d4cae4503ace6ce5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &362783200
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	public Paddle leftPaddle;
-    public Paddle rightPaddle;
-    [SerializeField] private  GameObject _ballPrefab;
-	[SerializeField] private GameObject _ballParent;
+	public static GameManager instance;
 
-
-    // Use this for initialization
 	void Start () {
+
+		if (instance == null)
+			instance = new GameManager();
+
+		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall += NotifyGameManagerForBallCollisionOnLeftRightWall;
 	}
+
+	public void RespawnBall()
+	{
+		//BallController.instance.InstantiateBall();
+	}
+    void	NotifyGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls collidedWall)
+	{
+		//Debug.Log("Is Player WIn ; " + isWinning);
+		if (isWinning)
+			playerWin(winnerPlayer);
+		else
+			BallController.instance.ResetBall();
+	}
+
+	void playerWin(GameEnums.PlayerEnum winnerPlayer)
+	{
+
+	}
+
+
+
 
 
 

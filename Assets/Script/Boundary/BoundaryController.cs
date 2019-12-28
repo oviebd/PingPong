@@ -6,8 +6,8 @@ public class BoundaryController : MonoBehaviour, IColliderEnter
 {
 	[SerializeField] private GameEnums.Walls _wallName;
 
-	public delegate void onPaddleCollidedWithBall(GameEnums.PlayerEnum player);
-	public static event onPaddleCollidedWithBall scoreUpdate;
+	public delegate void OnBallCollidedWithLeftRightWall(GameEnums.PlayerEnum scoringPlayer,GameEnums.Walls nextWall); //In which direction ball will go next
+	public static event OnBallCollidedWithLeftRightWall updateScoreManagerData;
 
 	public void onCollide(Collision2D colidedObj2D)
 	{
@@ -15,20 +15,20 @@ public class BoundaryController : MonoBehaviour, IColliderEnter
 	//	Debug.Log("tag    " + collidedObjTag);
 		if (collidedObjTag == GameEnums.Tag.ball.ToString())
 		{
-			ballHitOnWalls();
+			BallHitOnWalls();
 		}
 	}
 
-	void ballHitOnWalls()
+	void BallHitOnWalls()
 	{
 		switch (_wallName)
 		{
 			case GameEnums.Walls.left:
-				scoreUpdate(GameEnums.PlayerEnum.Player1_Right);
+				updateScoreManagerData(GameEnums.PlayerEnum.Player1_Right, GameEnums.Walls.right);
 				break;
 
 			case GameEnums.Walls.right:
-				scoreUpdate(GameEnums.PlayerEnum.Player2_Left);
+				updateScoreManagerData(GameEnums.PlayerEnum.Player2_Left, GameEnums.Walls.left);
 				break;
 		}
 	}
