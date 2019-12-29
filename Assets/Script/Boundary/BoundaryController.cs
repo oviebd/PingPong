@@ -2,35 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoundaryController : MonoBehaviour, IColliderEnter
-{
-	[SerializeField] private GameEnums.Walls _wallName;
+public class BoundaryController : MonoBehaviour {
 
-	public delegate void OnBallCollidedWithLeftRightWall(GameEnums.PlayerEnum scoringPlayer,GameEnums.Walls nextWall); //In which direction ball will go next
-	public static event OnBallCollidedWithLeftRightWall updateScoreManagerData;
+	public static BoundaryController instance;
 
-	public void onCollide(Collision2D colidedObj2D)
+	[SerializeField] private BoundaryBehaviour _leftWall;
+	[SerializeField] private BoundaryBehaviour _rightWall;
+	[SerializeField] private BoundaryBehaviour _topWall;
+	[SerializeField] private BoundaryBehaviour _bottomWall;
+
+	void Awake()
 	{
-		string collidedObjTag = colidedObj2D.gameObject.tag;
-	//	Debug.Log("tag    " + collidedObjTag);
-		if (collidedObjTag == GameEnums.Tag.ball.ToString())
-		{
-			BallHitOnWalls();
-		}
+		if (instance == null)
+			instance = this;
 	}
 
-	void BallHitOnWalls()
+	public  Vector2 GetLeftWallPosition()
 	{
-		switch (_wallName)
-		{
-			case GameEnums.Walls.left:
-				updateScoreManagerData(GameEnums.PlayerEnum.Player1_Right, GameEnums.Walls.right);
-				break;
-
-			case GameEnums.Walls.right:
-				updateScoreManagerData(GameEnums.PlayerEnum.Player2_Left, GameEnums.Walls.left);
-				break;
-		}
+		return _leftWall.gameObject.transform.position;
 	}
+	public Vector2 GetRightWallPosition()
+	{
+		return _rightWall.gameObject.transform.position;
+	}
+	public Vector2 GetBottomWallPosition()
+	{
+		return _bottomWall.gameObject.transform.position;
+	}
+	public Vector2 GetTopWallPosition()
+	{
+		return _topWall.gameObject.transform.position;
+	}
+
 
 }

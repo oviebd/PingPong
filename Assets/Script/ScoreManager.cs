@@ -20,11 +20,11 @@ public class ScoreManager : MonoBehaviour {
 		if (instance == null)
 			instance = new ScoreManager();
 
-		BoundaryController.updateScoreManagerData += onUpdateScoreManagerData;
+		BoundaryBehaviour.updateScoreManagerData += onUpdateScoreManagerData;
 	}
 	void OnDestroy()
 	{
-		BoundaryController.updateScoreManagerData -= onUpdateScoreManagerData;
+		BoundaryBehaviour.updateScoreManagerData -= onUpdateScoreManagerData;
 	}
 
    void onUpdateScoreManagerData(GameEnums.PlayerEnum scoringPlayer, GameEnums.Walls nextWall)
