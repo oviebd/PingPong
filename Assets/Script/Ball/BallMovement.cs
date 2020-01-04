@@ -10,10 +10,12 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	private bool _canBallMove;
 	private Vector2 _initialVelocity ;
 	private Vector2 _maxVelocity;
+	private Vector2 _previousVelocity;
 	private Renderer rendere;
 
 	void Start()
 	{
+		_previousVelocity = Vector2.zero;
 		GameManager.gameStateChanged += onGameStateChanged;
 	}
 	void OnDestroy()
@@ -38,21 +40,30 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	{
 		_canBallMove = true;
 		_rb.isKinematic = !_canBallMove;
-		if (isItFirstTime || _rb.velocity == Vector2.zero)
+		if (isItFirstTime || _previousVelocity == Vector2.zero)
+		{
+			Debug.Log("Made Initial Velocity........");
 			_rb.velocity = _initialVelocity;
+		}
+
 		else
-			_rb.velocity = _rb.velocity;
+		{
+			_rb.velocity = _previousVelocity;
+			Debug.Log("Made Previous  Velocity........");
+		}
+		
 	}
 
 	public void StopMove()
 	{
+		_previousVelocity = _rb.velocity;
 		_canBallMove = false;
 		_rb.isKinematic = !_canBallMove;
+		_rb.velocity = Vector2.zero;
 	}
 
 	void onGameStateChanged(GameEnums.GameState gameState)
 	{
-		Debug.Log("STtae Changed  : " + gameState);
 		if (gameState == GameEnums.GameState.Running)
 			StartMove();
 		else
