@@ -29,10 +29,8 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		_initialVelocity = this._ball.initialVelocity;
 		_maxVelocity   = this._ball.maximumVelocity;
 		 rendere = this.gameObject.GetComponent<SpriteRenderer>();
-
 		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
 		SetInitialPositionBasedOnDirection(GameEnums.Walls.left);
-		// StartMove(true);
 		StopMove();
 	}
 
@@ -41,17 +39,9 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		_canBallMove = true;
 		_rb.isKinematic = !_canBallMove;
 		if (isItFirstTime || _previousVelocity == Vector2.zero)
-		{
-			Debug.Log("Made Initial Velocity........");
 			_rb.velocity = _initialVelocity;
-		}
-
 		else
-		{
 			_rb.velocity = _previousVelocity;
-			Debug.Log("Made Previous  Velocity........");
-		}
-		
 	}
 
 	public void StopMove()
