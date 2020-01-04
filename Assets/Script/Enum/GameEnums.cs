@@ -9,5 +9,7 @@ public static class GameEnums  {
 	public enum PaddleInput { inputUp, inputDown,none }
 	public enum Walls { top, bottom,right,left }
 	public enum ballType { type1,type2 }
+	public  enum GameState { Idle,Running, Pause,Over }
+
 
 }

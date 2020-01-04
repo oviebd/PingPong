@@ -5,17 +5,32 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
+	private GameEnums.GameState _gameCurrentState;
+
+	public delegate void onGameStateChanged(GameEnums.GameState gameState);
+	public static event onGameStateChanged gameStateChanged;
 
 	void Start () {
+		_gameCurrentState = GameEnums.GameState.Idle;
 
 		if (instance == null)
-			instance = new GameManager();
+			instance = this;
 		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall += NotifyGameManagerForBallCollisionOnLeftRightWall;
 	}
 
 	void OnDestroy()
 	{
 		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall -= NotifyGameManagerForBallCollisionOnLeftRightWall;
+	}
+
+	public GameEnums.GameState GetCurrentGameState()
+	{
+		return _gameCurrentState;
+	}
+	public void SetCurrentGameState(GameEnums.GameState gameState)
+	{
+		_gameCurrentState = gameState;
+		gameStateChanged(gameState);
 	}
 
 	void	NotifyGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls nextWallDirection)
@@ -29,7 +44,7 @@ public class GameManager : MonoBehaviour {
 
 	void playerWin(GameEnums.PlayerEnum winnerPlayer)
 	{
-
+		_gameCurrentState = GameEnums.GameState.Over;
 	}
 
 }

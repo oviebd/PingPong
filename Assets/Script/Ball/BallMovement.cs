@@ -12,6 +12,15 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	private Vector2 _maxVelocity;
 	private Renderer rendere;
 
+	void Start()
+	{
+		GameManager.gameStateChanged += onGameStateChanged;
+	}
+	void OnDestroy()
+	{
+		GameManager.gameStateChanged -= onGameStateChanged;
+	}
+
 	public void setBall(Ball ball)
 	{
 		this._ball = ball;
@@ -21,14 +30,15 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
 		SetInitialPositionBasedOnDirection(GameEnums.Walls.left);
-	    StartMove(true);
+		// StartMove(true);
+		StopMove();
 	}
 
 	public void StartMove(bool isItFirstTime = false)
 	{
 		_canBallMove = true;
 		_rb.isKinematic = !_canBallMove;
-		if (isItFirstTime)
+		if (isItFirstTime || _rb.velocity == Vector2.zero)
 			_rb.velocity = _initialVelocity;
 		else
 			_rb.velocity = _rb.velocity;
@@ -38,6 +48,15 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	{
 		_canBallMove = false;
 		_rb.isKinematic = !_canBallMove;
+	}
+
+	void onGameStateChanged(GameEnums.GameState gameState)
+	{
+		Debug.Log("STtae Changed  : " + gameState);
+		if (gameState == GameEnums.GameState.Running)
+			StartMove();
+		else
+			StopMove();
 	}
 
 	public void onCollide(Collision2D colidedObj2D)

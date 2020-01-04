@@ -12,9 +12,11 @@ public class PaddleMovement : MonoBehaviour,IMove {
 	BallMovement _ballMovement;
 	public bool isItAutoMoveable = false;
 
-
 	void Update()
     {
+		if (GameManager.instance.GetCurrentGameState() != GameEnums.GameState.Running)
+			return;
+
 		if (isItAutoMoveable)
 		{
 			AutomaticPaddleMoveMent();
