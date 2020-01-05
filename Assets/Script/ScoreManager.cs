@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour {
 	public void Start () {
 
 		if (instance == null)
-			instance = new ScoreManager();
+			instance = this;
 
 		BoundaryBehaviour.updateScoreManagerData += onUpdateScoreManagerData;
 	}
@@ -41,12 +41,17 @@ public class ScoreManager : MonoBehaviour {
 
 		showScoreText();
 	}
-
-
 	void showScoreText()
 	{
 		string scoreSTring = scoreLeftSidePlayer  + " - " + scoreRightSidePlayer;
 		scoreText.text = scoreSTring;
+	}
+
+	public void ResetScore()
+	{
+		scoreLeftSidePlayer =  0;
+		scoreRightSidePlayer = 0;
+		showScoreText();
 	}
 
 	public  int GetRightSidePlayerScore()

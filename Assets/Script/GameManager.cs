@@ -47,4 +47,22 @@ public class GameManager : MonoBehaviour {
 		_gameCurrentState = GameEnums.GameState.Over;
 	}
 
+	public void StartANewGame()
+	{
+		ScoreManager.instance.ResetScore();
+		BallController.instance.ResetBall(GameEnums.Walls.left);
+		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Running);
+		GameSceneUIManager.instance.SetUiForANewGame();
+	}
+	public void PauseGame()
+	{
+		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Pause);
+		GameSceneUIManager.instance.SetUiForPauseGame();
+	}
+	public void ResumeGame()
+	{
+		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Running);
+		GameSceneUIManager.instance.SetUiForResumeGame();
+	}
+
 }

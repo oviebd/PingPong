@@ -27,28 +27,21 @@ public class GameSceneUIManager : MonoBehaviour {
 		_pauseButtonObj.SetActive(false);
 	}
 
-	public void StartGameButtonClicked()
+	public void SetUiForANewGame()
 	{
 		_startGamePanel.HidePanel();
-		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Running);
 		_resumeButton.SetActive(false);
 		_pauseButtonObj.SetActive(true);
 	}
-
-	public void PauseButtonClicked()
+	public void SetUiForPauseGame()
 	{
-		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Pause);
 		_startGamePanel.ShowPanel();
 		_resumeButton.SetActive(true);
 		_pauseButtonObj.SetActive(false);
 	}
-
-	public void ResumeButtonClicked()
+	public void SetUiForResumeGame()
 	{
-		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Running);
-		_startGamePanel.HidePanel();
-		_pauseButtonObj.SetActive(true);
+		SetUiForANewGame();
 	}
-
 
 }

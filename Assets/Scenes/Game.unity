@@ -677,7 +677,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1995480965}
+      - m_Target: {fileID: 239195633}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
@@ -896,8 +896,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1995480969}
-        m_MethodName: PauseButtonClicked
+      - m_Target: {fileID: 239195635}
+        m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1913,8 +1913,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1995480969}
-        m_MethodName: ResumeButtonClicked
+      - m_Target: {fileID: 239195635}
+        m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3322,8 +3322,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1995480969}
-        m_MethodName: StartGameButtonClicked
+      - m_Target: {fileID: 239195635}
+        m_MethodName: StartANewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
