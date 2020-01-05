@@ -46,6 +46,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 	public void StopMove()
 	{
+		//Debug.Log("Stop Move ..................................... ");
 		_previousVelocity = _rb.velocity;
 		_canBallMove = false;
 		_rb.isKinematic = !_canBallMove;

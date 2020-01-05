@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinningConditionHandler : MonoBehaviour {
 
 	public static WinningConditionHandler instance;
-	private int _winningPoint = 3;
+	private int _winningPoint = 1;
 
 	public delegate void onNotifuGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls collidedWall);
 	public static event onNotifuGameManagerForBallCollisionOnLeftRightWall notifyGameManagerForBallCollisionOnLeftRightWall;
@@ -14,7 +14,6 @@ public class WinningConditionHandler : MonoBehaviour {
 	{
 		if (instance == null)
 			instance = new WinningConditionHandler();
-
 		ScoreManager.CheckWinningPoint += CheckWinningPoint;
 	}
 

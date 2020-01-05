@@ -29,13 +29,13 @@ public class GameManager : MonoBehaviour {
 	}
 	public void SetCurrentGameState(GameEnums.GameState gameState)
 	{
+		Debug.Log("Set Game State .... " + gameState);
 		_gameCurrentState = gameState;
 		gameStateChanged(gameState);
 	}
 
 	void	NotifyGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls nextWallDirection)
 	{
-		// Debug.Log("Next Wall " + nextWallDirection);
 		if (isWinning)
 			playerWin(winnerPlayer);
 		else
@@ -44,24 +44,25 @@ public class GameManager : MonoBehaviour {
 
 	void playerWin(GameEnums.PlayerEnum winnerPlayer)
 	{
-		_gameCurrentState = GameEnums.GameState.Over;
+		SetCurrentGameState (GameEnums.GameState.Over);
+		GameSceneUIManager.instance.SetUiForWinningPanel(winnerPlayer);
 	}
 
 	public void StartANewGame()
 	{
 		ScoreManager.instance.ResetScore();
 		BallController.instance.ResetBall(GameEnums.Walls.left);
-		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Running);
+		SetCurrentGameState(GameEnums.GameState.Running);
 		GameSceneUIManager.instance.SetUiForANewGame();
 	}
 	public void PauseGame()
 	{
-		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Pause);
+		SetCurrentGameState(GameEnums.GameState.Pause);
 		GameSceneUIManager.instance.SetUiForPauseGame();
 	}
 	public void ResumeGame()
 	{
-		GameManager.instance.SetCurrentGameState(GameEnums.GameState.Running);
+	    SetCurrentGameState(GameEnums.GameState.Running);
 		GameSceneUIManager.instance.SetUiForResumeGame();
 	}
 
