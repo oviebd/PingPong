@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinningConditionHandler : MonoBehaviour {
 
 	public static WinningConditionHandler instance;
-	private int _winningPoint = 1;
+	private int _winningPoint = 2;
 
 	public delegate void onNotifuGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls collidedWall);
 	public static event onNotifuGameManagerForBallCollisionOnLeftRightWall notifyGameManagerForBallCollisionOnLeftRightWall;

@@ -15,7 +15,7 @@ public class BallController : MonoBehaviour {
 		if (instance == null)
 			instance = this;
 
-	    InstantiateBall();
+	  //  InstantiateBall();
 	}
 
 	public void ResetBall(GameEnums.Walls nextWallDirection)

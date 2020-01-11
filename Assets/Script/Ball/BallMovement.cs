@@ -7,17 +7,11 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	[SerializeField] private Rigidbody2D _rb;
 
 	private Ball _ball = new Ball();
-	private bool _canBallMove;
-	private Vector2 _initialVelocity ;
+	private Vector2 _initialVelocity;
 	private Vector2 _maxVelocity;
 	private Vector2 _previousVelocity;
-	private Renderer rendere;
+	private Renderer _rendere;
 
-	void Start()
-	{
-		_previousVelocity = Vector2.zero;
-		GameManager.gameStateChanged += onGameStateChanged;
-	}
 	void OnDestroy()
 	{
 		GameManager.gameStateChanged -= onGameStateChanged;
@@ -26,39 +20,55 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	public void setBall(Ball ball)
 	{
 		this._ball = ball;
-		_initialVelocity = this._ball.initialVelocity;
-		_maxVelocity   = this._ball.maximumVelocity;
-		 rendere = this.gameObject.GetComponent<SpriteRenderer>();
+		GameManager.gameStateChanged += onGameStateChanged;
+		_rendere = this.gameObject.GetComponent<SpriteRenderer>();
 		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
 		SetInitialPositionBasedOnDirection(GameEnums.Walls.left);
-		StopMove();
+		ResetBall();
 	}
 
-	public void StartMove(bool isItFirstTime = false)
+	private void ResetBall()
 	{
-		_canBallMove = true;
-		_rb.isKinematic = !_canBallMove;
-		if (isItFirstTime || _previousVelocity == Vector2.zero)
-			_rb.velocity = _initialVelocity;
-		else
-			_rb.velocity = _previousVelocity;
+		StopBallMovement();
+		_initialVelocity = this._ball.initialVelocity;
+		_previousVelocity = _initialVelocity;
+		_maxVelocity = this._ball.maximumVelocity;
 	}
 
-	public void StopMove()
+	void SetBallVisibleAnbMoveAble(bool canMove)
 	{
-		//Debug.Log("Stop Move ..................................... ");
+		_rendere.enabled = canMove;
+		_rb.isKinematic = !canMove; // if ball can move than set kinematic false 
+	}
+	private void StartBallMovement()
+	{
+		SetBallVisibleAnbMoveAble(true);
+	    _rb.velocity = _previousVelocity;
+	}
+
+	private void StopBallMovement()
+	{
 		_previousVelocity = _rb.velocity;
-		_canBallMove = false;
-		_rb.isKinematic = !_canBallMove;
 		_rb.velocity = Vector2.zero;
+		SetBallVisibleAnbMoveAble(false);
+		
 	}
-
 	void onGameStateChanged(GameEnums.GameState gameState)
 	{
-		if (gameState == GameEnums.GameState.Running)
-			StartMove();
-		else
-			StopMove();
+		//Debug.Log("Ball Movement ; " + gameState);
+		switch (gameState)
+		{
+			case GameEnums.GameState.Running:
+				StartBallMovement();
+				break;
+			case GameEnums.GameState.Over:
+				StopBallMovement();
+				Destroy(gameObject);
+				break;
+			default:
+				StopBallMovement();
+				break;
+		}
 	}
 
 	public void onCollide(Collision2D colidedObj2D)
@@ -69,7 +79,8 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 	public void ResetPosition(GameEnums.Walls nextWall)
 	{
-		rendere.enabled = false;
+	//	StopBallMovement();
+		ResetBall();
 		this.gameObject.transform.position = SetInitialPositionBasedOnDirection(nextWall);
 		StartCoroutine(waitAndResetPosition(nextWall));
 	}
@@ -77,12 +88,11 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	IEnumerator waitAndResetPosition(GameEnums.Walls nextWall)
 	{
 		yield return new WaitForSeconds(.5f);
-		SetInitialVelocityBasedonDirection(nextWall);
-		StartMove(true);
-		rendere.enabled = true;
+		_previousVelocity = SetInitialVelocityBasedonDirection(nextWall);
+		StartBallMovement();
 	}
 
-	void SetInitialVelocityBasedonDirection(GameEnums.Walls nextWall)
+	Vector2 SetInitialVelocityBasedonDirection(GameEnums.Walls nextWall)
 	{
 		if (_initialVelocity.x < 0)
 			_initialVelocity = _initialVelocity * (-1);  //Made all velocity positive
@@ -91,6 +101,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	   _initialVelocity = 	GenerateRandomVelocity(_initialVelocity);
 		if (nextWall == GameEnums.Walls.left)
 			_initialVelocity = _initialVelocity * (-1);
+		return _initialVelocity;
 	}
 	Vector2 SetInitialPositionBasedOnDirection(GameEnums.Walls nextWall)
 	{
@@ -111,8 +122,6 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		Vector2 newResetPosition = new Vector2(x, y);
 		return newResetPosition;
 	}
-
-
 	Vector2 GenerateRandomVelocity(Vector2 velocity)
 	{
 		float x = Random.Range(_initialVelocity.x / 1.5f, _maxVelocity.x / 2);

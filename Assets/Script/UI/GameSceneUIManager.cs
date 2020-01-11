@@ -31,6 +31,7 @@ public class GameSceneUIManager : MonoBehaviour {
 	public void SetUiForANewGame()
 	{
 		_startGamePanel.HidePanel();
+		_winningPanel.HidePanel();
 		_resumeButton.SetActive(false);
 		_pauseButtonObj.SetActive(true);
 	}

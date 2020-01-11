@@ -29,9 +29,12 @@ public class GameManager : MonoBehaviour {
 	}
 	public void SetCurrentGameState(GameEnums.GameState gameState)
 	{
-		Debug.Log("Set Game State .... " + gameState);
+		//Debug.Log("Set Game State .... " + gameState);
 		_gameCurrentState = gameState;
-		gameStateChanged(gameState);
+
+		if (gameStateChanged != null)
+			gameStateChanged(gameState);
+
 	}
 
 	void	NotifyGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls nextWallDirection)
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour {
 	public void StartANewGame()
 	{
 		ScoreManager.instance.ResetScore();
-		BallController.instance.ResetBall(GameEnums.Walls.left);
+		BallController.instance.InstantiateBall();
 		SetCurrentGameState(GameEnums.GameState.Running);
 		GameSceneUIManager.instance.SetUiForANewGame();
 	}
