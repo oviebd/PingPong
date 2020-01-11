@@ -16,11 +16,13 @@ public class GameManager : MonoBehaviour {
 		if (instance == null)
 			instance = this;
 		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall += NotifyGameManagerForBallCollisionOnLeftRightWall;
+		CountTextAnimation.OnCountAnimationFinished += onCountAnimationCompleted;
 	}
 
 	void OnDestroy()
 	{
 		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall -= NotifyGameManagerForBallCollisionOnLeftRightWall;
+		CountTextAnimation.OnCountAnimationFinished -= onCountAnimationCompleted;
 	}
 
 	public GameEnums.GameState GetCurrentGameState()
@@ -42,7 +44,17 @@ public class GameManager : MonoBehaviour {
 		if (isWinning)
 			playerWin(winnerPlayer);
 		else
+		{
+			SetCurrentGameState(GameEnums.GameState.Idle);
 			BallController.instance.ResetBall(nextWallDirection);
+			GameSceneAnimationHandler.instance.PlayCountAnimation(2);
+		}
+			
+	}
+
+	void onCountAnimationCompleted()
+	{
+		SetCurrentGameState(GameEnums.GameState.Running);
 	}
 
 	void playerWin(GameEnums.PlayerEnum winnerPlayer)
@@ -55,7 +67,7 @@ public class GameManager : MonoBehaviour {
 	{
 		ScoreManager.instance.ResetScore();
 		BallController.instance.InstantiateBall();
-		SetCurrentGameState(GameEnums.GameState.Running);
+		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
 		GameSceneUIManager.instance.SetUiForANewGame();
 	}
 	public void PauseGame()
@@ -65,7 +77,8 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ResumeGame()
 	{
-	    SetCurrentGameState(GameEnums.GameState.Running);
+	    //SetCurrentGameState(GameEnums.GameState.Running);
+		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
 		GameSceneUIManager.instance.SetUiForResumeGame();
 	}
 

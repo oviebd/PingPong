@@ -12,6 +12,8 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	private Vector2 _previousVelocity;
 	private Renderer _rendere;
 
+	private CountTextAnimation _countTextAnimation;
+
 	void OnDestroy()
 	{
 		GameManager.gameStateChanged -= onGameStateChanged;
@@ -21,6 +23,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	{
 		this._ball = ball;
 		GameManager.gameStateChanged += onGameStateChanged;
+
 		_rendere = this.gameObject.GetComponent<SpriteRenderer>();
 		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
 		SetInitialPositionBasedOnDirection(GameEnums.Walls.left);
@@ -40,6 +43,8 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		_rendere.enabled = canMove;
 		_rb.isKinematic = !canMove; // if ball can move than set kinematic false 
 	}
+
+
 	private void StartBallMovement()
 	{
 		SetBallVisibleAnbMoveAble(true);
@@ -55,7 +60,6 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	}
 	void onGameStateChanged(GameEnums.GameState gameState)
 	{
-		//Debug.Log("Ball Movement ; " + gameState);
 		switch (gameState)
 		{
 			case GameEnums.GameState.Running:
@@ -79,7 +83,6 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 	public void ResetPosition(GameEnums.Walls nextWall)
 	{
-	//	StopBallMovement();
 		ResetBall();
 		this.gameObject.transform.position = SetInitialPositionBasedOnDirection(nextWall);
 		StartCoroutine(waitAndResetPosition(nextWall));
@@ -89,7 +92,6 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	{
 		yield return new WaitForSeconds(.5f);
 		_previousVelocity = SetInitialVelocityBasedonDirection(nextWall);
-		StartBallMovement();
 	}
 
 	Vector2 SetInitialVelocityBasedonDirection(GameEnums.Walls nextWall)
