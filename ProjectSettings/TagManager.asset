@@ -18,7 +18,7 @@ TagManager:
   - paddle
   - ball
   - wall
-  - 
+  - background
   - 
   - 
   - 
@@ -42,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 1510550989
+    locked: 0
+  - name: front
+    uniqueID: 2006816237
     locked: 0
