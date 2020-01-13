@@ -28,7 +28,8 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		_rendere = this.gameObject.GetComponent<SpriteRenderer>();
 		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
 		SetInitialPositionBasedOnDirection(GameEnums.Walls.left);
-		ResetBall();
+		ResetPosition(GameEnums.Walls.left);
+		//ResetBall();
 	}
 
 	private void ResetBall()

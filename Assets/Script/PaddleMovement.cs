@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PaddleMovement : MonoBehaviour,IMove {
 
-    float paddleSpeed = 8.0f;
+    float paddleSpeed = 20.0f;
 	private bool _canMovePaddle = true;
 	private GameEnums.PaddleInput _paddleInputState;
 	private GameEnums.PaddleInput _stuckPaddleInputState = GameEnums.PaddleInput.none;

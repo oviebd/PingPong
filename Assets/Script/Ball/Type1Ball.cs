@@ -21,7 +21,7 @@ public class Type1Ball : IBallBuilder
 
 	public void SetMaxVelocity()
 	{
-		ball.maximumVelocity = new Vector2(10.0f, 10.0f);
+		ball.maximumVelocity = new Vector2(25.0f, 25.0f);
 	}
 	public Ball getBall()
 	{
