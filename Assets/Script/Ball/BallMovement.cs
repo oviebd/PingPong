@@ -5,8 +5,9 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour, IColliderEnter
 {
 	[SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private TrailRenderer _trailRenderer;
 
-	private Ball _ball = new Ball();
+    private Ball _ball = new Ball();
 	private Vector2 _initialVelocity;
 	private Vector2 _maxVelocity;
 	private Vector2 _previousVelocity;
@@ -41,8 +42,10 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	void SetBallVisibleAnbMoveAble(bool canMove)
 	{
 		_rendere.enabled = canMove;
-		_rb.isKinematic = !canMove; // if ball can move than set kinematic false 
-	}
+		_rb.isKinematic = !canMove; // if ball can move than set kinematic false
+        _trailRenderer.enabled = canMove;
+
+    }
 
 
 	private void StartBallMovement()
