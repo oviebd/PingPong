@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 50834172861729008}
+  _trailRenderer: {fileID: 96397643998689592}
 --- !u!212 &212245985790317498
 SpriteRenderer:
   m_ObjectHideFlags: 1

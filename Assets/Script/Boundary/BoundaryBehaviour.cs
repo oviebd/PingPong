@@ -45,4 +45,9 @@ public class BoundaryBehaviour : MonoBehaviour, IColliderEnter
 		_collider.enabled = true;
 	}
 
+    public BoxCollider2D GetCollider()
+    {
+        return (BoxCollider2D)_collider;
+    }
+
 }
