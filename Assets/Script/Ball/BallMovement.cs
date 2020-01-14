@@ -82,7 +82,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	public void onCollide(Collision2D colidedObj2D)
 	{
 		if (Mathf.Abs(_rb.velocity.x) <= _maxVelocity.x && Mathf.Abs(_rb.velocity.y) <= _maxVelocity.y)
-		    _rb.velocity = _rb.velocity * (1.1f);
+		    _rb.velocity = _rb.velocity * (1.01f);
 	}
 
 	public void ResetPosition(GameEnums.Walls nextWall)

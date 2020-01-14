@@ -18,8 +18,8 @@ public class ObstacleController : MonoBehaviour {
     private ObstacleBoundaryData obstacleBoundaryData;
 
     void Start () {
-		SpawnObstacle();
         obstacleBoundaryData = new ObstacleBoundaryData();
+        SpawnObstacle();
 	}
 
 	void SpawnObstacle()
@@ -61,7 +61,7 @@ public class ObstacleController : MonoBehaviour {
 
         float yStartPos = (obstacleBoundaryData.minPosition.y + obstacleBoundaryData.maxPosition.y) / 2;
         
-        Debug.Log("Y start pos " + yStartPos);
+        //Debug.Log("Y start pos " + yStartPos);
         //Debug.Log("Row ; " + maxRowNumber + " column : " + maxColumnNumber);
 
         List<GameObject> objs = new List<GameObject>();
@@ -74,7 +74,7 @@ public class ObstacleController : MonoBehaviour {
 			//Debug.Log("  i : " + i + " % 10 " + mod);
 			if ( (mod ==0 && i != 0) || i == obstacleList.Count-1)
 			{
-				Debug.Log(i);
+				//Debug.Log(i);
 				DrawColumn(colNumber, obstacleBoundaryData.maxRowNumber, objs, yStartPos);
 				objs.Clear();
 				objs = new List<GameObject>();

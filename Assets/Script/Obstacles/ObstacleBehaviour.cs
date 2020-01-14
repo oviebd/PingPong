@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ObstacleBehaviour : MonoBehaviour {
+public class ObstacleBehaviour : MonoBehaviour, IColliderEnter
+{
 
     [SerializeField] private SpriteRenderer image;
     List<Color> colors = new List<Color>();
@@ -32,5 +33,8 @@ public class ObstacleBehaviour : MonoBehaviour {
         }
     }
 
-	
+    public void onCollide(Collision2D colidedObj2D)
+    {
+        Destroy (this.gameObject);
+    }
 }

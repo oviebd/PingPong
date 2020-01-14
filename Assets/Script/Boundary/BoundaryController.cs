@@ -30,12 +30,12 @@ public class BoundaryController : MonoBehaviour {
     public  Vector2 GetLeftWallPosition()
 	{
 		//return _leftWall.gameObject.transform.position;
-		Debug.Log("L wall : " + _leftWall.GetCollider().offset);
+		//Debug.Log("L wall : " + _leftWall.GetCollider().offset);
 		return _leftWall.GetCollider().offset;
 	}
 	public Vector2 GetRightWallPosition()
 	{
-		Debug.Log("R wall : " + _rightWall.GetCollider().offset);
+		//Debug.Log("R wall : " + _rightWall.GetCollider().offset);
 		//return _rightWall.gameObject.transform.position;
 		return _rightWall.GetCollider().offset;
 	}
