@@ -22,24 +22,22 @@ public class ObstacleBehaviour : MonoBehaviour, IColliderEnter
 
     public void onCollide(Collision2D colidedObj2D)
     {
-        _obstacle.obstacleEffct.DoCollisionAfterEffect();
+        _obstacle.obstacleEffct.DoCollisionAfterEffect(this,_obstacle);
         //PlaySound(_obstacle._collisionClip);
         //DestroyObstacle();
     }
 
-    void PlaySound(AudioClip clip)
+    public AudioSource GetAudioSource()
     {
-        _audioSource.clip = clip;
-        _audioSource.Stop();
-        _audioSource.Play();
+        return _audioSource;
     }
-
-    void DestroyObstacle()
+    public SpriteRenderer GetSpriteRenderer()
     {
-        _collider.enabled = false;
-        _mainImage.enabled = false;
-
-        Destroy(this.gameObject, .5f);
+        return _mainImage;
+    }
+    public Collider2D getCollider()
+    {
+        return _collider;
     }
 
     

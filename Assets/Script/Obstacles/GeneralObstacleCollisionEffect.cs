@@ -4,8 +4,32 @@ using UnityEngine;
 
 public class GeneralObstacleCollisionEffect : MonoBehaviour, IObstacleCollisionEffect
 {
-    public void DoCollisionAfterEffect()
+    ObstacleBehaviour _obstacleBehaviour;
+    Obstacle _obstacle;
+    float destroyTime = .5f;
+
+    public void DoCollisionAfterEffect(ObstacleBehaviour behaviour, Obstacle obstacleClass)
     {
+        _obstacleBehaviour = behaviour;
+        _obstacle = obstacleClass;
         Debug.Log("Normal effect will play");
+
+        PlaySound();
+        DestroyObject();
+    }
+
+    public void PlaySound()
+    {
+        _obstacleBehaviour.GetAudioSource().clip = _obstacle._collisionClip;
+        _obstacleBehaviour.GetAudioSource().Stop();
+        _obstacleBehaviour.GetAudioSource().Play();
+    }
+
+    public void DestroyObject()
+    {
+        _obstacleBehaviour.getCollider().enabled = false;
+        _obstacleBehaviour.GetSpriteRenderer().enabled = false;
+
+        Destroy(_obstacleBehaviour.gameObject, destroyTime);
     }
 }

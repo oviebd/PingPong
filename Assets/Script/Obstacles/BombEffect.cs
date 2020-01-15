@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class BombEffect : MonoBehaviour,IObstacleCollisionEffect {
 
-    public void DoCollisionAfterEffect()
+    public void DoCollisionAfterEffect(ObstacleBehaviour behaviour, Obstacle obstacleClass)
     {
         Debug.Log(" Show Bomb Effect ....");
+    }
+
+    public void PlaySound()
+    {
+       
+    }
+    public void DestroyObject()
+    {
+
     }
 }

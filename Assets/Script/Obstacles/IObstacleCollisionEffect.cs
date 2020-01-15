@@ -4,5 +4,9 @@ using UnityEngine;
 
 public interface IObstacleCollisionEffect  {
 
-     void DoCollisionAfterEffect();
+    void DoCollisionAfterEffect(ObstacleBehaviour behaviour, Obstacle obstacleClass);
+    void PlaySound();
+    void DestroyObject();
+
+
 }
