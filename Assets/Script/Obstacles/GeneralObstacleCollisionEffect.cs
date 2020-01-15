@@ -12,7 +12,6 @@ public class GeneralObstacleCollisionEffect : MonoBehaviour, IObstacleCollisionE
     {
         _obstacleBehaviour = behaviour;
         _obstacle = obstacleClass;
-        Debug.Log("Normal effect will play");
 
         PlaySound();
         DestroyObject();
