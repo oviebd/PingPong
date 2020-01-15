@@ -11,33 +11,35 @@ public class Obstacle_Type1 : IObstacleBuilder
         return obstacle;
     }
 
-    public void SetCollisionSound(AudioClip clip)
-    {
+    public void SetCollisionSound()
+    {  
+        AudioClip clip = Resources.Load<AudioClip>("sounds/obstacle_type1_collision");
         obstacle._collisionClip = clip;
     }
 
     public void SetColor(Color color)
     {
-        throw new System.NotImplementedException();
+        obstacle.color = color;
     }
 
-    public void SetDestructionSound(AudioClip clip)
+    public void SetDestructionSound()
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    public void SetObstacleSprite(Sprite sprite)
+    public void SetObstacleSprite()
     {
-        throw new System.NotImplementedException();
+        Sprite sprite = Resources.Load<Sprite>("sprite/obstacle_type1");
+        obstacle.sprite = sprite;
     }
 
-    public void SetObstacleType(GameEnums.ObstacleType type)
+    public void SetObstacleType()
     {
-        throw new System.NotImplementedException();
+        obstacle.obstacleType = GameEnums.ObstacleType.type1;
     }
 
     public void SetValue(int value)
     {
-        throw new System.NotImplementedException();
+        obstacle.value = value;
     }
 }

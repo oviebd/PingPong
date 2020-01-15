@@ -26,12 +26,12 @@ public class BallController : MonoBehaviour {
 
 	public GameObject InstantiateBall()
 	{
-	   Ball ball = GenerateBall(GameEnums.ballType.type1);
+	  Ball ball = GenerateBall(GameEnums.ballType.type1);
 	  GameObject ballObject = InstantiatorHelper.InstantiateObject(_ballPrefab, _ballParent);
 	  ballObject.GetComponent<BallMovement>().setBall(ball);
 	 
-	 _currentBall = ballObject;
-	 return ballObject;
+	  _currentBall = ballObject;
+	  return ballObject;
 	}
 
 	Ball GenerateBall(GameEnums.ballType ballType)

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour {
 
+    public static ObstacleController instance;
+
 	[SerializeField] public GameObject _parentObj;
 	[SerializeField] public GameObject _obstaclePrefab;
 
@@ -17,23 +19,66 @@ public class ObstacleController : MonoBehaviour {
 	private List<GameObject> obstacleList = new List<GameObject>();
     private ObstacleBoundaryData obstacleBoundaryData;
 
+    List<Color> colors = new List<Color>();
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
+
     void Start () {
         obstacleBoundaryData = new ObstacleBoundaryData();
         SpawnObstacle();
 	}
 
-	void SpawnObstacle()
+    void SetColorList()
+    {
+        colors.Add(Color.cyan);
+        colors.Add(Color.green);
+        colors.Add(Color.grey);
+        colors.Add(Color.blue);
+        //colors.Add(Color.black);
+    }
+
+    void SpawnObstacle()
 	{
 		int objNumber =50;
+        SetColorList();
 
 		for (int i = 0; i < objNumber; i++)
 		{
 	    	GameObject obj =	InstantiatorHelper.InstantiateObject(_obstaclePrefab, _parentObj);
-			obstacleList.Add(obj);
+
+            Obstacle obstacle = GenerateObstacle(GameEnums.ObstacleType.type1);
+            obj.GetComponent<ObstacleBehaviour>().SetObstacle(obstacle);
+            obstacleList.Add(obj);
 		}
 
 		RespositioningGridItems();
 	}
+
+
+    Obstacle GenerateObstacle(GameEnums.ObstacleType obstacleType)
+    {
+        ObstacleBuilder builder = new ObstacleBuilder();
+        IObstacleBuilder obstacle;
+
+        if (obstacleType == GameEnums.ObstacleType.type1)
+            obstacle = new Obstacle_Type1();
+        else
+            obstacle = new Obstacle_Type1();
+
+        builder.BuildObstacle(obstacle);
+       
+        int colorIndex = Random.Range(0, colors.Count);
+        if (colorIndex < colors.Count)
+        {
+            obstacle.SetColor(colors[colorIndex]);
+        }
+       
+        return obstacle.getObstacle();
+    }
 
 
     ObstacleBoundaryData SetObstacleBoundaryData()

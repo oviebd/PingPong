@@ -6,35 +6,43 @@ using UnityEngine.UI;
 public class ObstacleBehaviour : MonoBehaviour, IColliderEnter
 {
 
-    [SerializeField] private SpriteRenderer image;
-    List<Color> colors = new List<Color>();
-    
+    [SerializeField] private SpriteRenderer _mainImage;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private Collider2D _collider;
 
-	void Start () {
-        setColor();
-    }
 
-    void SetColorList()
+    private Obstacle _obstacle;
+
+    public void SetObstacle(Obstacle obstacle)
     {
-        colors.Add(Color.cyan);
-        colors.Add(Color.green);
-        colors.Add(Color.grey);
-        colors.Add(Color.blue);
-        //colors.Add(Color.black);
-    }
+        _obstacle = obstacle;
 
-    public void setColor()
-    {
-        SetColorList();
-        int colorIndex = Random.Range(0,colors.Count);
-        if(colorIndex <colors.Count)
-        {
-            image.color = colors[colorIndex];
-        }
+//        Debug.Log("Obstacle : type " + _obstacle.obstacleType + " sprite  " + _obstacle.sprite.name);
+
+        _mainImage.sprite = obstacle.sprite;
+        _mainImage.color = obstacle.color;
     }
 
     public void onCollide(Collision2D colidedObj2D)
     {
-        Destroy (this.gameObject);
+        PlaySound(_obstacle._collisionClip);
+        DestroyObstacle();
     }
+
+    void PlaySound(AudioClip clip)
+    {
+        _audioSource.clip = clip;
+        _audioSource.Stop();
+        _audioSource.Play();
+    }
+
+    void DestroyObstacle()
+    {
+        _collider.enabled = false;
+        _mainImage.enabled = false;
+
+        Destroy(this.gameObject, .5f);
+    }
+
+    
 }

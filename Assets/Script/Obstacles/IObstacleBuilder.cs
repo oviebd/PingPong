@@ -4,12 +4,12 @@ using UnityEngine;
 
 public interface IObstacleBuilder  {
 
-    void SetDestructionSound(AudioClip clip);
-    void SetCollisionSound(AudioClip clip);
+    void SetDestructionSound();
+    void SetCollisionSound();
     void SetColor(Color color);
-    void SetObstacleType(GameEnums.ObstacleType type);
+    void SetObstacleType();
     void SetValue(int value);
-    void SetObstacleSprite(Sprite sprite);
+    void SetObstacleSprite();
     Obstacle getObstacle();
 
 }

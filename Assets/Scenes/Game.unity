@@ -2701,6 +2701,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a184d49b075eb4bafb9b42660b02e0, type: 2}
   m_IsPrefabAsset: 0
+--- !u!212 &1103662564 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 212548477326211634, guid: ea90211f6f8040146956dca0c439618d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1359767657}
 --- !u!1 &1117449751
 GameObject:
   m_ObjectHideFlags: 0
@@ -3311,6 +3316,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114515353781017324, guid: ea90211f6f8040146956dca0c439618d,
+        type: 2}
+      propertyPath: _mainImage
+      value: 
+      objectReference: {fileID: 1103662564}
+    - target: {fileID: 114515353781017324, guid: ea90211f6f8040146956dca0c439618d,
+        type: 2}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 1576537823}
+    - target: {fileID: 114515353781017324, guid: ea90211f6f8040146956dca0c439618d,
+        type: 2}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 1576537821}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea90211f6f8040146956dca0c439618d, type: 2}
   m_IsPrefabAsset: 0
@@ -4235,6 +4255,16 @@ Transform:
   m_Father: {fileID: 1664838985}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1576537821 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82275204910068676, guid: ea90211f6f8040146956dca0c439618d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1359767657}
+--- !u!61 &1576537823 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 61235997602822998, guid: ea90211f6f8040146956dca0c439618d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1359767657}
 --- !u!1 &1664838984
 GameObject:
   m_ObjectHideFlags: 0
