@@ -10,6 +10,7 @@ public interface IObstacleBuilder  {
     void SetObstacleType();
     void SetValue(int value);
     void SetObstacleSprite();
+    void SetObstacleCollisionEffect();
     Obstacle getObstacle();
 
 }

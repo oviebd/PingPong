@@ -10,5 +10,5 @@ public class Obstacle {
     public AudioClip _destructionClip { get; set; }
     public int value { get; set; }
     public GameEnums.ObstacleType obstacleType { get; set; }
-
+    public IObstacleCollisionEffect obstacleEffct { get; set; }
 }

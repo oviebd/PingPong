@@ -16,17 +16,15 @@ public class ObstacleBehaviour : MonoBehaviour, IColliderEnter
     public void SetObstacle(Obstacle obstacle)
     {
         _obstacle = obstacle;
-
-//        Debug.Log("Obstacle : type " + _obstacle.obstacleType + " sprite  " + _obstacle.sprite.name);
-
         _mainImage.sprite = obstacle.sprite;
         _mainImage.color = obstacle.color;
     }
 
     public void onCollide(Collision2D colidedObj2D)
     {
-        PlaySound(_obstacle._collisionClip);
-        DestroyObstacle();
+        _obstacle.obstacleEffct.DoCollisionAfterEffect();
+        //PlaySound(_obstacle._collisionClip);
+        //DestroyObstacle();
     }
 
     void PlaySound(AudioClip clip)

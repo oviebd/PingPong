@@ -6,5 +6,6 @@
         builder.SetCollisionSound();
         builder.SetObstacleType();
         builder.SetObstacleSprite();
+        builder.SetObstacleCollisionEffect();
     }
 }
