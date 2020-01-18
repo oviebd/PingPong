@@ -15,14 +15,13 @@ public class GameManager : MonoBehaviour {
 
 		if (instance == null)
 			instance = this;
-		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall += NotifyGameManagerForBallCollisionOnLeftRightWall;
+
 		CountTextAnimation.OnCountAnimationFinished += onCountAnimationCompleted;
 	}
 
 	void OnDestroy()
 	{
-		WinningConditionHandler.notifyGameManagerForBallCollisionOnLeftRightWall -= NotifyGameManagerForBallCollisionOnLeftRightWall;
-		CountTextAnimation.OnCountAnimationFinished -= onCountAnimationCompleted;
+   		CountTextAnimation.OnCountAnimationFinished -= onCountAnimationCompleted;
 	}
 
 	public GameEnums.GameState GetCurrentGameState()
@@ -31,25 +30,17 @@ public class GameManager : MonoBehaviour {
 	}
 	public void SetCurrentGameState(GameEnums.GameState gameState)
 	{
-		//Debug.Log("Set Game State .... " + gameState);
 		_gameCurrentState = gameState;
 
 		if (gameStateChanged != null)
 			gameStateChanged(gameState);
 
 	}
-
-	void	NotifyGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls nextWallDirection)
+	public void ResetBallOnADirection(GameEnums.Walls nextWallDirection)
 	{
-		if (isWinning)
-			playerWin(winnerPlayer);
-		else
-		{
 			SetCurrentGameState(GameEnums.GameState.Idle);
 			BallController.instance.ResetBall(nextWallDirection);
 			GameSceneAnimationHandler.instance.PlayCountAnimation(2);
-		}
-			
 	}
 
 	void onCountAnimationCompleted()
@@ -57,10 +48,10 @@ public class GameManager : MonoBehaviour {
 		SetCurrentGameState(GameEnums.GameState.Running);
 	}
 
-	void playerWin(GameEnums.PlayerEnum winnerPlayer)
+	public void GameOver(bool isWin)
 	{
 		SetCurrentGameState (GameEnums.GameState.Over);
-		GameSceneUIManager.instance.SetUiForWinningPanel(winnerPlayer);
+		GameSceneUIManager.instance.SetGameOverUI(isWin);
 	}
 
 	public void StartANewGame()
@@ -77,7 +68,6 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ResumeGame()
 	{
-	    //SetCurrentGameState(GameEnums.GameState.Running);
 		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
 		GameSceneUIManager.instance.SetUiForResumeGame();
 	}

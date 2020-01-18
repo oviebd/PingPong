@@ -8,60 +8,45 @@ public class ScoreManager : MonoBehaviour {
 
 	public static ScoreManager instance;
 
-	public delegate void OnCheckWinningPoint(GameEnums.Walls nextWallDirection);
-	public static event OnCheckWinningPoint CheckWinningPoint;
-
 	public Text scoreText;
-	private int scoreRightSidePlayer = 0;
-	private int scoreLeftSidePlayer = 0;
+	private int currentScore;
 
 	public void Start () {
-
+	
 		if (instance == null)
 			instance = this;
 
-		BoundaryBehaviour.updateScoreManagerData += onUpdateScoreManagerData;
+		//ResetScore();
+		ObstacleBehaviour.updateScoreManagerData += onUpdateScoreManagerData;
 	}
 	void OnDestroy()
 	{
-		BoundaryBehaviour.updateScoreManagerData -= onUpdateScoreManagerData;
+		ObstacleBehaviour.updateScoreManagerData -= onUpdateScoreManagerData;
 	}
 
-   void onUpdateScoreManagerData(GameEnums.PlayerEnum scoringPlayer, GameEnums.Walls nextWall)
+   void onUpdateScoreManagerData(int updatedScore)
 	{
-		UpdateScore(scoringPlayer);
-		CheckWinningPoint(nextWall);
-	}
-	public void UpdateScore(GameEnums.PlayerEnum player)
-	{
-		if (player == GameEnums.PlayerEnum.Player1_Right)
-			scoreRightSidePlayer = scoreRightSidePlayer + 1;
-		else if (player == GameEnums.PlayerEnum.Player2_Left)
-			scoreLeftSidePlayer = scoreLeftSidePlayer + 1;
-
+		//Debug.Log("Current Score : " + currentScore + "  Updated Score : " + updatedScore);
+		currentScore = currentScore + updatedScore;
 		showScoreText();
+		WinningConditionHandler.instance.CheckWinningPoint();
 	}
+	
 	void showScoreText()
 	{
-		string scoreSTring = scoreLeftSidePlayer  + " - " + scoreRightSidePlayer;
+		string scoreSTring = currentScore  + " / " + WinningConditionHandler.instance.GetWinningPoint() ;
+	//	string scoreSTring = currentScore + " / ";
 		scoreText.text = scoreSTring;
 	}
 
 	public void ResetScore()
 	{
-		scoreLeftSidePlayer =  0;
-		scoreRightSidePlayer = 0;
+		currentScore =  0;
 		showScoreText();
 	}
 
-	public  int GetRightSidePlayerScore()
+	public  int GetCurrentScore()
 	{
-		return scoreRightSidePlayer;
+		return currentScore;
 	}
-	public int GetLeftSidePlayerScore()
-	{
-		return scoreLeftSidePlayer;
-	}
-	
-
 }

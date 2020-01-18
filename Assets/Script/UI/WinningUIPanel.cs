@@ -9,9 +9,9 @@ public class WinningUIPanel : PanelUI {
 	[SerializeField] private Text _playerGameStatus;
 
 
-	public void SetWinningPanel(GameEnums.PlayerEnum winningPlayer)
+	public void SetWinningPanel(bool isWin)
 	{
-		if(winningPlayer == GameEnums.PlayerEnum.Player1_Right)
+		if(isWin)
 		{
 			_congratesText.text = "Congratulations";
 			_playerGameStatus.text = "You win";

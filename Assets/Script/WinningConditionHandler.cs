@@ -5,21 +5,16 @@ using UnityEngine;
 public class WinningConditionHandler : MonoBehaviour {
 
 	public static WinningConditionHandler instance;
-	private int _winningPoint = 2;
-
-	public delegate void onNotifuGameManagerForBallCollisionOnLeftRightWall(bool isWinning, GameEnums.PlayerEnum winnerPlayer, GameEnums.Walls collidedWall);
-	public static event onNotifuGameManagerForBallCollisionOnLeftRightWall notifyGameManagerForBallCollisionOnLeftRightWall;
+	private int _winningPoint = 10;
 
 	void Start()
 	{
 		if (instance == null)
 			instance = new WinningConditionHandler();
-		ScoreManager.CheckWinningPoint += CheckWinningPoint;
 	}
 
 	void OnDestroy()
 	{
-		ScoreManager.CheckWinningPoint -= CheckWinningPoint;
 	}
 
 	public void SetWinningPoint(int winningPoint)
@@ -27,23 +22,17 @@ public class WinningConditionHandler : MonoBehaviour {
 		this._winningPoint = winningPoint;
 	}
 
-	public void CheckWinningPoint(GameEnums.Walls nextWallDirection)
+	public int GetWinningPoint()
 	{
-		if (ScoreManager.instance.GetRightSidePlayerScore() >= _winningPoint)
-		{
-			PlayerWin(GameEnums.PlayerEnum.Player1_Right);
-		}
-		else if (ScoreManager.instance.GetLeftSidePlayerScore() >= _winningPoint)
-		{
-			PlayerWin(GameEnums.PlayerEnum.Player2_Left);
-		}
-		else
-			notifyGameManagerForBallCollisionOnLeftRightWall(false, GameEnums.PlayerEnum.Player1_Right, nextWallDirection); //As it is not winning sisuation so wall is important but player is not
+		return _winningPoint;
 	}
 
-	void PlayerWin(GameEnums.PlayerEnum winnerPlayer)
+	public void CheckWinningPoint()
 	{
-		notifyGameManagerForBallCollisionOnLeftRightWall(true, winnerPlayer, GameEnums.Walls.left); //As  player wins wall doesnot matter but player is important
+		if (ScoreManager.instance.GetCurrentScore() >= _winningPoint)
+		{
+			GameManager.instance.GameOver(true);
+		}
 	}
 
 }

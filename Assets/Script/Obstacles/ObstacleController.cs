@@ -50,7 +50,7 @@ public class ObstacleController : MonoBehaviour {
 		{
 	    	GameObject obj =	InstantiatorHelper.InstantiateObject(_obstaclePrefab, _parentObj);
 
-            Obstacle obstacle = GenerateObstacle(GameEnums.ObstacleType.bomb);
+            Obstacle obstacle = GenerateObstacle(GameEnums.ObstacleType.type1);
             obj.GetComponent<ObstacleBehaviour>().SetObstacle(obstacle);
             obstacleList.Add(obj);
 		}
@@ -65,7 +65,10 @@ public class ObstacleController : MonoBehaviour {
         IObstacleBuilder obstacle;
 
         if (obstacleType == GameEnums.ObstacleType.type1)
-            obstacle = new Obstacle_Type1();
+		{
+			obstacle = new Obstacle_Type1();
+			obstacle.SetValue(1);
+		}
         else
             obstacle = new Obstacle_Type2_Bomb();
 

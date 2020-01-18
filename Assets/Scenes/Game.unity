@@ -778,6 +778,7 @@ GameObject:
   - component: {fileID: 239195638}
   - component: {fileID: 239195639}
   - component: {fileID: 239195640}
+  - component: {fileID: 239195641}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -876,6 +877,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _countTextAnimation: {fileID: 990869342}
+--- !u!114 &239195641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 239195633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4be918bb25dd04eaeb52c22b3fa9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &327306198
 GameObject:
   m_ObjectHideFlags: 0

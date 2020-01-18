@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class ObstacleBehaviour : MonoBehaviour, IColliderEnter
 {
-
     [SerializeField] private SpriteRenderer _mainImage;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private Collider2D _collider;
 
+	private Obstacle _obstacle;
 
-    private Obstacle _obstacle;
+	public delegate void OnBallCollideWithObstacle(int score);
+	public static event OnBallCollideWithObstacle updateScoreManagerData;
+	
 
     public void SetObstacle(Obstacle obstacle)
     {
@@ -23,9 +25,15 @@ public class ObstacleBehaviour : MonoBehaviour, IColliderEnter
     public void onCollide(Collision2D colidedObj2D)
     {
         _obstacle.obstacleEffct.DoCollisionAfterEffect(this,_obstacle);
-        //PlaySound(_obstacle._collisionClip);
-        //DestroyObstacle();
+		//PlaySound(_obstacle._collisionClip);
+		//DestroyObstacle();
+		UpdateScoreManagerData();
     }
+
+	public void UpdateScoreManagerData()
+	{
+		updateScoreManagerData(_obstacle.value);
+	}
 
     public AudioSource GetAudioSource()
     {

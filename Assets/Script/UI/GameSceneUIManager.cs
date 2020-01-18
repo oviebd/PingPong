@@ -46,10 +46,10 @@ public class GameSceneUIManager : MonoBehaviour {
 		SetUiForANewGame();
 	}
 
-	public void SetUiForWinningPanel(GameEnums.PlayerEnum winningPlayer)
+	public void SetGameOverUI(bool isWin)
 	{
 		_winningPanel.ShowPanel();
-		_winningPanel.SetWinningPanel(winningPlayer);
+		_winningPanel.SetWinningPanel(isWin);
 	}
 
 }
