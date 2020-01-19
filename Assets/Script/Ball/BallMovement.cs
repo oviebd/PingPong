@@ -13,8 +13,6 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	private Vector2 _previousVelocity;
 	private Renderer _rendere;
 
-	private CountTextAnimation _countTextAnimation;
-
 	void OnDestroy()
 	{
 		GameManager.gameStateChanged -= onGameStateChanged;
@@ -27,9 +25,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 		_rendere = this.gameObject.GetComponent<SpriteRenderer>();
 		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
-		SetInitialPositionBasedOnDirection(GameEnums.Walls.left);
 		ResetPosition(GameEnums.Walls.left);
-		//ResetBall();
 	}
 
 	private void ResetBall()
@@ -45,9 +41,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		_rendere.enabled = canMove;
 		_rb.isKinematic = !canMove; // if ball can move than set kinematic false
         _trailRenderer.enabled = canMove;
-
     }
-
 
 	private void StartBallMovement()
 	{
@@ -88,7 +82,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	public void ResetPosition(GameEnums.Walls nextWall)
 	{
 		ResetBall();
-		this.gameObject.transform.position = SetInitialPositionBasedOnDirection(nextWall);
+		this.gameObject.transform.position =  BallPositionHandler.SetInitialPositionBasedOnDirection(nextWall);
 		StartCoroutine(waitAndResetPosition(nextWall));
 	}
 
@@ -104,34 +98,10 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 			_initialVelocity = _initialVelocity * (-1);  //Made all velocity positive
 		 //If wall is right direction is already positive , if next wall is left then made velocity negative
 
-	   _initialVelocity = 	GenerateRandomVelocity(_initialVelocity);
+	   _initialVelocity = 	BallPositionHandler.GenerateRandomVelocity(_initialVelocity,this._ball);
 		if (nextWall == GameEnums.Walls.left)
 			_initialVelocity = _initialVelocity * (-1);
 		return _initialVelocity;
 	}
-	Vector2 SetInitialPositionBasedOnDirection(GameEnums.Walls nextWall)
-	{
-		float threshHoldXPosition = 3; // for keeping distance from peddle
-		float y = Random.Range(BoundaryController.instance.GetBottomWallPosition().y, BoundaryController.instance.GetTopWallPosition().y);
-		float x = 1.0f;
 
-		if (nextWall == GameEnums.Walls.left)
-			x = BoundaryController.instance.GetRightWallPosition().x ;
-		if (nextWall == GameEnums.Walls.right)
-			x = BoundaryController.instance.GetLeftWallPosition().x ;
-
-		if (x < 0)
-			x = x + threshHoldXPosition;
-		else
-			x = x - threshHoldXPosition;
-
-		Vector2 newResetPosition = new Vector2(x, y);
-		return newResetPosition;
-	}
-	Vector2 GenerateRandomVelocity(Vector2 velocity)
-	{
-		float x = Random.Range(_initialVelocity.x / 1.5f, _maxVelocity.x / 2);
-		float y = Random.Range(_initialVelocity.y / 1.5f, _maxVelocity.y / 2);
-		return new Vector2(x, y);
-	}
 }
