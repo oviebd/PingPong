@@ -1027,7 +1027,7 @@ GameObject:
   - component: {fileID: 362783207}
   m_Layer: 8
   m_Name: Paddle Right
-  m_TagString: Untagged
+  m_TagString: paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2706,34 +2706,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1542563877020982, guid: d0a184d49b075eb4bafb9b42660b02e0, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212245985790317498, guid: d0a184d49b075eb4bafb9b42660b02e0,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 582e18a8e49764139a8d6411528e1ba6,
-        type: 3}
-    - target: {fileID: 4878566849614732, guid: d0a184d49b075eb4bafb9b42660b02e0, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878566849614732, guid: d0a184d49b075eb4bafb9b42660b02e0, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 58122148223258172, guid: d0a184d49b075eb4bafb9b42660b02e0,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.0004736185
-      objectReference: {fileID: 0}
-    - target: {fileID: 58122148223258172, guid: d0a184d49b075eb4bafb9b42660b02e0,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.39960063
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a184d49b075eb4bafb9b42660b02e0, type: 2}
   m_IsPrefabAsset: 0
@@ -3099,7 +3071,7 @@ GameObject:
   - component: {fileID: 1299731299}
   m_Layer: 8
   m_Name: Paddle Left
-  m_TagString: Untagged
+  m_TagString: paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

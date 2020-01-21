@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMovement : MonoBehaviour, IColliderEnter
+public class BallMovement : MonoBehaviour
 {
 	[SerializeField] private Rigidbody2D _rb;
     [SerializeField] private TrailRenderer _trailRenderer;
@@ -84,12 +84,6 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 				StopBallMovement();
 				break;
 		}
-	}
-
-	public void onCollide(Collision2D colidedObj2D)
-	{
-		if (Mathf.Abs(_rb.velocity.x) <= _maxVelocity.x && Mathf.Abs(_rb.velocity.y) <= _maxVelocity.y)
-		    _rb.velocity = _rb.velocity * (1.01f);
 	}
 
 	public void ResetPosition(GameEnums.Walls nextWall)
