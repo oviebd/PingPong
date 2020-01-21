@@ -118,14 +118,4 @@ public class BallController : MonoBehaviour {
            
     }
 
-    /*public void DestroyBall()
-	{
-		if(this._currentBall !=null)
-		{
-			this._currentBall.StopMove();
-			Destroy(this._currentBall.gameObject);
-			this._currentBall = null;
-		}
-	}*/
-
 }

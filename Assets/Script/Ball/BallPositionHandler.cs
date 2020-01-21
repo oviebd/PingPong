@@ -23,11 +23,26 @@ public static class BallPositionHandler  {
 		return newResetPosition;
 	}
 
-	public  static Vector2 GenerateRandomVelocity(Vector2 velocity, Ball ball)
+	public  static Vector2 GenerateRandomPositiveVelocity(Vector2 minimumVelocity, Vector2 maximumVelocity)
 	{
-		float x = Random.Range(ball.initialVelocity.x / 1.5f, ball.maximumVelocity.x / 2);
-		float y = Random.Range(ball.initialVelocity.y / 1.5f, ball.maximumVelocity.y / 2);
-		return new Vector2(x, y);
+        Vector2 randomVelocity = Vector2.zero;
+		float x = Random.Range(minimumVelocity.x / 1.5f, maximumVelocity.x / 2);
+		float y = Random.Range(minimumVelocity.y / 1.5f, minimumVelocity.y / 2);
+
+        randomVelocity = new Vector2(x, y);
+
+        if (randomVelocity.x < 0)
+            randomVelocity = randomVelocity * (-1);
+        return randomVelocity;
+	}
+
+   public  static Vector2 SetInitialVelocityBasedonDirection(GameEnums.Walls nextWall,Vector2 initialVelocity)
+	{
+        if (nextWall == GameEnums.Walls.left)
+			initialVelocity = initialVelocity * (-1);
+
+
+        return initialVelocity;
 	}
 
 }

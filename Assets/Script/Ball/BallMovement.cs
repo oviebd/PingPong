@@ -25,8 +25,11 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		GameManager.gameStateChanged += onGameStateChanged;
 
 		_rendere = this.gameObject.GetComponent<SpriteRenderer>();
-		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
-		ResetPosition(GameEnums.Walls.left);
+
+        _initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(_ball.initialVelocity, _ball.maximumVelocity);
+        BallPositionHandler.SetInitialVelocityBasedonDirection(GameEnums.Walls.left,_initialVelocity);
+
+        ResetPosition(GameEnums.Walls.left);
 	}
 
     public Ball GetBall()
@@ -99,21 +102,11 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	IEnumerator waitAndResetPosition(GameEnums.Walls nextWall)
 	{
 		yield return new WaitForSeconds(.5f);
-		_previousVelocity = SetInitialVelocityBasedonDirection(nextWall);
+
+        _initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(_ball.initialVelocity,_ball.maximumVelocity);
+        _previousVelocity = BallPositionHandler.SetInitialVelocityBasedonDirection(nextWall,_initialVelocity);
 	}
 
-	Vector2 SetInitialVelocityBasedonDirection(GameEnums.Walls nextWall)
-	{
-       
-		if (_initialVelocity.x < 0)
-			_initialVelocity = _initialVelocity * (-1);  //Made all velocity positive
-		 //If wall is right direction is already positive , if next wall is left then made velocity negative
-
-	   _initialVelocity = 	BallPositionHandler.GenerateRandomVelocity(_initialVelocity,this._ball);
-		if (nextWall == GameEnums.Walls.left)
-			_initialVelocity = _initialVelocity * (-1);
-        Debug.Log("Next wall : " + nextWall + " init vel :  " + _initialVelocity);
-        return _initialVelocity;
-	}
+	
 
 }
