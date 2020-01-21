@@ -18,6 +18,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		GameManager.gameStateChanged -= onGameStateChanged;
 	}
 
+
 	public void setBall(Ball ball)
 	{
 		this._ball = ball;
@@ -27,6 +28,15 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 		SetInitialVelocityBasedonDirection(GameEnums.Walls.left);
 		ResetPosition(GameEnums.Walls.left);
 	}
+
+    public Ball GetBall()
+    {
+        return _ball;
+    }
+    public void UpdateBall(Ball ball)
+    {
+        this._ball  = ball;
+    }
 
 	private void ResetBall()
 	{
@@ -43,7 +53,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
         _trailRenderer.enabled = canMove;
     }
 
-	private void StartBallMovement()
+	public void StartBallMovement()
 	{
 		SetBallVisibleAnbMoveAble(true);
 	    _rb.velocity = _previousVelocity;
@@ -94,6 +104,7 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 
 	Vector2 SetInitialVelocityBasedonDirection(GameEnums.Walls nextWall)
 	{
+       
 		if (_initialVelocity.x < 0)
 			_initialVelocity = _initialVelocity * (-1);  //Made all velocity positive
 		 //If wall is right direction is already positive , if next wall is left then made velocity negative
@@ -101,7 +112,8 @@ public class BallMovement : MonoBehaviour, IColliderEnter
 	   _initialVelocity = 	BallPositionHandler.GenerateRandomVelocity(_initialVelocity,this._ball);
 		if (nextWall == GameEnums.Walls.left)
 			_initialVelocity = _initialVelocity * (-1);
-		return _initialVelocity;
+        Debug.Log("Next wall : " + nextWall + " init vel :  " + _initialVelocity);
+        return _initialVelocity;
 	}
 
 }

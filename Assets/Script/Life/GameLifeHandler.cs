@@ -14,7 +14,7 @@ public class GameLifeHandler : MonoBehaviour {
 	}
 	void Start () {
 		//_gameLife = 1;
-		BoundaryBehaviour.onBallCollideWithLeftRightWall += onBallCollidedWithLeftRightWall;
+		//BoundaryBehaviour.onBallCollideWithLeftRightWall += onBallCollidedWithLeftRightWall;
 	}
 
 	public int GetCurrentLife()
@@ -30,17 +30,24 @@ public class GameLifeHandler : MonoBehaviour {
 		_gameLife = _gameLife - amount;
 	}
 
-	public void onBallCollidedWithLeftRightWall(GameEnums.Walls nextWall)
+	/*public void onBallCollidedWithLeftRightWall(GameEnums.Walls nextWall)
 	{
 	    DecreaseLife(1);
 		if (_gameLife <= 0)
 			GameManager.instance.GameOver(false);  // LoseGame
 		else
 			GameManager.instance.ResetBallOnADirection(nextWall);
+	}*/
+
+    public void onBallCollidedWithLeftRightWall(GameEnums.Walls nextWall)
+    {
+        DecreaseLife(1);
+        if (_gameLife <= 0)
+            GameManager.instance.GameOver(false);  // LoseGame
+        else
+            GameManager.instance.ResetBallOnADirection(nextWall);
+    }
 
 
-	}
-	
-	
-	
+
 }

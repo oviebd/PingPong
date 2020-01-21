@@ -7,7 +7,7 @@ public class BoundaryBehaviour : MonoBehaviour, IColliderEnter
 	[SerializeField] private GameEnums.Walls _wallName;
 	private Collider2D _collider;
 
-	public delegate void OnBallCollidedWithLeftRightWall(GameEnums.Walls collidedWall); 
+	public delegate void OnBallCollidedWithLeftRightWall(GameEnums.Walls collidedWall, GameObject ball); 
 	public static event OnBallCollidedWithLeftRightWall onBallCollideWithLeftRightWall;
 
 	void Start()
@@ -20,16 +20,17 @@ public class BoundaryBehaviour : MonoBehaviour, IColliderEnter
 		//Debug.Log("tag    " + collidedObjTag);
 		if (collidedObjTag == GameEnums.Tag.ball.ToString())
 		{
-			BallHitOnWalls();
+			BallHitOnWalls(colidedObj2D.gameObject);
 		}
 	}
-	void BallHitOnWalls()
+
+	void BallHitOnWalls(GameObject ballObj)
 	{
 		if (_wallName == GameEnums.Walls.left || _wallName == GameEnums.Walls.right)
 		{
-			//Debug.Log("Ball Hit on wall in if ");
-			onBallCollideWithLeftRightWall(_wallName);
-		}
+            //Debug.Log("Ball Hit on wall in if ");
+            onBallCollideWithLeftRightWall(_wallName, ballObj);
+        }
 	}
 
 	IEnumerator MadeWallNotCollidableForSometime()

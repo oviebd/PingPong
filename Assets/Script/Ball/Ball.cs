@@ -7,4 +7,10 @@ public class Ball  {
 	public Vector2 maximumVelocity { get; set; }
 	public Color color { get;set; }
 	public GameEnums.ballType ballType  { get; set; }
+    public bool isItFirstBall { get; set; }
+
+    public Ball()
+    {
+        isItFirstBall = false;
+    }
 }
