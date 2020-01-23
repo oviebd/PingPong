@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114191581901189250}
   - component: {fileID: 114193703282294854}
   - component: {fileID: 96397643998689592}
-  - component: {fileID: 114473482710249070}
+  - component: {fileID: 114516431530482816}
   m_Layer: 9
   m_Name: Ball
   m_TagString: ball
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 50834172861729008}
   _trailRenderer: {fileID: 96397643998689592}
---- !u!114 &114473482710249070
+--- !u!114 &114516431530482816
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,9 +226,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1542563877020982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2e59ed2dc41614abdff612220731e4, type: 3}
+  m_Script: {fileID: 11500000, guid: b0646bc6313199047998ffc0f8baa3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ballMovement: {fileID: 114193703282294854}
+  _rb: {fileID: 50834172861729008}
 --- !u!212 &212245985790317498
 SpriteRenderer:
   m_ObjectHideFlags: 1

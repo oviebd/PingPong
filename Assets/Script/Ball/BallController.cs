@@ -10,7 +10,7 @@ public class BallController : MonoBehaviour {
 	[SerializeField] private GameObject _ballParent;
 
 	private GameObject _currentBall;
-    private  List<BallMovement> _additionalBalls = new List<BallMovement>(); 
+    private  List<BallBehaviour> _additionalBalls = new List<BallBehaviour>(); 
 
 	void Start()
 	{
@@ -36,15 +36,15 @@ public class BallController : MonoBehaviour {
 	    Ball ball = GenerateBall(GameEnums.ballType.type1);
 	    GameObject ballObject = InstantiatorHelper.InstantiateObject(_ballPrefab, _ballParent);
 
-        BallMovement ballMovement = ballObject.GetComponent<BallMovement>();
-        ballMovement.setBall(ball);
+        BallBehaviour ballBehaviour = ballObject.GetComponent<BallBehaviour>();
+        ballBehaviour.setBall(ball);
         
         if(_currentBall == null)
             _currentBall = ballObject;
         else
         {
-            StartCoroutine(setMovement(ballMovement));
-            _additionalBalls.Add(ballMovement);
+           // StartCoroutine(setMovement(ballMovement));
+            _additionalBalls.Add(ballBehaviour);
         }
 	  return ballObject;
 	}
@@ -77,25 +77,25 @@ public class BallController : MonoBehaviour {
 
     void SetFirstAndSpecialBall()
     {
-        BallMovement ballMovement = GetTopBallForMadeBasicBall();
-        if (ballMovement != null)
-            _currentBall = ballMovement.gameObject;
+        BallBehaviour ballBehaviour = GetTopBallForMadeBasicBall();
+        if (ballBehaviour != null)
+            _currentBall = ballBehaviour.gameObject;
     }
 
-    BallMovement GetTopBallForMadeBasicBall()
+    BallBehaviour GetTopBallForMadeBasicBall()
     {
         for(int i=0;i< _additionalBalls.Count; i++)
         {
             if(_additionalBalls[i].GetBall().ballType == GameEnums.ballType.type1)
             {
-                BallMovement tempBallMovement = _additionalBalls[i];
+                BallBehaviour tempBallBehaviour = _additionalBalls[i];
                 _additionalBalls.RemoveAt(i);
 
-                Ball  updatedBall = tempBallMovement.GetBall();
+                Ball  updatedBall = tempBallBehaviour.GetBall();
                 updatedBall.isItFirstBall = true;
 
-                tempBallMovement.UpdateBall(updatedBall);
-                return tempBallMovement;
+                tempBallBehaviour.UpdateBall(updatedBall);
+                return tempBallBehaviour;
             }
         }
         return null;

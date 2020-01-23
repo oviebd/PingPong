@@ -6,30 +6,37 @@ public class BallMovement : MonoBehaviour
 {
 	[SerializeField] private Rigidbody2D _rb;
     [SerializeField] private TrailRenderer _trailRenderer;
+	private Renderer _rendere;
 
-    private Ball _ball = new Ball();
+	//private Ball _ball = new Ball();
 	private Vector2 _initialVelocity;
 	private Vector2 _maxVelocity;
 	private Vector2 _previousVelocity;
-	private Renderer _rendere;
 
-	void OnDestroy()
+	BallBehaviour _ballBehaviour;
+
+	void Start()
 	{
-		GameManager.gameStateChanged -= onGameStateChanged;
+		_ballBehaviour = this.gameObject.GetComponent<BallBehaviour>();
 	}
-
-
 	public void setBall(Ball ball)
 	{
-		this._ball = ball;
-		GameManager.gameStateChanged += onGameStateChanged;
-
 		_rendere = this.gameObject.GetComponent<SpriteRenderer>();
-
-        _initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(_ball.initialVelocity, _ball.maximumVelocity);
+		_initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(getBall().initialVelocity, getBall().maximumVelocity);
         BallPositionHandler.SetInitialVelocityBasedonDirection(GameEnums.Walls.left,_initialVelocity);
 
         ResetPosition(GameEnums.Walls.left);
+	}
+
+	Ball getBall()
+	{
+		if (_ballBehaviour == null)
+		{
+			_ballBehaviour = this.gameObject.GetComponent<BallBehaviour>();
+			return _ballBehaviour.GetBall();
+		}		
+		else
+			return _ballBehaviour.GetBall();
 	}
 
     public Vector2 GetInitialVelocity()
@@ -37,21 +44,12 @@ public class BallMovement : MonoBehaviour
         return _initialVelocity;
     }
 
-    public Ball GetBall()
-    {
-        return _ball;
-    }
-    public void UpdateBall(Ball ball)
-    {
-        this._ball  = ball;
-    }
-
 	private void ResetBall()
 	{
 		StopBallMovement();
-		_initialVelocity = this._ball.initialVelocity;
+		_initialVelocity = getBall().initialVelocity;
 		_previousVelocity = _initialVelocity;
-		_maxVelocity = this._ball.maximumVelocity;
+		_maxVelocity = getBall().maximumVelocity;
 	}
 
 	void SetBallVisibleAnbMoveAble(bool canMove)
@@ -67,28 +65,12 @@ public class BallMovement : MonoBehaviour
 	    _rb.velocity = _previousVelocity;
 	}
 
-	private void StopBallMovement()
+	public void StopBallMovement()
 	{
 		_previousVelocity = _rb.velocity;
 		_rb.velocity = Vector2.zero;
 		SetBallVisibleAnbMoveAble(false);
 		
-	}
-	void onGameStateChanged(GameEnums.GameState gameState)
-	{
-		switch (gameState)
-		{
-			case GameEnums.GameState.Running:
-				StartBallMovement();
-				break;
-			case GameEnums.GameState.Over:
-				StopBallMovement();
-				Destroy(gameObject);
-				break;
-			default:
-				StopBallMovement();
-				break;
-		}
 	}
 
 	public void ResetPosition(GameEnums.Walls nextWall)
@@ -102,7 +84,7 @@ public class BallMovement : MonoBehaviour
 	{
 		yield return new WaitForSeconds(.5f);
 
-        _initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(_ball.initialVelocity,_ball.maximumVelocity);
+        _initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(getBall().initialVelocity,getBall().maximumVelocity);
         _previousVelocity = BallPositionHandler.SetInitialVelocityBasedonDirection(nextWall,_initialVelocity);
 	}
 
