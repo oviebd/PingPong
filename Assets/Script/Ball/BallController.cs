@@ -19,7 +19,7 @@ public class BallController : MonoBehaviour {
 
         BoundaryBehaviour.onBallCollideWithLeftRightWall += onBallCollidedWithLeftRightWall;
 
-        InvokeRepeating("InstantiateBall", 5.0f, 8.0f);
+      //  InvokeRepeating("InstantiateBall", 5.0f, 8.0f);
     }
 
 	public void ResetBall(GameEnums.Walls nextWallDirection)

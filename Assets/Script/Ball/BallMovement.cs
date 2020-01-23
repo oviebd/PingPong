@@ -32,6 +32,11 @@ public class BallMovement : MonoBehaviour
         ResetPosition(GameEnums.Walls.left);
 	}
 
+    public Vector2 GetInitialVelocity()
+    {
+        return _initialVelocity;
+    }
+
     public Ball GetBall()
     {
         return _ball;
