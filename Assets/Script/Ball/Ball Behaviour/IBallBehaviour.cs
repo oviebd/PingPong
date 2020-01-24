@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IBallBehaviour  {
 
-	void OperationAfterCollision();
+	void OperationAfterCollision(Collision2D collision2D);
 	void SetUp(BallBehaviour behaviour);
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalBallBehaviour : IBallBehaviour, IColliderEnter
+public class NormalBallBehaviour : IBallBehaviour
 {
 	public BallMovement _ballMovement;
 	public Rigidbody2D _rb;
@@ -14,23 +14,10 @@ public class NormalBallBehaviour : IBallBehaviour, IColliderEnter
 		_ballMovement = behaviour.GetBallMovement();
 	}
 
-	public void OperationAfterCollision()
+	public void OperationAfterCollision(Collision2D colidedObj2D)
 	{
-        UpdateSpeed();
-       // SetInitialVelocity();
-    }
-
-	public void onCollide(Collision2D colidedObj2D)
-	{
-		//Debug.Log("Collided ball with " + colidedObj2D.gameObject.tag);
-		if (colidedObj2D.gameObject.tag == GameEnums.Tag.paddle.ToString())
-            OperationAfterCollision();
-    /*    if (colidedObj2D.gameObject.tag == GameEnums.Tag.obstacle.ToString())
-        {
-            GoPreviousDirection();
-        }*/
-
-
+        if (colidedObj2D.gameObject.tag == GameEnums.Tag.paddle.ToString())
+            UpdateSpeed();
     }
 
 	void UpdateSpeed()

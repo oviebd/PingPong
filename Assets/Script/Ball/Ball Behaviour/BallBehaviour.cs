@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallBehaviour : MonoBehaviour {
+public class BallBehaviour : MonoBehaviour,IColliderEnter
+{
 
 	public BallMovement _ballMovement;
 	public Rigidbody2D _rb;
@@ -13,9 +14,8 @@ public class BallBehaviour : MonoBehaviour {
 
 	void Start()
 	{
-		//_ballMovement = this.gameObject.GetComponent<BallMovement>();
-		//_rb = this.gameObject.GetComponent<Rigidbody2D>();
-		ballBehaviour = new BallType_1_Behaviour();
+        ballBehaviour = new BallType_1_Behaviour();
+       // ballBehaviour = new NormalBallBehaviour();
 		ballBehaviour.SetUp(this);
 
 		GameManager.gameStateChanged += onGameStateChanged;
@@ -25,7 +25,8 @@ public class BallBehaviour : MonoBehaviour {
 	{
 		GameManager.gameStateChanged -= onGameStateChanged;
 	}
-	public void setBall(Ball ball)
+
+    public void setBall(Ball ball)
 	{
 		this._ball = ball;
 
@@ -49,7 +50,12 @@ public class BallBehaviour : MonoBehaviour {
 		this._ball = ball;
 	}
 
-	void onGameStateChanged(GameEnums.GameState gameState)
+    public void onCollide(Collision2D colidedObj2D)
+    {
+        ballBehaviour.OperationAfterCollision(colidedObj2D);
+    }
+
+    void onGameStateChanged(GameEnums.GameState gameState)
 	{
 		switch (gameState)
 		{
@@ -65,4 +71,6 @@ public class BallBehaviour : MonoBehaviour {
 				break;
 		}
 	}
+
+    
 }

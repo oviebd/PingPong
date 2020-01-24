@@ -2,32 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallType_1_Behaviour :  IBallBehaviour, IColliderEnter
+public class BallType_1_Behaviour :  IBallBehaviour
 {
 	private Vector2 initialVelocity = Vector2.zero;
 	private Rigidbody2D _rb;
 
 	BallBehaviour _ballBehaviour;
-	public void SetUp(BallBehaviour behaviour)
+
+    public void SetUp(BallBehaviour behaviour)
 	{
 		this._ballBehaviour = behaviour;
 		_rb = _ballBehaviour.GetRb();
 		initialVelocity = behaviour.GetBallMovement().GetInitialVelocity();
-	
 	}
 
-	public void onCollide(Collision2D colidedObj2D)
+	public void OperationAfterCollision(Collision2D colidedObj2D)
 	{
-		if (colidedObj2D.gameObject.tag == GameEnums.Tag.obstacle.ToString())
-			OperationAfterCollision();
-		if (colidedObj2D.gameObject.tag == GameEnums.Tag.paddle.ToString())
-			SetInitialVelocity();
-	}
-
-	public void OperationAfterCollision()
-	{
-		GoPreviousDirection();
-	}
+        //GoPreviousDirection();
+        if (colidedObj2D.gameObject.tag == GameEnums.Tag.obstacle.ToString())
+            GoPreviousDirection();
+        if (colidedObj2D.gameObject.tag == GameEnums.Tag.paddle.ToString() ||
+                           colidedObj2D.gameObject.tag == GameEnums.Tag.wall.ToString())
+            SetInitialVelocity();
+    }
 
 	void SetInitialVelocity()
 	{
@@ -41,8 +38,11 @@ public class BallType_1_Behaviour :  IBallBehaviour, IColliderEnter
 	{
 		if ( _rb != null )
 		{
+            Debug.Log("new force : " + initialVelocity);
+            _rb.velocity = Vector2.zero;
 			_rb.velocity = initialVelocity;
-		}
+            //_rb.AddForce (initialVelocity);
+        }
 	}
 
 	

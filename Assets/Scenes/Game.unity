@@ -4522,35 +4522,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1782951144}
   m_CullTransparentMesh: 0
---- !u!1 &1802304086 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1542563877020982, guid: d0a184d49b075eb4bafb9b42660b02e0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1035230448}
---- !u!114 &1802304087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1802304086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0646bc6313199047998ffc0f8baa3a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ballMovement: {fileID: 1802304089}
-  _rb: {fileID: 1802304091}
---- !u!114 &1802304089 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114193703282294854, guid: d0a184d49b075eb4bafb9b42660b02e0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1035230448}
-  m_Script: {fileID: 11500000, guid: cf6d085e99bbf7346b979c3732555e80, type: 3}
---- !u!50 &1802304091 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 50834172861729008, guid: d0a184d49b075eb4bafb9b42660b02e0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1035230448}
 --- !u!1 &1936015800
 GameObject:
   m_ObjectHideFlags: 0
