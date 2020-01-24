@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Type1Ball : IBallBuilder
+public class NormalBallType1 : IBallBuilder
 {
 	Ball ball = new Ball();
-	public void SetBallType()
+
+    public void SetBallType()
 	{
-		ball.ballType = GameEnums.ballType.type1;
+		ball.ballType = GameEnums.ballType.NormalBall_Type1;
 	}
 
 	public void SetColor(Color color)
@@ -23,8 +24,15 @@ public class Type1Ball : IBallBuilder
 	{
 		ball.maximumVelocity = new Vector2(25.0f, 25.0f);
 	}
-	public Ball getBall()
-	{
-		return ball;
-	}
+	
+    public void SetBallBehaviour()
+    {
+        ball.ballBehaviour = new NormalBallBehaviour();
+    }
+
+    public Ball getBall()
+    {
+        return ball;
+    }
+
 }

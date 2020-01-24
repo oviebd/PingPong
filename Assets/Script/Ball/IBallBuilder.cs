@@ -7,5 +7,6 @@ public interface IBallBuilder  {
 	void SetMaxVelocity();
 	void SetColor(Color color);
 	void SetBallType();
+    void SetBallBehaviour();
 	Ball getBall();
 }

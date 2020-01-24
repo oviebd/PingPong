@@ -7,5 +7,6 @@ public class BallBuilder {
 		ballBuilder.SetInitialVelocity();
 		ballBuilder.SetMaxVelocity();
 		ballBuilder.SetBallType();
+        ballBuilder.SetBallBehaviour();
 	}
 }

@@ -8,6 +8,7 @@ public class Ball  {
 	public Color color { get;set; }
 	public GameEnums.ballType ballType  { get; set; }
     public bool isItFirstBall { get; set; }
+    public IBallBehaviour ballBehaviour { get; set; }
 
     public Ball()
     {

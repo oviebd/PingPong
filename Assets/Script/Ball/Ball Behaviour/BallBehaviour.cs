@@ -14,12 +14,7 @@ public class BallBehaviour : MonoBehaviour,IColliderEnter
 
 	void Start()
 	{
-        ballBehaviour = new BallType_1_Behaviour();
-       // ballBehaviour = new NormalBallBehaviour();
-		ballBehaviour.SetUp(this);
-
 		GameManager.gameStateChanged += onGameStateChanged;
-
 	}
 	void OnDestroy()
 	{
@@ -29,8 +24,10 @@ public class BallBehaviour : MonoBehaviour,IColliderEnter
     public void setBall(Ball ball)
 	{
 		this._ball = ball;
-
-		_ballMovement.setBall(ball);
+        ballBehaviour = ball.ballBehaviour;
+        // ballBehaviour = new NormalBallBehaviour();
+        ballBehaviour.SetUp(this);
+        _ballMovement.setBall(ball);
 	}
 	public Rigidbody2D GetRb()
 	{

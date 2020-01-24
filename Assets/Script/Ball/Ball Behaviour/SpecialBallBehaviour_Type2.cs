@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallType_1_Behaviour :  IBallBehaviour
+public class SpecialBallBehaviour_Type2 :  IBallBehaviour
 {
 	private Vector2 initialVelocity = Vector2.zero;
 	private Rigidbody2D _rb;
@@ -38,7 +38,6 @@ public class BallType_1_Behaviour :  IBallBehaviour
 	{
 		if ( _rb != null )
 		{
-            Debug.Log("new force : " + initialVelocity);
             _rb.velocity = Vector2.zero;
 			_rb.velocity = initialVelocity;
             //_rb.AddForce (initialVelocity);

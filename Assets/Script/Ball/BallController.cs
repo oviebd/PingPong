@@ -33,7 +33,7 @@ public class BallController : MonoBehaviour {
 	public GameObject InstantiateBall()
 	{
 
-	    Ball ball = GenerateBall(GameEnums.ballType.type1);
+	    Ball ball = GenerateBall(GameEnums.ballType.SpecialBall_Type2);
 	    GameObject ballObject = InstantiatorHelper.InstantiateObject(_ballPrefab, _ballParent);
 
         BallBehaviour ballBehaviour = ballObject.GetComponent<BallBehaviour>();
@@ -60,10 +60,10 @@ public class BallController : MonoBehaviour {
 	{
 		BallBuilder builder = new BallBuilder();
 		IBallBuilder ball;
-		if(ballType == GameEnums.ballType.type1)
-			ball = new Type1Ball();
+		if(ballType == GameEnums.ballType.NormalBall_Type1)
+			ball = new NormalBallType1();
 		else
-			ball = new Type1Ball();
+			ball = new SpecialBall_Type2();
 
 		builder.BuildBallBall(ball);
 		ball.SetColor(Color.green);
@@ -86,7 +86,7 @@ public class BallController : MonoBehaviour {
     {
         for(int i=0;i< _additionalBalls.Count; i++)
         {
-            if(_additionalBalls[i].GetBall().ballType == GameEnums.ballType.type1)
+            if(_additionalBalls[i].GetBall().ballType == GameEnums.ballType.NormalBall_Type1)
             {
                 BallBehaviour tempBallBehaviour = _additionalBalls[i];
                 _additionalBalls.RemoveAt(i);
