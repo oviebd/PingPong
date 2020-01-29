@@ -8,7 +8,7 @@ public class BombEffect : ObstacleCollisionEffectClass, IObstacleCollisionEffect
     {
         obstacleBehaviour = behaviour;
         obstacleClass = obstacle;
-        Debug.Log(" Show Bomb Effect ....");
+       // Debug.Log(" Show Bomb Effect ....");
         DestroyAllObjectsInRadious();
     }
 

@@ -13,11 +13,18 @@ public class SpecialBallBehaviour_Type2 :  IBallBehaviour
 	{
 		this._ballBehaviour = behaviour;
 		_rb = _ballBehaviour.GetRb();
-		initialVelocity = behaviour.GetBallMovement().GetInitialVelocity();
+        SetInitialValocity();
 	}
+
+    IEnumerator SetInitialValocity()
+    {
+        yield return new WaitForSeconds(.05f);
+        initialVelocity = this._ballBehaviour.GetBallMovement().GetInitialVelocity();
+    }
 
 	public void OperationAfterCollision(Collision2D colidedObj2D)
 	{
+        Debug.Log("obj name : " + colidedObj2D.gameObject.name);
         //GoPreviousDirection();
         if (colidedObj2D.gameObject.tag == GameEnums.Tag.obstacle.ToString())
             GoPreviousDirection();
@@ -36,8 +43,10 @@ public class SpecialBallBehaviour_Type2 :  IBallBehaviour
 	}
 	void GoPreviousDirection()
 	{
+        Debug.Log("Go prev direction .... befoere if initial vel : " + initialVelocity);
 		if ( _rb != null )
 		{
+            Debug.Log("Go prev direction .... in if ");
             _rb.velocity = Vector2.zero;
 			_rb.velocity = initialVelocity;
             //_rb.AddForce (initialVelocity);

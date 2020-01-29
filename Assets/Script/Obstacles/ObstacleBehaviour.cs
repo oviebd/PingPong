@@ -19,7 +19,7 @@ public class ObstacleBehaviour : MonoBehaviour, IColliderEnter
     {
         _obstacle = obstacle;
         _mainImage.sprite = obstacle.sprite;
-        _mainImage.color = obstacle.color;
+       // _mainImage.color = obstacle.color;
     }
 
     public void onCollide(Collision2D colidedObj2D)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
 	[SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private TrailRenderer _trailRenderer;
+    //[SerializeField] private TrailRenderer _trailRenderer;
 	private Renderer _rendere;
 
 	//private Ball _ball = new Ball();
@@ -56,7 +56,7 @@ public class BallMovement : MonoBehaviour
 	{
 		_rendere.enabled = canMove;
 		_rb.isKinematic = !canMove; // if ball can move than set kinematic false
-        _trailRenderer.enabled = canMove;
+       // _trailRenderer.enabled = canMove;
     }
 
 	public void StartBallMovement()

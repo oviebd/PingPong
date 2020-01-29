@@ -14,7 +14,7 @@ public class ObstacleController : MonoBehaviour {
 	[SerializeField] public GameObject _leftBoundary;
 	[SerializeField] public GameObject _rightBoundary;
 
-    private float _scale = 1.1f;
+    private float _scale = 1.8f;
 
 	private List<GameObject> obstacleList = new List<GameObject>();
     private ObstacleBoundaryData obstacleBoundaryData;
@@ -43,7 +43,7 @@ public class ObstacleController : MonoBehaviour {
 
     void SpawnObstacle()
 	{
-		int objNumber =50;
+		int objNumber =30;
         SetColorList();
 
 		for (int i = 0; i < objNumber; i++)

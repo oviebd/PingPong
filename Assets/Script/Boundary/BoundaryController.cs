@@ -55,21 +55,57 @@ public class BoundaryController : MonoBehaviour {
         Vector3 worldPosWidth = GetWidthInWorldSpace();
         Vector3 worldPosHeight = GetHeightInWorldPosition();
 
-        _topWall.GetCollider().size      = new Vector2(worldPosWidth.x *2, 1.0f);
-        _topWall.GetCollider().offset    = new Vector2(0f, worldPosHeight.y);
+//        Debug.Log("scale H : " + worldPosHeight + " W : " + worldPosWidth);
 
-        _bottomWall.GetCollider().size   = new Vector2(worldPosWidth.x * 2, 1.0f);
-        _bottomWall.GetCollider().offset = new Vector2(0f, ( worldPosHeight.y * (-1)));
+        _topWall.gameObject.transform.localScale  = new Vector2(worldPosWidth.x *2, _topWall.transform.localScale.y);
+        _topWall.gameObject.transform.position    = new Vector3(_topWall.gameObject.transform.position.x, worldPosHeight.y, _topWall.gameObject.transform.position.z);
 
-        _leftWall.GetCollider().size     = new Vector2(1.0f, worldPosHeight.y*2);
-        _leftWall.GetCollider().offset   = new Vector2(worldPosWidth.x * (-1) , 0);
+
+        Vector3 bottomPos = _bottomWall.transform.position;
+        _bottomWall.transform.localScale = new Vector2(worldPosWidth.x * 2, _bottomWall.transform.localScale.y);
+        _bottomWall.transform.position   = new Vector3(bottomPos.x, ( worldPosHeight.y * (-1)),bottomPos.z);
+
+        Vector3 leftPos = _leftWall.transform.position;
+        _leftWall.transform.localScale = new Vector2(_leftWall.transform.localScale.x, worldPosHeight.y*2);
+        _leftWall.transform.position   = new Vector3(worldPosWidth.x * (-1) , leftPos.y,leftPos.z);
+        // _leftWall.GetCollider().size = new Vector2(1.0f, worldPosHeight.y * 2);
+      //  _leftWall.GetCollider().size = new Vector2(1.0f, 1 * 2);
+
+
+        Vector3 rightPos = _rightWall.transform.position;
+        _rightWall.transform.localScale = new Vector2(_rightWall.transform.localScale.x, worldPosHeight.y * 2);
+        _rightWall.transform.position   = new Vector3(worldPosWidth.x, rightPos.y,rightPos.z);
+
+        ResetPaddlePosition();
+
+    }
+
+
+    /*void ResetBoundaryPositions()
+    {
+        float heightOffset = 0.5f;
+
+        Vector3 worldPosWidth = GetWidthInWorldSpace();
+        Vector3 worldPosHeight = GetHeightInWorldPosition();
+
+        Debug.Log("scale H : " + worldPosHeight + " W : " + worldPosWidth);
+
+        _topWall.GetCollider().size = new Vector2(worldPosWidth.x * 2, 1.0f);
+        _topWall.GetCollider().offset = new Vector2(0f, worldPosHeight.y);
+
+
+        _bottomWall.GetCollider().size = new Vector2(worldPosWidth.x * 2, 1.0f);
+        _bottomWall.GetCollider().offset = new Vector2(0f, (worldPosHeight.y * (-1)));
+
+        _leftWall.GetCollider().size = new Vector2(1.0f, worldPosHeight.y * 2);
+        _leftWall.GetCollider().offset = new Vector2(worldPosWidth.x * (-1), 0);
 
         _rightWall.GetCollider().size = new Vector2(1.0f, worldPosHeight.y * 2);
         _rightWall.GetCollider().offset = new Vector2(worldPosWidth.x, 0);
 
         ResetPaddlePosition();
 
-    }
+    }*/
 
     void ResetPaddlePosition()
     {

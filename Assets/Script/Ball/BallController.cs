@@ -30,10 +30,10 @@ public class BallController : MonoBehaviour {
 		}
 	}
 
-	public GameObject InstantiateBall()
+	public GameObject InstantiateBall(GameEnums.ballType ballType)
 	{
-
-	    Ball ball = GenerateBall(GameEnums.ballType.SpecialBall_Type2);
+        //Debug.Log("Instantiate ball of type " + ballType);
+	    Ball ball = GenerateBall(ballType);
 	    GameObject ballObject = InstantiatorHelper.InstantiateObject(_ballPrefab, _ballParent);
 
         BallBehaviour ballBehaviour = ballObject.GetComponent<BallBehaviour>();
@@ -43,7 +43,7 @@ public class BallController : MonoBehaviour {
             _currentBall = ballObject;
         else
         {
-           // StartCoroutine(setMovement(ballMovement));
+            StartCoroutine(setMovement(ballBehaviour.GetBallMovement()));
             _additionalBalls.Add(ballBehaviour);
         }
 	  return ballObject;

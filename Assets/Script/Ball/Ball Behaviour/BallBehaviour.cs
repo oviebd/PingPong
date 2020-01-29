@@ -26,8 +26,9 @@ public class BallBehaviour : MonoBehaviour,IColliderEnter
 		this._ball = ball;
         ballBehaviour = ball.ballBehaviour;
         // ballBehaviour = new NormalBallBehaviour();
-        ballBehaviour.SetUp(this);
         _ballMovement.setBall(ball);
+        ballBehaviour.SetUp(this);
+       
 	}
 	public Rigidbody2D GetRb()
 	{

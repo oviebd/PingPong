@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour {
 	public void StartANewGame()
 	{
 		ScoreManager.instance.ResetScore();
-		BallController.instance.InstantiateBall();
+		BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
 		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
 		GameSceneUIManager.instance.SetUiForANewGame();
 	}

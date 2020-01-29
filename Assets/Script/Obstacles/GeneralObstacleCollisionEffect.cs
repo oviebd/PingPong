@@ -15,6 +15,8 @@ public class GeneralObstacleCollisionEffect : MonoBehaviour, IObstacleCollisionE
 
         PlaySound();
         DestroyObject();
+
+        BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
     }
 
     public void PlaySound()

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class BallPositionHandler  {
-	public static Vector2 SetInitialPositionBasedOnDirection(GameEnums.Walls nextWall)
+
+    public static Vector2 SetInitialPositionBasedOnDirection(GameEnums.Walls nextWall)
 	{
 		float threshHoldXPosition = 3; // for keeping distance from peddle
 		float y = Random.Range(BoundaryController.instance.GetBottomWallPosition().y, BoundaryController.instance.GetTopWallPosition().y);
@@ -14,6 +15,8 @@ public static class BallPositionHandler  {
 		if (nextWall == GameEnums.Walls.right)
 			x = BoundaryController.instance.GetLeftWallPosition().x;
 
+        x = 5;
+//        Debug.Log(x);
 		if (x < 0)
 			x = x + threshHoldXPosition;
 		else
