@@ -14,12 +14,12 @@ public class Obstacle_Type2_Bomb : IObstacleBuilder
     public void SetCollisionSound()
     {
         AudioClip clip = Resources.Load<AudioClip>("sounds/obstacle_type1_collision");
-        obstacle._collisionClip = clip;
+        obstacle.collisionClip = clip;
     }
 
     public void SetColor(Color color)
     {
-        obstacle.color = color;
+        obstacle.outerImageColor = color;
     }
 
     public void SetDestructionSound()
@@ -35,7 +35,7 @@ public class Obstacle_Type2_Bomb : IObstacleBuilder
     public void SetObstacleSprite()
     {
         Sprite sprite = Resources.Load<Sprite>("sprite/obnstacle_type2_bomb");
-        obstacle.sprite = sprite;
+        obstacle.outerImageSprite = sprite;
     }
 
     public void SetObstacleType()

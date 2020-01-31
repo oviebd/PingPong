@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombEffect : ObstacleCollisionEffectClass, IObstacleCollisionEffect {
+public class BombEffect :ObstacleCollisionEffectClass, IObstacleCollisionEffect {
 
-    public void DoCollisionAfterEffect(ObstacleBehaviour behaviour, Obstacle obstacle)
+    public void DoCollisionAfterEffect(ObstacleBehaviour behaviour)
     {
         obstacleBehaviour = behaviour;
-        obstacleClass = obstacle;
+       // obstacleClass = obstacle;
        // Debug.Log(" Show Bomb Effect ....");
         DestroyAllObjectsInRadious();
     }

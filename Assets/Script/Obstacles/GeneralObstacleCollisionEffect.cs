@@ -8,20 +8,20 @@ public class GeneralObstacleCollisionEffect : MonoBehaviour, IObstacleCollisionE
     Obstacle _obstacle;
     float destroyTime = .5f;
 
-    public void DoCollisionAfterEffect(ObstacleBehaviour behaviour, Obstacle obstacleClass)
+    public void DoCollisionAfterEffect(ObstacleBehaviour behaviour)
     {
         _obstacleBehaviour = behaviour;
-        _obstacle = obstacleClass;
+        _obstacle = behaviour.GetObstacleClass();
 
         PlaySound();
         DestroyObject();
 
-        BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
+       // BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
     }
 
     public void PlaySound()
     {
-        _obstacleBehaviour.GetAudioSource().clip = _obstacle._collisionClip;
+        _obstacleBehaviour.GetAudioSource().clip = _obstacle.collisionClip;
         _obstacleBehaviour.GetAudioSource().Stop();
         _obstacleBehaviour.GetAudioSource().Play();
     }

@@ -14,6 +14,9 @@ public class ObstacleController : MonoBehaviour {
 	[SerializeField] public GameObject _leftBoundary;
 	[SerializeField] public GameObject _rightBoundary;
 
+    //[SerializeField] private List<ObstacleBehaviour> _obstacleBehaviourList;
+    [SerializeField] private List<GameObject> _obstaclePrefabList;
+
     private float _scale = 1.8f;
 
 	private List<GameObject> obstacleList = new List<GameObject>();
@@ -32,57 +35,32 @@ public class ObstacleController : MonoBehaviour {
         SpawnObstacle();
 	}
 
-    void SetColorList()
-    {
-        colors.Add(Color.cyan);
-        colors.Add(Color.green);
-        colors.Add(Color.grey);
-        colors.Add(Color.blue);
-        //colors.Add(Color.black);
-    }
-
     void SpawnObstacle()
 	{
 		int objNumber =30;
-        SetColorList();
 
 		for (int i = 0; i < objNumber; i++)
 		{
-	    	GameObject obj =	InstantiatorHelper.InstantiateObject(_obstaclePrefab, _parentObj);
-
-            Obstacle obstacle = GenerateObstacle(GameEnums.ObstacleType.type1);
-            obj.GetComponent<ObstacleBehaviour>().SetObstacle(obstacle);
+            GameObject obstacle = GetSpecificObstacle(GameEnums.ObstacleType.type1);
+	    	GameObject obj =  InstantiatorHelper.InstantiateObject(obstacle.gameObject, _parentObj);
+            
+            obj.GetComponent<ObstacleBehaviour>().SetUp();
             obstacleList.Add(obj);
 		}
 
 		RespositioningGridItems();
 	}
 
-
-    Obstacle GenerateObstacle(GameEnums.ObstacleType obstacleType)
+    GameObject GetSpecificObstacle(GameEnums.ObstacleType type)
     {
-        ObstacleBuilder builder = new ObstacleBuilder();
-        IObstacleBuilder obstacle;
-
-        if (obstacleType == GameEnums.ObstacleType.type1)
-		{
-			obstacle = new Obstacle_Type1();
-			obstacle.SetValue(1);
-		}
-        else
-            obstacle = new Obstacle_Type2_Bomb();
-
-        builder.BuildObstacle(obstacle);
-       
-        int colorIndex = Random.Range(0, colors.Count);
-        if (colorIndex < colors.Count)
-        {
-            obstacle.SetColor(colors[colorIndex]);
+        for(int i = 0; i< _obstaclePrefabList.Count;i++){
+            ObstacleBehaviour obstacle = _obstaclePrefabList[i].GetComponent<ObstacleBehaviour>();
+            if (obstacle!= null && type == obstacle.obstacleType)
+                return _obstaclePrefabList[i];
         }
-       
-        return obstacle.getObstacle();
-    }
 
+        return null;
+    }
 
     ObstacleBoundaryData SetObstacleBoundaryData()
     {

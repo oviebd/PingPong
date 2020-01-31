@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 50427196483436484}
   - component: {fileID: 114672857927765874}
   - component: {fileID: 82275204910068676}
+  - component: {fileID: 1178360403585899495}
   m_Layer: 12
   m_Name: Obstacle
   m_TagString: obstacle
@@ -390,7 +391,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066a831784ac3a64fa81b8871bfb2fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainImage: {fileID: 212548477326211634}
+  obstacleType: 0
+  _outerImageColor: {r: 1, g: 1, b: 1, a: 1}
+  _outerImageSprite: {fileID: 21300000, guid: 0ba6eacafb5789b4b93c7a75aaeca5e2, type: 3}
+  _innerImageColor: {r: 1, g: 1, b: 1, a: 1}
+  _innerImageSprite: {fileID: 21300000, guid: 5532acfb1c8db4190a4c96143527161d, type: 3}
+  _collisionClip: {fileID: 8300000, guid: cc5f4e5eac2fa41f7bd1c6b7cef5cabf, type: 3}
+  _destructionClip: {fileID: 0}
+  _value: 5
+  _innerImageRenderer: {fileID: 212548477326211634}
+  _outerImageRenderer: {fileID: 204722002}
   _audioSource: {fileID: 82275204910068676}
   _collider: {fileID: 61235997602822998}
 --- !u!222 &222950641244678502
@@ -559,6 +569,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1178360403585899495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185996962706510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf20e3f7236c4176b732ecd793b0d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1427102177044918
 GameObject:
   m_ObjectHideFlags: 0
