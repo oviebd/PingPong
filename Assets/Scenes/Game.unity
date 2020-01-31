@@ -883,6 +883,9 @@ MonoBehaviour:
   _ballPrefab: {fileID: 1542563877020982, guid: d0a184d49b075eb4bafb9b42660b02e0,
     type: 3}
   _ballParent: {fileID: 1471961451}
+  _ballPrefabList:
+  - {fileID: 1542563877020982, guid: d0a184d49b075eb4bafb9b42660b02e0, type: 3}
+  - {fileID: 1542563877020982, guid: 769c5a72564284bd29bfd5065fda331e, type: 3}
 --- !u!114 &239195638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4714,7 +4717,6 @@ MonoBehaviour:
   _bottomBoundary: {fileID: 1204275329}
   _leftBoundary: {fileID: 1506805680}
   _rightBoundary: {fileID: 127975776}
-  _obstacleBehaviourList: []
   _obstaclePrefabList:
   - {fileID: 1185996962706510, guid: ea90211f6f8040146956dca0c439618d, type: 3}
 --- !u!1 &1750952484

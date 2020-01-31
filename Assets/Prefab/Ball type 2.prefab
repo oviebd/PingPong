@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 114191581901189250}
   - component: {fileID: 114193703282294854}
   - component: {fileID: 114630485336174436}
-  - component: {fileID: 6749930428230043177}
+  - component: {fileID: -4733691560105101585}
   m_Layer: 9
-  m_Name: Ball
+  m_Name: Ball type 2
   m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,13 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0646bc6313199047998ffc0f8baa3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballType: 0
+  ballType: 1
   _ballMovement: {fileID: 114193703282294854}
   _rb: {fileID: 50834172861729008}
   _initialVelocity: {x: 10, y: 10}
   _maximumVelocity: {x: 50, y: 50}
   _color: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &6749930428230043177
+--- !u!114 &-4733691560105101585
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,6 +178,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1542563877020982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b74f4399d2cc4a49a115bf5735d51be, type: 3}
+  m_Script: {fileID: 11500000, guid: f9ce7f0118a04416694b9c709066c4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

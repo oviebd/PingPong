@@ -2,52 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallBehaviour : MonoBehaviour,IColliderEnter
+public class BallBehaviour : BallBaseClass,IColliderEnter
 {
-
-	public BallMovement _ballMovement;
-	public Rigidbody2D _rb;
-
-	private Ball _ball = new Ball();
+	//private Ball _ball = new Ball();
 	IBallBehaviour ballBehaviour;
-
 
 	void Start()
 	{
 		GameManager.gameStateChanged += onGameStateChanged;
 	}
+
 	void OnDestroy()
 	{
 		GameManager.gameStateChanged -= onGameStateChanged;
 	}
 
-    public void setBall(Ball ball)
+    public void SetUp()
 	{
-		this._ball = ball;
-        ballBehaviour = ball.ballBehaviour;
-        // ballBehaviour = new NormalBallBehaviour();
-        _ballMovement.setBall(ball);
+        InitializeBall();
+    
+        ballBehaviour = this.gameObject.GetComponent<IBallBehaviour>();
+        _ballMovement.setBall(GetBall());
         ballBehaviour.SetUp(this);
-       
 	}
-	public Rigidbody2D GetRb()
-	{
-		return _rb;
-	}
-	public BallMovement GetBallMovement()
-	{
-		return _ballMovement;
-	}
-	public Ball GetBall()
-	{
-		return _ball;
-	}
-
-	public void UpdateBall(Ball ball)
-	{
-		this._ball = ball;
-	}
-
+	
     public void onCollide(Collision2D colidedObj2D)
     {
         ballBehaviour.OperationAfterCollision(colidedObj2D);
@@ -69,6 +47,5 @@ public class BallBehaviour : MonoBehaviour,IColliderEnter
 				break;
 		}
 	}
-
     
 }

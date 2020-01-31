@@ -10,6 +10,7 @@ public class BallController : MonoBehaviour {
 	[SerializeField] private GameObject _ballParent;
 
 	private GameObject _currentBall;
+    [SerializeField] private List<GameObject> _ballPrefabList;
     private  List<BallBehaviour> _additionalBalls = new List<BallBehaviour>(); 
 
 	void Start()
@@ -33,11 +34,11 @@ public class BallController : MonoBehaviour {
 	public GameObject InstantiateBall(GameEnums.ballType ballType)
 	{
         //Debug.Log("Instantiate ball of type " + ballType);
-	    Ball ball = GenerateBall(ballType);
-	    GameObject ballObject = InstantiatorHelper.InstantiateObject(_ballPrefab, _ballParent);
+        GameObject ball = GetSpecificBall(GameEnums.ballType.NormalBall_Type1);
+	    GameObject ballObject = InstantiatorHelper.InstantiateObject(ball, _ballParent);
 
         BallBehaviour ballBehaviour = ballObject.GetComponent<BallBehaviour>();
-        ballBehaviour.setBall(ball);
+        ballBehaviour.SetUp();
         
         if(_currentBall == null)
             _currentBall = ballObject;
@@ -56,7 +57,18 @@ public class BallController : MonoBehaviour {
         movement.StartBallMovement();
     }
 
-	Ball GenerateBall(GameEnums.ballType ballType)
+    GameObject GetSpecificBall(GameEnums.ballType type)
+    {
+        for (int i = 0; i < _ballPrefabList.Count; i++)
+        {
+            BallBehaviour ball = _ballPrefabList[i].GetComponent<BallBehaviour>();
+            if (ball != null && type == ball.ballType)
+                return _ballPrefabList[i];
+        }
+
+        return null;
+    }
+    /*Ball GenerateBall(GameEnums.ballType ballType)
 	{
 		BallBuilder builder = new BallBuilder();
 		IBallBuilder ball;
@@ -72,7 +84,7 @@ public class BallController : MonoBehaviour {
             ball.getBall().isItFirstBall = true;
 
         return ball.getBall();
-	}
+	}*/
 
 
     void SetFirstAndSpecialBall()

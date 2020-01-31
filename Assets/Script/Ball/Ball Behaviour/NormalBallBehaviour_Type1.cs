@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalBallBehaviour : IBallBehaviour
+public class NormalBallBehaviour : MonoBehaviour, IBallBehaviour
 {
-	public BallMovement _ballMovement;
-	public Rigidbody2D _rb;
+	private BallMovement _ballMovement;
+	private Rigidbody2D _rb;
+
 	BallBehaviour _behaviour;
-	public void SetUp(BallBehaviour behaviour)
+
+    public void SetUp(BallBehaviour behaviour)
 	{
 		this._behaviour = behaviour;
 		_rb = behaviour.GetRb();
