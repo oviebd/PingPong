@@ -6,23 +6,19 @@ public static class BallPositionHandler  {
 
     public static Vector2 SetInitialPositionBasedOnDirection(GameEnums.Walls nextWall)
 	{
-		float threshHoldXPosition = 3; // for keeping distance from peddle
+		float threshHoldXPosition = 2; // for keeping distance from peddle
 		float y = Random.Range(BoundaryController.instance.GetBottomWallPosition().y, BoundaryController.instance.GetTopWallPosition().y);
-		float x = 1.0f;
 
-		if (nextWall == GameEnums.Walls.left)
-			x = BoundaryController.instance.GetRightWallPosition().x;
-		if (nextWall == GameEnums.Walls.right)
-			x = BoundaryController.instance.GetLeftWallPosition().x;
+        Vector2 worldLeftrightCornerPosition = BoundaryController.instance.GetWidthInWorldSpace();
 
-        x = 5;
-//        Debug.Log(x);
-		if (x < 0)
-			x = x + threshHoldXPosition;
-		else
-			x = x - threshHoldXPosition;
+        float x = worldLeftrightCornerPosition.x ;
+       
+        if (nextWall == GameEnums.Walls.left)
+            x = x - threshHoldXPosition;
+        if (nextWall == GameEnums.Walls.right)
+            x = ( x * (-1) ) + threshHoldXPosition;
 
-		Vector2 newResetPosition = new Vector2(x, y);
+        Vector2 newResetPosition = new Vector2(x, y);
 		return newResetPosition;
 	}
 
