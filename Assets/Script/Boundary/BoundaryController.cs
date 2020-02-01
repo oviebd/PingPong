@@ -16,6 +16,9 @@ public class BoundaryController : MonoBehaviour {
     [SerializeField] private GameObject _leftPaddlePosition;
     [SerializeField] private GameObject _rightPaddlePosition;
 
+	public delegate void onBoundaryRePositioningCompleted();
+	public static event onBoundaryRePositioningCompleted OnBoundaryRepositioningCompleted;
+
 	void Awake()
 	{
 		if (instance == null)
@@ -29,14 +32,10 @@ public class BoundaryController : MonoBehaviour {
 
     public  Vector2 GetLeftWallPosition()
 	{
-		//return _leftWall.gameObject.transform.position;
-		//Debug.Log("L wall : " + _leftWall.GetCollider().offset);
 		return _leftWall.GetCollider().offset;
 	}
 	public Vector2 GetRightWallPosition()
 	{
-		//Debug.Log("R wall : " + _rightWall.GetCollider().offset);
-		//return _rightWall.gameObject.transform.position;
 		return _rightWall.GetCollider().offset;
 	}
 	public Vector2 GetBottomWallPosition()
@@ -55,7 +54,6 @@ public class BoundaryController : MonoBehaviour {
         Vector3 worldPosWidth = GetWidthInWorldSpace();
         Vector3 worldPosHeight = GetHeightInWorldPosition();
 
-//        Debug.Log("scale H : " + worldPosHeight + " W : " + worldPosWidth);
 
         _topWall.gameObject.transform.localScale  = new Vector2(worldPosWidth.x *2, _topWall.transform.localScale.y);
         _topWall.gameObject.transform.position    = new Vector3(_topWall.gameObject.transform.position.x, worldPosHeight.y, _topWall.gameObject.transform.position.z);
@@ -68,9 +66,6 @@ public class BoundaryController : MonoBehaviour {
         Vector3 leftPos = _leftWall.transform.position;
         _leftWall.transform.localScale = new Vector2(_leftWall.transform.localScale.x, worldPosHeight.y*2);
         _leftWall.transform.position   = new Vector3(worldPosWidth.x * (-1) , leftPos.y,leftPos.z);
-        // _leftWall.GetCollider().size = new Vector2(1.0f, worldPosHeight.y * 2);
-      //  _leftWall.GetCollider().size = new Vector2(1.0f, 1 * 2);
-
 
         Vector3 rightPos = _rightWall.transform.position;
         _rightWall.transform.localScale = new Vector2(_rightWall.transform.localScale.x, worldPosHeight.y * 2);
@@ -78,34 +73,8 @@ public class BoundaryController : MonoBehaviour {
 
         ResetPaddlePosition();
 
+		OnBoundaryRepositioningCompleted();
     }
-
-
-    /*void ResetBoundaryPositions()
-    {
-        float heightOffset = 0.5f;
-
-        Vector3 worldPosWidth = GetWidthInWorldSpace();
-        Vector3 worldPosHeight = GetHeightInWorldPosition();
-
-        Debug.Log("scale H : " + worldPosHeight + " W : " + worldPosWidth);
-
-        _topWall.GetCollider().size = new Vector2(worldPosWidth.x * 2, 1.0f);
-        _topWall.GetCollider().offset = new Vector2(0f, worldPosHeight.y);
-
-
-        _bottomWall.GetCollider().size = new Vector2(worldPosWidth.x * 2, 1.0f);
-        _bottomWall.GetCollider().offset = new Vector2(0f, (worldPosHeight.y * (-1)));
-
-        _leftWall.GetCollider().size = new Vector2(1.0f, worldPosHeight.y * 2);
-        _leftWall.GetCollider().offset = new Vector2(worldPosWidth.x * (-1), 0);
-
-        _rightWall.GetCollider().size = new Vector2(1.0f, worldPosHeight.y * 2);
-        _rightWall.GetCollider().offset = new Vector2(worldPosWidth.x, 0);
-
-        ResetPaddlePosition();
-
-    }*/
 
     void ResetPaddlePosition()
     {
@@ -120,7 +89,7 @@ public class BoundaryController : MonoBehaviour {
     {
         Vector2 widthVec = new Vector2(Screen.width, 0f);
         Vector3 worldPosWidth = _mainCamera.ScreenToWorldPoint(new Vector3(widthVec.x, widthVec.y, _mainCamera.nearClipPlane));
-//        Debug.Log("World Pos WIdth : " + worldPosWidth);
+
         return worldPosWidth;
     }
 
@@ -128,7 +97,7 @@ public class BoundaryController : MonoBehaviour {
     {
         Vector2 heightVec = new Vector2(0, Screen.height);
         Vector3 worldPosHeight = _mainCamera.ScreenToWorldPoint(new Vector3(heightVec.x, heightVec.y, _mainCamera.nearClipPlane));
-      //  Debug.Log("World Pos Height : " + worldPosHeight);
+
         return worldPosHeight;
     }
 

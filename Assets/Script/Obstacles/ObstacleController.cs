@@ -28,10 +28,15 @@ public class ObstacleController : MonoBehaviour {
     }
 
     void Start () {
-         Invoke( "SpawnObstacle",1.0f);
+		BoundaryController.OnBoundaryRepositioningCompleted += SpawnObstacle;
 	}
 
-    void SpawnObstacle()
+	private void OnDestroy()
+	{
+		BoundaryController.OnBoundaryRepositioningCompleted -= SpawnObstacle;
+	}
+
+	void SpawnObstacle()
 	{
 		int objNumber =50;
 
