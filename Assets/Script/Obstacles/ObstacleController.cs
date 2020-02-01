@@ -42,8 +42,11 @@ public class ObstacleController : MonoBehaviour {
 
 		for (int i = 0; i < objNumber; i++)
 		{
-            GameObject obstacle = GetSpecificObstacle(GameEnums.ObstacleType.type1);
-	    	GameObject obj =  InstantiatorHelper.InstantiateObject(obstacle.gameObject, _parentObj);
+			int randomRange = Random.Range(0,3);
+			//GameObject obstacle = _obstaclePrefabList[randomRange];
+			
+			GameObject obstacle = GetSpecificObstacle(GameEnums.ObstacleType.life);
+			GameObject obj =  InstantiatorHelper.InstantiateObject(obstacle.gameObject, _parentObj);
             
             obj.GetComponent<ObstacleBehaviour>().SetUp();
             obstacleList.Add(obj);
