@@ -14,13 +14,10 @@ public class ObstacleController : MonoBehaviour {
 	[SerializeField] public GameObject _leftBoundary;
 	[SerializeField] public GameObject _rightBoundary;
 
-    //[SerializeField] private List<ObstacleBehaviour> _obstacleBehaviourList;
     [SerializeField] private List<GameObject> _obstaclePrefabList;
 
     private float _scale = 1.8f;
-
 	private List<GameObject> obstacleList = new List<GameObject>();
-    private ObstacleBoundaryData obstacleBoundaryData;
 
     List<Color> colors = new List<Color>();
 
@@ -31,13 +28,12 @@ public class ObstacleController : MonoBehaviour {
     }
 
     void Start () {
-        obstacleBoundaryData = new ObstacleBoundaryData();
-        SpawnObstacle();
+         Invoke( "SpawnObstacle",1.0f);
 	}
 
     void SpawnObstacle()
 	{
-		int objNumber =30;
+		int objNumber =50;
 
 		for (int i = 0; i < objNumber; i++)
 		{
@@ -48,7 +44,7 @@ public class ObstacleController : MonoBehaviour {
             obstacleList.Add(obj);
 		}
 
-		RespositioningGridItems();
+		ObstaclePositioningHandler.RespositioningGridItems(obstacleList, _scale, _parentObj);
 	}
 
     GameObject GetSpecificObstacle(GameEnums.ObstacleType type)
@@ -62,109 +58,5 @@ public class ObstacleController : MonoBehaviour {
         return null;
     }
 
-    ObstacleBoundaryData SetObstacleBoundaryData()
-    {
-        float yMax = _topBoundary.transform.position.y;
-        float yMin = _bottomBoundary.transform.position.y;
-        float xMax = _rightBoundary.transform.position.x;
-        float xMin = _leftBoundary.transform.position.x;
-
-        ObstacleBoundaryData boundary = new ObstacleBoundaryData();
-
-        boundary.minPosition = new Vector3(xMin,yMin,0.0f);
-        boundary.maxPosition = new Vector3(yMin, yMax, 0.0f);
-
-        boundary.maxRowNumber = (int)((yMax - yMin) / _scale);
-        boundary.maxColumnNumber = (int)((xMax - xMin) / _scale);
-
-        return boundary;
-    }
-
-	void RespositioningGridItems()
-	{
-        if(obstacleBoundaryData.maxPosition == Vector3.zero)
-            obstacleBoundaryData = SetObstacleBoundaryData();
-
-        float yStartPos = (obstacleBoundaryData.minPosition.y + obstacleBoundaryData.maxPosition.y) / 2;
-        
-        //Debug.Log("Y start pos " + yStartPos);
-        //Debug.Log("Row ; " + maxRowNumber + " column : " + maxColumnNumber);
-
-        List<GameObject> objs = new List<GameObject>();
-		int colNumber = 0;
-
-        for (int i = 0; i < obstacleList.Count; i++)
-		{
-			objs.Add(obstacleList[i]);
-			int mod = ((i+1) % obstacleBoundaryData.maxRowNumber);
-			//Debug.Log("  i : " + i + " % 10 " + mod);
-			if ( (mod ==0 && i != 0) || i == obstacleList.Count-1)
-			{
-				//Debug.Log(i);
-				DrawColumn(colNumber, obstacleBoundaryData.maxRowNumber, objs, yStartPos);
-				objs.Clear();
-				objs = new List<GameObject>();
-				colNumber = colNumber + 1;
-			}
-		}
-
-        MoveParentObjBasedOnColumnNumber(colNumber);
-    }
-
-
-    void MoveParentObjBasedOnColumnNumber(int colNumber)
-    {
-        // This function is need to made grid parebnt alignment center after creating cells;
-        float offset = colNumber / 2;
-        Vector3 tempVec = _parentObj.transform.position;
-        tempVec.x = _parentObj.transform.position.x - offset;
-        _parentObj.transform.position = tempVec;
-    }
-
-
-	void DrawColumn(int colNumber,int maxItemInACol,List<GameObject> items,float initialYpos)
-	{
-		float xPos = colNumber * _scale;
-        float yPos = initialYpos;
-
-        float yUpSidePos = initialYpos;
-        float yDownSidePos = initialYpos;
-
-        for (int i=0; i< maxItemInACol; i++)
-		{
-			if ( i < items.Count)
-			{
-                if( (i % 2) == 0 && i != 0)
-                {
-                    yDownSidePos = yDownSidePos - _scale;
-                    yPos = yDownSidePos;
-                }
-                else if ((i % 2) != 0)
-                {
-                    yUpSidePos = yUpSidePos + _scale;
-                    yPos = yUpSidePos;
-                }
-
-                items[i].transform.position = new Vector3(xPos, yPos);
-			}
-
-		}
-	}
-
-    class ObstacleBoundaryData
-    {
-        public Vector3 minPosition;
-        public Vector3 maxPosition;
-        public int maxColumnNumber;
-        public int maxRowNumber;
-
-        public ObstacleBoundaryData()
-        {
-            minPosition = Vector3.zero;
-            maxPosition = Vector3.zero;
-            maxColumnNumber = 0;
-            maxRowNumber = 0;
-        }
-    }
-
+  
 }
