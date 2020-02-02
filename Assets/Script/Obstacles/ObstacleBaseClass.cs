@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleBaseClass : MonoBehaviour
 {
-    public GameEnums.ObstacleType obstacleType = GameEnums.ObstacleType.type1;
+    public GameEnums.ObstacleType obstacleType = GameEnums.ObstacleType.normal;
     [SerializeField] private Color _outerImageColor;
     [SerializeField] private Sprite _outerImageSprite;
     [SerializeField] private Color _innerImageColor;

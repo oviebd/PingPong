@@ -40,7 +40,7 @@ public class Obstacle_Type1 : IObstacleBuilder
 
     public void SetObstacleType()
     {
-        obstacle.obstacleType = GameEnums.ObstacleType.type1;
+        obstacle.obstacleType = GameEnums.ObstacleType.normal;
     }
 
     public void SetValue(int value)

@@ -9,17 +9,11 @@ public class ObstacleController : MonoBehaviour {
 	[SerializeField] public GameObject _parentObj;
 	[SerializeField] public GameObject _obstaclePrefab;
 
-	[SerializeField] public GameObject _topBoundary;
-	[SerializeField] public GameObject _bottomBoundary;
-	[SerializeField] public GameObject _leftBoundary;
-	[SerializeField] public GameObject _rightBoundary;
-
     [SerializeField] private List<GameObject> _obstaclePrefabList;
 
     private float _scale = 1.8f;
 	private List<GameObject> obstacleList = new List<GameObject>();
 
-    List<Color> colors = new List<Color>();
 
     private void Awake()
     {
@@ -38,21 +32,35 @@ public class ObstacleController : MonoBehaviour {
 
 	void SpawnObstacle()
 	{
-		int objNumber =50;
+		int objNumber = 20;
 
 		for (int i = 0; i < objNumber; i++)
 		{
-			int randomRange = Random.Range(0,3);
-			//GameObject obstacle = _obstaclePrefabList[randomRange];
-			
-			GameObject obstacle = GetSpecificObstacle(GameEnums.ObstacleType.life);
+			GameObject obstacle = GetSpecificObstacle(GenerateRandomObstacleType());
 			GameObject obj =  InstantiatorHelper.InstantiateObject(obstacle.gameObject, _parentObj);
             
             obj.GetComponent<ObstacleBehaviour>().SetUp();
             obstacleList.Add(obj);
 		}
-
 		ObstaclePositioningHandler.RespositioningGridItems(obstacleList, _scale, _parentObj);
+	}
+
+	GameEnums.ObstacleType GenerateRandomObstacleType()
+	{
+		int randomRange = Random.Range(0, 100);
+		GameEnums.ObstacleType type = GameEnums.ObstacleType.normal;
+		
+		if (randomRange < 80)
+			type = GameEnums.ObstacleType.normal;
+		else if( randomRange >= 80  && randomRange < 90 )
+			type = GameEnums.ObstacleType.life;
+		else if (randomRange >= 90 && randomRange < 95)
+			type = GameEnums.ObstacleType.spawnBall;
+		else if (randomRange >= 95 && randomRange <= 100)
+			type = GameEnums.ObstacleType.bomb;
+
+		//Debug.Log("Random Range :   " + randomRange + "   Type ;  " + type);
+		return type;
 	}
 
     GameObject GetSpecificObstacle(GameEnums.ObstacleType type)

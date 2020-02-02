@@ -394,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &69934034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4647,10 +4647,6 @@ MonoBehaviour:
   _parentObj: {fileID: 1562846852}
   _obstaclePrefab: {fileID: 1185996962706510, guid: ea90211f6f8040146956dca0c439618d,
     type: 3}
-  _topBoundary: {fileID: 120658151}
-  _bottomBoundary: {fileID: 1204275329}
-  _leftBoundary: {fileID: 1506805680}
-  _rightBoundary: {fileID: 127975776}
   _obstaclePrefabList:
   - {fileID: 1185996962706510, guid: ea90211f6f8040146956dca0c439618d, type: 3}
   - {fileID: 1185996962706510, guid: 7fb0fdef532d3184db146191a6ce73cf, type: 3}

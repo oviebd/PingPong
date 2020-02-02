@@ -9,7 +9,7 @@ public static class GameEnums  {
 	public enum PaddleInput { inputUp, inputDown,none }
 	public enum Walls { top, bottom,right,left }
 	public enum ballType { NormalBall_Type1,SpecialBall_Type2 }
-    public enum ObstacleType { type1,life, bomb,spawnBall}
+    public enum ObstacleType { normal,life, bomb,spawnBall}
 
     public enum GameState { Idle,Running, Pause,Over }
 
