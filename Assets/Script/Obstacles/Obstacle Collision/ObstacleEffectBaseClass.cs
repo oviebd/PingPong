@@ -18,7 +18,8 @@ public class ObstacleEffectBaseClass : MonoBehaviour
 	public void DestroyObject()
 	{
 		obstacleBehaviour.getCollider().enabled = false;
-		obstacleBehaviour.GetSpriteRenderer().enabled = false;
+		obstacleBehaviour.GetInnerSpriteRenderer().enabled = false;
+		obstacleBehaviour.GetOuterSpriteRenderer().enabled = false;
 
 		Destroy(obstacleBehaviour.gameObject, destroyTime);
 	}

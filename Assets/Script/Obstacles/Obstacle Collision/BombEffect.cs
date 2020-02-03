@@ -22,7 +22,7 @@ public class BombEffect :ObstacleEffectBaseClass, IObstacleCollisionEffect {
             ObstacleBehaviour behaviour = colliders[i].gameObject.GetComponent<ObstacleBehaviour>();
             if (behaviour != null)
             {
-                behaviour.GetSpriteRenderer().sprite = null;
+                behaviour.GetInnerSpriteRenderer().sprite = null;
             }
         }
     }

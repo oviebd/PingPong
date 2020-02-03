@@ -62,11 +62,15 @@ public class ObstacleBaseClass : MonoBehaviour
     {
         return _audioSource;
     }
-    public SpriteRenderer GetSpriteRenderer()
+    public SpriteRenderer GetInnerSpriteRenderer()
     {
         return _innerImageRenderer;
     }
-    public Collider2D getCollider()
+	public SpriteRenderer GetOuterSpriteRenderer()
+	{
+		return _outerImageRenderer;
+	}
+	public Collider2D getCollider()
     {
         return _collider;
     }
