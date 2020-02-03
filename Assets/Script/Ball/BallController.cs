@@ -31,6 +31,11 @@ public class BallController : MonoBehaviour {
 		}
 	}
 
+	public void PrepareBallControllerForNewGame()
+	{
+		DestroyAllExistingBalls();
+		InstantiateBall(GameEnums.ballType.NormalBall_Type1);
+	}
 	public GameObject InstantiateBall(GameEnums.ballType ballType)
 	{
         //Debug.Log("Instantiate ball of type " + ballType);
@@ -65,26 +70,9 @@ public class BallController : MonoBehaviour {
             if (ball != null && type == ball.ballType)
                 return _ballPrefabList[i];
         }
-
         return null;
     }
-    /*Ball GenerateBall(GameEnums.ballType ballType)
-	{
-		BallBuilder builder = new BallBuilder();
-		IBallBuilder ball;
-		if(ballType == GameEnums.ballType.NormalBall_Type1)
-			ball = new NormalBallType1();
-		else
-			ball = new SpecialBall_Type2();
-
-		builder.BuildBallBall(ball);
-		ball.SetColor(Color.green);
-
-        if (_currentBall == null)
-            ball.getBall().isItFirstBall = true;
-
-        return ball.getBall();
-	}*/
+   
 
 
     void SetFirstAndSpecialBall()
@@ -127,7 +115,15 @@ public class BallController : MonoBehaviour {
         {
             Destroy(ballObject);
         }
-           
     }
+
+	public void DestroyAllExistingBalls()
+	{
+		for(int i = 0;i< _additionalBalls.Count; i++)
+		{
+			Destroy(_additionalBalls[i].gameObject);
+		}
+		_additionalBalls.Clear();
+	}
 
 }

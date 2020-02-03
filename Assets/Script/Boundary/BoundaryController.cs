@@ -16,8 +16,8 @@ public class BoundaryController : MonoBehaviour {
     [SerializeField] private GameObject _leftPaddlePosition;
     [SerializeField] private GameObject _rightPaddlePosition;
 
-	public delegate void onBoundaryRePositioningCompleted();
-	public static event onBoundaryRePositioningCompleted OnBoundaryRepositioningCompleted;
+	//public delegate void onBoundaryRePositioningCompleted();
+	//public static event onBoundaryRePositioningCompleted OnBoundaryRepositioningCompleted;
 
 	void Awake()
 	{
@@ -73,7 +73,7 @@ public class BoundaryController : MonoBehaviour {
 
         ResetPaddlePosition();
 
-		OnBoundaryRepositioningCompleted();
+		//OnBoundaryRepositioningCompleted();
     }
 
     void ResetPaddlePosition()

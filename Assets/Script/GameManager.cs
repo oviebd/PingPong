@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
 
 	public void GameOver(bool isWin)
 	{
+		BallController.instance.DestroyAllExistingBalls();
 		SetCurrentGameState (GameEnums.GameState.Over);
 		GameSceneUIManager.instance.SetGameOverUI(isWin);
 	}
@@ -57,7 +58,8 @@ public class GameManager : MonoBehaviour {
 	public void StartANewGame()
 	{
 		ScoreManager.instance.ResetScore();
-		BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
+		ObstacleController.instance.PrepareObstacleControllerForNewGame();
+		BallController.instance.PrepareBallControllerForNewGame();
 		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
 		GameSceneUIManager.instance.SetUiForANewGame();
 	}

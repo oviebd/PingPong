@@ -14,7 +14,6 @@ public class ObstacleController : MonoBehaviour {
     private float _scale = 1.8f;
 	private List<GameObject> obstacleList = new List<GameObject>();
 
-
     private void Awake()
     {
         if (instance == null)
@@ -22,12 +21,18 @@ public class ObstacleController : MonoBehaviour {
     }
 
     void Start () {
-		BoundaryController.OnBoundaryRepositioningCompleted += SpawnObstacle;
+	//	BoundaryController.OnBoundaryRepositioningCompleted += SpawnObstacle;
 	}
 
 	private void OnDestroy()
 	{
-		BoundaryController.OnBoundaryRepositioningCompleted -= SpawnObstacle;
+		//BoundaryController.OnBoundaryRepositioningCompleted -= SpawnObstacle;
+	}
+
+	public void PrepareObstacleControllerForNewGame()
+	{
+		DestroyAllObstacle();
+		SpawnObstacle();
 	}
 
 	void SpawnObstacle()
@@ -73,6 +78,15 @@ public class ObstacleController : MonoBehaviour {
 
         return null;
     }
+
+	public void DestroyAllObstacle()
+	{
+		for (int i = 0; i < obstacleList.Count; i++)
+		{
+			Destroy(obstacleList[i].gameObject);
+		}
+		obstacleList.Clear();
+	}
 
   
 }
