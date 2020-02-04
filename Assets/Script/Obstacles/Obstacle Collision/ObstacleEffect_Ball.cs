@@ -10,8 +10,21 @@ public class ObstacleEffect_Ball : ObstacleEffectBaseClass, IObstacleCollisionEf
 		_obstacle = behaviour.GetObstacleClass();
 
 		PlaySound(_obstacle.collisionClip);
-		BallController.instance.InstantiateExtraBall(GameEnums.ballType.NormalBall_Type1);
+		BallController.instance.InstantiateExtraBall(GenerateBallTypeRandomly());
 		DestroyObject();
-
 	}
+
+	GameEnums.ballType GenerateBallTypeRandomly()
+	{
+		int randomRange = Random.Range(0, 100);
+		GameEnums.ballType type = GameEnums.ballType.NormalBall_Type1;
+
+		if (randomRange < 80)
+			type = GameEnums.ballType.NormalBall_Type1;
+		else if (randomRange >= 80 && randomRange <= 100)
+			type = GameEnums.ballType.SpecialBall_Type2;
+	
+		return type;
+	}
+
 }

@@ -6,7 +6,6 @@ public class BallController : MonoBehaviour {
 
 	public static BallController instance;
 
-	//[SerializeField] private GameObject _ballPrefab;
 	[SerializeField] private GameObject _ballParent;
 
     [SerializeField] private List<GameObject> _ballPrefabList;
