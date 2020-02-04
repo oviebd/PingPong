@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameLifeHandler : MonoBehaviour {
 
 	public static GameLifeHandler instance;
-	private int _gameLife = 2;
+	private int _gameLife = 40;
 
 	void Awake()
 	{

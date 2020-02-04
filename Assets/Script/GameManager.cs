@@ -38,9 +38,10 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ResetBallOnADirection(GameEnums.Walls nextWallDirection)
 	{
-			SetCurrentGameState(GameEnums.GameState.Idle);
-			BallController.instance.ResetBall(nextWallDirection);
-			GameSceneAnimationHandler.instance.PlayCountAnimation(2);
+		SetCurrentGameState(GameEnums.GameState.Idle);
+		//BallController.instance.ResetBall(nextWallDirection);
+	    BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
+		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
 	}
 
 	void onCountAnimationCompleted()

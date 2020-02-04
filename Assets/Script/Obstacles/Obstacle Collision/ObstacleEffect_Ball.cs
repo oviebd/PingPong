@@ -10,7 +10,7 @@ public class ObstacleEffect_Ball : ObstacleEffectBaseClass, IObstacleCollisionEf
 		_obstacle = behaviour.GetObstacleClass();
 
 		PlaySound(_obstacle.collisionClip);
-		BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
+		BallController.instance.InstantiateExtraBall(GameEnums.ballType.NormalBall_Type1);
 		DestroyObject();
 
 	}

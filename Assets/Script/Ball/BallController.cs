@@ -6,29 +6,28 @@ public class BallController : MonoBehaviour {
 
 	public static BallController instance;
 
-	[SerializeField] private GameObject _ballPrefab;
+	//[SerializeField] private GameObject _ballPrefab;
 	[SerializeField] private GameObject _ballParent;
 
-	private GameObject _currentBall;
     [SerializeField] private List<GameObject> _ballPrefabList;
-    private  List<BallBehaviour> _additionalBalls = new List<BallBehaviour>(); 
+    private  List<BallBehaviour> _inGameNormalBalls = new List<BallBehaviour>();
+	private List<BallBehaviour> _inGameSpecialBalls = new List<BallBehaviour>();
 
 	void Start()
 	{
 		if (instance == null)
 			instance = this;
-
         BoundaryBehaviour.onBallCollideWithLeftRightWall += onBallCollidedWithLeftRightWall;
-
       //  InvokeRepeating("InstantiateBall", 5.0f, 8.0f);
     }
 
-	public void ResetBall(GameEnums.Walls nextWallDirection)
+	public void InstantiateExtraBall(GameEnums.ballType ballType)
 	{
-		if (_currentBall != null)
-		{
-			_currentBall.GetComponent<BallMovement>().ResetPosition(nextWallDirection);
-		}
+		BallBehaviour behaviour = InstantiateBall(ballType);
+		if (behaviour == null)
+			return;
+
+		StartCoroutine(setMovement(behaviour.GetBallMovement()));
 	}
 
 	public void PrepareBallControllerForNewGame()
@@ -36,26 +35,26 @@ public class BallController : MonoBehaviour {
 		DestroyAllExistingBalls();
 		InstantiateBall(GameEnums.ballType.NormalBall_Type1);
 	}
-	public GameObject InstantiateBall(GameEnums.ballType ballType)
+	public BallBehaviour InstantiateBall(GameEnums.ballType ballType)
 	{
-        //Debug.Log("Instantiate ball of type " + ballType);
         GameObject ball = GetSpecificBall(GameEnums.ballType.NormalBall_Type1);
+		if (ball == null)
+			return null;
 	    GameObject ballObject = InstantiatorHelper.InstantiateObject(ball, _ballParent);
 
         BallBehaviour ballBehaviour = ballObject.GetComponent<BallBehaviour>();
         ballBehaviour.SetUp();
-        
-        if(_currentBall == null)
-            _currentBall = ballObject;
-        else
-        {
-            StartCoroutine(setMovement(ballBehaviour.GetBallMovement()));
-            _additionalBalls.Add(ballBehaviour);
-        }
-	  return ballObject;
+	   AddBallsInList(ballBehaviour);
+	   return ballBehaviour;
 	}
 
-
+	void AddBallsInList(BallBehaviour behaviour)
+	{
+		if (behaviour.ballType == GameEnums.ballType.NormalBall_Type1)
+			_inGameNormalBalls.Add(behaviour);
+		else
+			_inGameSpecialBalls.Add(behaviour);
+	}
     IEnumerator setMovement(BallMovement movement)
     {
         yield return new WaitForSeconds(0.5f);
@@ -72,58 +71,28 @@ public class BallController : MonoBehaviour {
         }
         return null;
     }
-   
-
-
-    void SetFirstAndSpecialBall()
-    {
-        BallBehaviour ballBehaviour = GetTopBallForMadeBasicBall();
-        if (ballBehaviour != null)
-            _currentBall = ballBehaviour.gameObject;
-    }
-
-    BallBehaviour GetTopBallForMadeBasicBall()
-    {
-        for(int i=0;i< _additionalBalls.Count; i++)
-        {
-            if(_additionalBalls[i].GetBall().ballType == GameEnums.ballType.NormalBall_Type1)
-            {
-                BallBehaviour tempBallBehaviour = _additionalBalls[i];
-                _additionalBalls.RemoveAt(i);
-
-                Ball  updatedBall = tempBallBehaviour.GetBall();
-                updatedBall.isItFirstBall = true;
-
-                tempBallBehaviour.UpdateBall(updatedBall);
-                return tempBallBehaviour;
-            }
-        }
-        return null;
-    }
-
     public void onBallCollidedWithLeftRightWall(GameEnums.Walls nextWall,GameObject ballObject)
     {
-        _currentBall = null;
-        SetFirstAndSpecialBall();
+	    BallBehaviour collidedBallBehaviour =	ballObject.GetComponent<BallBehaviour>();
+		_inGameNormalBalls.Remove(collidedBallBehaviour);
+		Destroy(ballObject);
 
-        if (_currentBall == null)
-        {
-            GameLifeHandler.instance.onBallCollidedWithLeftRightWall(nextWall);
-           // GameManager.instance.GameOver(false);  // LoseGame
-        }
-        else
-        {
-            Destroy(ballObject);
-        }
+		if( _inGameNormalBalls.Count <= 0)
+			GameLifeHandler.instance.onBallCollidedWithLeftRightWall(nextWall);
     }
 
 	public void DestroyAllExistingBalls()
 	{
-		for(int i = 0;i< _additionalBalls.Count; i++)
+		for(int i = 0;i< _inGameNormalBalls.Count; i++)
 		{
-			Destroy(_additionalBalls[i].gameObject);
+			Destroy(_inGameNormalBalls[i].gameObject);
 		}
-		_additionalBalls.Clear();
+		for (int i = 0; i < _inGameSpecialBalls.Count; i++)
+		{
+			Destroy(_inGameSpecialBalls[i].gameObject);
+		}
+		_inGameNormalBalls.Clear();
+		_inGameSpecialBalls.Clear();
 	}
 
 }
