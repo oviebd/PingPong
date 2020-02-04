@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GeneralObstacleCollisionEffect : ObstacleEffectBaseClass, IObstacleCollisionEffect
 {
-
-    public void DoCollisionAfterEffect(ObstacleBehaviour behaviour)
+	public void SetObstacleBehaviour(ObstacleBehaviour behaviour)
+	{
+		obstacleBehaviour = behaviour;
+		_obstacle = behaviour.GetObstacleClass();
+	}
+	public void DoCollisionAfterEffect()
     {
-        obstacleBehaviour = behaviour;
-        _obstacle = behaviour.GetObstacleClass();
-
         PlaySound(_obstacle.collisionClip);
         DestroyObject();
 
        // BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
     }
+
+	
 }

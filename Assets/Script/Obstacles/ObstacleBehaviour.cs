@@ -15,12 +15,14 @@ public class ObstacleBehaviour : ObstacleBaseClass, IColliderEnter
     {
         InitializeObstacle();
         _obstacleCollisionEffect = gameObject.GetComponent<IObstacleCollisionEffect>();
-    }
+		_obstacleCollisionEffect.SetObstacleBehaviour(this);
+
+	}
 
     public void onCollide(Collision2D colidedObj2D)
     {
         if(_obstacleCollisionEffect != null)
-            _obstacleCollisionEffect.DoCollisionAfterEffect(this);
+            _obstacleCollisionEffect.DoCollisionAfterEffect();
 
         UpdateScoreManagerData();
     }

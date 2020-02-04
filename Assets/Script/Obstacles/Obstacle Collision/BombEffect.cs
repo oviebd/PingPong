@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BombEffect :ObstacleEffectBaseClass, IObstacleCollisionEffect {
-
-    public void DoCollisionAfterEffect(ObstacleBehaviour behaviour)
-    {
+	public void SetObstacleBehaviour(ObstacleBehaviour behaviour)
+	{
 		obstacleBehaviour = behaviour;
 		_obstacle = behaviour.GetObstacleClass();
+	}
+	public void DoCollisionAfterEffect()
+    {
 		DestroyAllObjectsInRadious();
     }
 
-    void DestroyAllObjectsInRadious()
+	void DestroyAllObjectsInRadious()
     {
         float radious = 1;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(obstacleBehaviour.gameObject.transform.position, radious);
 
         for(int i = 0; i<colliders.Length;i++)
         {
-            Debug.Log(colliders[i].gameObject.name);
-            ObstacleBehaviour behaviour = colliders[i].gameObject.GetComponent<ObstacleBehaviour>();
-            if (behaviour != null)
+			ObstacleEffectBaseClass effect = colliders[i].gameObject.GetComponent<ObstacleEffectBaseClass>();
+			if (effect != null)
             {
-                behaviour.GetInnerSpriteRenderer().sprite = null;
+				effect.DestroyObject();
             }
         }
     }

@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IObstacleCollisionEffect  {
-
-    void DoCollisionAfterEffect(ObstacleBehaviour behaviour);
+	void SetObstacleBehaviour(ObstacleBehaviour behaviour);
+    void DoCollisionAfterEffect();
 }

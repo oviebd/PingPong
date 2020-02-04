@@ -9,7 +9,7 @@ public class GameLifeHandler : MonoBehaviour {
 	[SerializeField] private GameObject _lifePanel;
 	[SerializeField] private Text _lifeCounterText;
 
-	private int _gameLife = 40;
+	private int _gameLife = 4;
 
 	void Awake()
 	{
