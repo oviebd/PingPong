@@ -34,11 +34,10 @@ public class ObstacleController : MonoBehaviour {
 		DestroyAllObstacle();
 		SpawnObstacle();
 	}
-
 	void SpawnObstacle()
 	{
-		int objNumber = 20;
-
+		DestroyAllObstacle();
+		int objNumber = GameDataGeneratorHandler.GenerateObstacleBasedOnLevelNumber();
 		for (int i = 0; i < objNumber; i++)
 		{
 			GameObject obstacle = GetSpecificObstacle(GenerateRandomObstacleType());
@@ -55,14 +54,14 @@ public class ObstacleController : MonoBehaviour {
 		int randomRange = Random.Range(0, 100);
 		GameEnums.ObstacleType type = GameEnums.ObstacleType.normal;
 		
-		if (randomRange < 80)
+		if (randomRange < 60)
 			type = GameEnums.ObstacleType.normal;
-		else if( randomRange >= 80  && randomRange < 90 )
-			type = GameEnums.ObstacleType.life;
-		else if (randomRange >= 90 && randomRange < 95)
+		else if( randomRange >= 60  && randomRange < 75 )
 			type = GameEnums.ObstacleType.spawnBall;
-		else if (randomRange >= 95 && randomRange <= 100)
+		else if (randomRange >= 75 && randomRange < 90)
 			type = GameEnums.ObstacleType.bomb;
+		else if (randomRange >= 95 && randomRange <= 100)
+			type = GameEnums.ObstacleType.life;
 
 		//Debug.Log("Random Range :   " + randomRange + "   Type ;  " + type);
 		return type;

@@ -33,7 +33,7 @@ public  static class ObstaclePositioningHandler
 	static void MoveParentObjBasedOnColumnNumber(int colNumber, GameObject parentObj)
 	{
 		// This function is need to made grid parebnt alignment center after creating cells;
-		float offset = colNumber / 1.5f;
+		float offset = colNumber / 1.3f;
 		Vector3 tempVec = parentObj.transform.position;
 		tempVec.x = parentObj.transform.position.x - offset;
 		parentObj.transform.position = tempVec;

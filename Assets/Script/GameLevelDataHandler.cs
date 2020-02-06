@@ -17,6 +17,11 @@ public class GameLevelDataHandler : MonoBehaviour
 	{
 		currentLevel = currentLevel + 1;
 	}
+
+	public void ResetLevel()
+	{
+		currentLevel = 1;
+	}
 	public int GetLevel()
 	{
 		return currentLevel;
