@@ -22,8 +22,9 @@ public class BallMovement : MonoBehaviour
 	public void setBall(Ball ball)
 	{
 		_rendere = this.gameObject.GetComponent<SpriteRenderer>();
-		_initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(getBall().initialVelocity, getBall().maximumVelocity);
-        BallPositionHandler.SetInitialVelocityBasedonDirection(GameEnums.Walls.left,_initialVelocity);
+		//_initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(getBall().initialVelocity, getBall().maximumVelocity);
+		_initialVelocity = getBall().initialVelocity;
+		BallPositionHandler.SetInitialVelocityBasedonDirection(GameEnums.Walls.left,_initialVelocity);
 
         ResetPosition(GameEnums.Walls.left);
 	}
