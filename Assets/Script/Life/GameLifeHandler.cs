@@ -17,7 +17,9 @@ public class GameLifeHandler : MonoBehaviour {
 			instance = this;
 	}
 	void Start () {
-		UpdateLifeUI();
+
+		_gameLife = GameDataHandler.instance.GetAmountOfLife();
+		OnLifeUpdated();
 	}
 
 	public int GetCurrentLife()
@@ -27,12 +29,14 @@ public class GameLifeHandler : MonoBehaviour {
 	public void AddLife(int amount)
 	{
 		_gameLife = _gameLife + amount;
-		UpdateLifeUI();
+		OnLifeUpdated();
 	}
 	public void DecreaseLife(int amount)
 	{
 		_gameLife = _gameLife - amount;
-		UpdateLifeUI();
+		if (_gameLife < 0)
+			_gameLife = 0;
+		OnLifeUpdated();
 	}
 
     public void onBallCollidedWithLeftRightWall(GameEnums.Walls nextWall)
@@ -44,8 +48,9 @@ public class GameLifeHandler : MonoBehaviour {
             GameManager.instance.ResetBallOnADirection(nextWall);
     }
 
-	void UpdateLifeUI()
+	void OnLifeUpdated()
 	{
+		GameDataHandler.instance.SetAmountOfLife(_gameLife);
 		_lifeCounterText.text = _gameLife + "";
 	}
 

@@ -6,25 +6,38 @@ public class GameLevelDataHandler : MonoBehaviour
 {
 	public static GameLevelDataHandler instance;
 
-	int currentLevel = 1;
+	private int _currentLevel = 1;
 	private void Awake()
 	{
 		if (instance == null)
 			instance = this;
 	}
 
+	private void Start()
+	{
+		_currentLevel = GameDataHandler.instance.GetCurrentLevel();
+	}
+
 	public void AddLevel()
 	{
-		currentLevel = currentLevel + 1;
+		_currentLevel = _currentLevel + 1;
+		OnLevelDataChanged();
+		GameDataHandler.instance.SetMaximumLevelCompletedByPlayer(_currentLevel);
 	}
 
 	public void ResetLevel()
 	{
-		currentLevel = 1;
+		_currentLevel = 1;
+		OnLevelDataChanged();
 	}
 	public int GetLevel()
 	{
-		return currentLevel;
+		return _currentLevel;
+	}
+
+	void OnLevelDataChanged()
+	{
+		GameDataHandler.instance.setCurrentGameLevel(_currentLevel);
 	}
 
 }
