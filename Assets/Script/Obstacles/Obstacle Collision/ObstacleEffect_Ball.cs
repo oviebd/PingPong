@@ -13,6 +13,10 @@ public class ObstacleEffect_Ball : ObstacleEffectBaseClass, IObstacleCollisionEf
 	{
 		PlaySound(_obstacle.collisionClip);
 		BallController.instance.InstantiateExtraBall(GenerateBallTypeRandomly());
+		ParticleSystem particleSystem = GetComponentInChildren<ParticleSystem>();
+		if (particleSystem != null)
+			Destroy(particleSystem.gameObject);
+
 		DestroyObject();
 	}
 
