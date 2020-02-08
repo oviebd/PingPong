@@ -43,7 +43,7 @@ public class DemoMouseController : MonoBehaviour
 			var colour = Color.Lerp (colour1, colour2, Random.Range (0, 1));
 
 			float duration = 320f;
-			var initialScale = new Vector2 (2f, 1f);
+			var initialScale = new Vector2 (10f, 10f);
 
 
 			ParticleFactory.instance.CreateParticle (position, colour, duration, initialScale, state);

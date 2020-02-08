@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BombEffect :ObstacleEffectBaseClass, IObstacleCollisionEffect {
+	[SerializeField] private GameObject destructionPartuicle;
 	public void SetObstacleBehaviour(ObstacleBehaviour behaviour)
 	{
 		obstacleBehaviour = behaviour;
@@ -15,7 +16,12 @@ public class BombEffect :ObstacleEffectBaseClass, IObstacleCollisionEffect {
 
 	void DestroyAllObjectsInRadious()
     {
-        float radious = 1;
+
+		//InstantiatorHelper.InstantiateObject(destructionPartuicle, this.gameObject);
+
+		destructionPartuicle.SetActive(true);
+
+		float radious = 1;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(obstacleBehaviour.gameObject.transform.position, radious);
 
         for(int i = 0; i<colliders.Length;i++)
