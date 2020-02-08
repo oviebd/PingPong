@@ -12,12 +12,18 @@ public class PaddleMovement : MonoBehaviour,IMove {
 	BallMovement _ballMovement;
 	public bool isItAutoMoveable = false;
 
+	private void Start()
+	{
+		InputManager.onUpButtonPressed += MoveUp;
+		InputManager.onDownButtonPressed += MoveDown;
+	}
+
 	void Update()
     {
 		if (GameManager.instance.GetCurrentGameState() != GameEnums.GameState.Running)
 			return;
 
-		if (isItAutoMoveable)
+		/*if (isItAutoMoveable)
 		{
 			AutomaticPaddleMoveMent();
 			return;
@@ -30,8 +36,8 @@ public class PaddleMovement : MonoBehaviour,IMove {
         if (Input.GetKey(KeyCode.DownArrow))
         {
 			MoveDown();
-        }
-    }
+        }*/
+	}
 
 	public void MoveUp()
 	{
