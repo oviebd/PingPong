@@ -32,11 +32,11 @@ public class BoundaryController : MonoBehaviour {
 
     public  Vector2 GetLeftWallPosition()
 	{
-		return _leftWall.GetCollider().offset;
+		return _leftWall.gameObject.transform.position;
 	}
 	public Vector2 GetRightWallPosition()
 	{
-		return _rightWall.GetCollider().offset;
+		return _rightWall.gameObject.transform.position;
 	}
 	public Vector2 GetBottomWallPosition()
 	{
@@ -80,7 +80,7 @@ public class BoundaryController : MonoBehaviour {
     {
         Vector3 worldPosWidth = GetWidthInWorldSpace();
         Vector3 worldPosHeight = GetHeightInWorldPosition();
-        float offset = 2.0f;
+        float offset = 1.0f;
         _leftPaddlePosition.transform.position = new Vector3( (-1) * worldPosWidth.x + offset ,0,0);
         _rightPaddlePosition.transform.position = new Vector3( worldPosWidth.x - offset , 0, 0);
     }

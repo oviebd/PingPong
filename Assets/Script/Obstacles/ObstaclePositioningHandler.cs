@@ -16,37 +16,42 @@ public  static class ObstaclePositioningHandler
 		for (int i = 0; i < obstacleList.Count; i++)
 		{
 			objs.Add(obstacleList[i]);
-			int mod = ((i + 1) % obstacleBoundaryData.maxRowNumber);
+			int mod = 0;
+
+			if (obstacleBoundaryData.maxRowNumber > 0)
+				mod = ((i + 1) % obstacleBoundaryData.maxRowNumber);
 		
 			if ((mod == 0 && i != 0) || i == obstacleList.Count - 1)
 			{
 				//Debug.Log(i);
-				DrawColumn(colNumber, obstacleBoundaryData.maxRowNumber, objs, yStartPos,scale);
+				DrawColumn(colNumber, obstacleBoundaryData.maxRowNumber, objs, obstacleBoundaryData.minPosition.x, yStartPos,scale);
 				objs.Clear();
 				objs = new List<GameObject>();
 				colNumber = colNumber + 1;
 			}
 		}
-		MoveParentObjBasedOnColumnNumber(colNumber,parentObj);
+		//MoveParentObjBasedOnColumnNumber(colNumber,parentObj);
 	}
 
-	static void MoveParentObjBasedOnColumnNumber(int colNumber, GameObject parentObj)
+	/*static void MoveParentObjBasedOnColumnNumber(int colNumber, GameObject parentObj)
 	{
 		// This function is need to made grid parebnt alignment center after creating cells;
-		float offset = colNumber / 1.3f;
+		//float offset = colNumber / 1.3f;
+		float offset = ( colNumber * 1.5f);
 		Vector3 tempVec = parentObj.transform.position;
-		tempVec.x = parentObj.transform.position.x - offset;
+		tempVec.x = offset - 20;  //parentObj.transform.position.x - offset;
 		parentObj.transform.position = tempVec;
-	}
+	}*/
 	public static ObstacleBoundaryDataClass SetObstacleBoundaryData(float scale)
 	{
-		float offset = 4.0f;
-		float yMax = BoundaryController.instance.GetTopWallPosition().y - offset; 
-		float yMin = BoundaryController.instance.GetBottomWallPosition().y + offset;
-		float xMax = BoundaryController.instance.GetRightWallPosition().y - offset; 
-		float xMin = BoundaryController.instance.GetLeftWallPosition().y + offset;
+		float xOffset = scale * 3.5f;
+		float yOffset =0;
+		float yMax = BoundaryController.instance.GetTopWallPosition().y - yOffset;
+		float yMin = BoundaryController.instance.GetBottomWallPosition().y + yOffset;
+		float xMax = BoundaryController.instance.GetRightWallPosition().x - xOffset;
+		float xMin = BoundaryController.instance.GetLeftWallPosition().x + xOffset;
 
-		//Debug.Log(yMax + " Y min : " + yMin + " xMax  " + xMax + " X Min " + xMin);
+	//	Debug.Log(yMax + " Y min : " + yMin + " xMax  " + xMax + " X Min " + xMin);
 
 		ObstacleBoundaryDataClass boundary = new ObstacleBoundaryDataClass();
 
@@ -59,9 +64,10 @@ public  static class ObstaclePositioningHandler
 		return boundary;
 	}
 
-	public static void DrawColumn(int colNumber, int maxItemInACol, List<GameObject> items, float initialYpos,float scale)
+	public static void DrawColumn(int colNumber, int maxItemInACol, List<GameObject> items, float initialXpos, float initialYpos, float scale)
 	{
-		float xPos = colNumber * scale;
+		//	float xPos = colNumber * scale;
+		float xPos = ( colNumber * scale )  + initialXpos  ;
 		float yPos = initialYpos;
 
 		float yUpSidePos = initialYpos;
