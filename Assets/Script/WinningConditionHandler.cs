@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinningConditionHandler : MonoBehaviour {
 
 	public static WinningConditionHandler instance;
-	private int _winningPoint = 100;
+	private int _winningPoint = 80;
 
 	void Start()
 	{
