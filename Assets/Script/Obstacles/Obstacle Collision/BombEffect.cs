@@ -11,8 +11,9 @@ public class BombEffect :ObstacleEffectBaseClass, IObstacleCollisionEffect {
 	}
 	public void DoCollisionAfterEffect()
     {
+		PlaySound(_obstacle.collisionClip);
 		DestroyAllObjectsInRadious();
-    }
+	}
 
 	void DestroyAllObjectsInRadious()
     {

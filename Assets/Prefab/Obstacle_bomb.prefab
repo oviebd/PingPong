@@ -142,8 +142,8 @@ MonoBehaviour:
   _outerImageSprite: {fileID: 21300000, guid: b2353d2543ffecb46ac5f9ff4c022bd5, type: 3}
   _innerImageColor: {r: 1, g: 1, b: 1, a: 1}
   _innerImageSprite: {fileID: 21300000, guid: 64db3789eb970449da8e8b47cc3bf935, type: 3}
-  _collisionClip: {fileID: 8300000, guid: cc5f4e5eac2fa41f7bd1c6b7cef5cabf, type: 3}
-  _destructionClip: {fileID: 0}
+  _collisionClip: {fileID: 8300000, guid: a92fba24a04b16e49a58566e6e5088b2, type: 3}
+  _destructionClip: {fileID: 8300000, guid: a92fba24a04b16e49a58566e6e5088b2, type: 3}
   _value: 0
   _innerImageRenderer: {fileID: 212548477326211634}
   _outerImageRenderer: {fileID: 204722002}
@@ -237,7 +237,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

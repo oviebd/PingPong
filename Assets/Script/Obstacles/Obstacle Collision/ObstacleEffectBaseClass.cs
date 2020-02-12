@@ -6,7 +6,7 @@ public class ObstacleEffectBaseClass : MonoBehaviour
 {
 	public ObstacleBehaviour obstacleBehaviour;
 	public Obstacle _obstacle;
-	public float destroyTime = .5f;
+	public float destroyTime = 2.0f;
 
 	public void PlaySound(AudioClip clip)
 	{
