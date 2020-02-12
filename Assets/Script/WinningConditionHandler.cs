@@ -20,6 +20,7 @@ public class WinningConditionHandler : MonoBehaviour {
 	public void SetWinningPoint(int winningPoint)
 	{
 		this._winningPoint = winningPoint;
+		ScoreManager.instance.UpdateScoreUI();
 	}
 
 	public int GetWinningPoint()

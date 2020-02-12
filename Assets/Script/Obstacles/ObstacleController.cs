@@ -37,16 +37,24 @@ public class ObstacleController : MonoBehaviour {
 	void SpawnObstacle()
 	{
 		DestroyAllObstacle();
+		int maxPointInLevel = 0;
 		int objNumber = GameDataGeneratorHandler.GenerateObstacleBasedOnLevelNumber();
 		for (int i = 0; i < objNumber; i++)
 		{
 			GameObject obstacle = GetSpecificObstacle(GenerateRandomObstacleType());
 			GameObject obj =  InstantiatorHelper.InstantiateObject(obstacle.gameObject, _parentObj);
-            
-            obj.GetComponent<ObstacleBehaviour>().SetUp();
+
+			ObstacleBehaviour behaviour = obj.GetComponent<ObstacleBehaviour>();
+			if ( behaviour != null)
+			{
+				behaviour.SetUp();
+				maxPointInLevel = maxPointInLevel + behaviour.GetObstacleClass().value;
+			}
             obstacleList.Add(obj);
 		}
 		ObstaclePositioningHandler.RespositioningGridItems(obstacleList, _scale, _parentObj);
+		maxPointInLevel = maxPointInLevel - 10;
+		WinningConditionHandler.instance.SetWinningPoint( maxPointInLevel - 5 );
 	}
 
 	GameEnums.ObstacleType GenerateRandomObstacleType()

@@ -28,11 +28,11 @@ public class ScoreManager : MonoBehaviour {
 	{
 		//Debug.Log("Current Score : " + currentScore + "  Updated Score : " + updatedScore);
 		currentScore = currentScore + updatedScore;
-		showScoreText();
+		UpdateScoreUI();
 		WinningConditionHandler.instance.CheckWinningPoint();
 	}
 	
-	void showScoreText()
+	public void UpdateScoreUI()
 	{
 		string scoreSTring = currentScore  + " / " + WinningConditionHandler.instance.GetWinningPoint() ;
 	//	string scoreSTring = currentScore + " / ";
@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour {
 	public void ResetScore()
 	{
 		currentScore =  0;
-		showScoreText();
+		UpdateScoreUI();
 	}
 
 	public  int GetCurrentScore()
