@@ -40,4 +40,5 @@ public class GameLevelDataHandler : MonoBehaviour
 		GameDataHandler.instance.setCurrentGameLevel(_currentLevel);
 	}
 
+
 }

@@ -49,6 +49,15 @@ public class GameManager : MonoBehaviour {
 		SetCurrentGameState(GameEnums.GameState.Running);
 	}
 
+	public void LoadNextLevel()
+	{
+		SetCurrentGameState(GameEnums.GameState.Over);
+		GameLevelDataHandler.instance.AddLevel();
+		//BallController.instance.DestroyAllExistingBalls();
+		StartANewGame();
+		//GameSceneUIManager.instance.SetGameOverUI(isWin);
+	}
+
 	public void GameOver(bool isWin)
 	{
 		BallController.instance.DestroyAllExistingBalls();
