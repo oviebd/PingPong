@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PaddleMovement : MonoBehaviour,IMove {
 
-    float paddleSpeed = 30.0f;
+    float paddleSpeed = 10.0f;
 	private bool _canMovePaddle = true;
 	private GameEnums.PaddleInput _paddleInputState;
 	private GameEnums.PaddleInput _stuckPaddleInputState = GameEnums.PaddleInput.none;
@@ -14,40 +14,19 @@ public class PaddleMovement : MonoBehaviour,IMove {
 
 	private void Start()
 	{
-		InputManager.onRightButtonPressed += MoveUp;
-		InputManager.onLeftButtonPressed += MoveDown;
+		InputManager.onRightButtonPressed += MoveRight;
+		InputManager.onLeftButtonPressed += MoveLeft;
 	}
 
-	void Update()
-    {
-		if (GameManager.instance.GetCurrentGameState() != GameEnums.GameState.Running)
-			return;
-
-		/*if (isItAutoMoveable)
-		{
-			AutomaticPaddleMoveMent();
-			return;
-		}
-			
-		if (Input.GetKey(KeyCode.UpArrow))
-        {
-			MoveUp();
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-			MoveDown();
-        }*/
-	}
-
-	public void MoveUp()
+	public void MoveRight()
 	{
-		_paddleInputState = GameEnums.PaddleInput.inputUp;
+		_paddleInputState = GameEnums.PaddleInput.inputRight;
 		SetMovement(true);
 	}
 
-	public void MoveDown()
+	public void MoveLeft()
 	{
-		_paddleInputState = GameEnums.PaddleInput.inputDown;
+		_paddleInputState = GameEnums.PaddleInput.inputLeft;
 		SetMovement(false);
 	}
 
@@ -85,9 +64,7 @@ public class PaddleMovement : MonoBehaviour,IMove {
 		_canMovePaddle = canMove;
 	}
 
-	
-
-	void AutomaticPaddleMoveMent()
+	/*void AutomaticPaddleMoveMent()
 	{
 		if(_ballMovement == null)
 		{
@@ -116,7 +93,7 @@ public class PaddleMovement : MonoBehaviour,IMove {
 				MoveDown();
 		}
 
-	}
+	}*/
 
 	
 }
