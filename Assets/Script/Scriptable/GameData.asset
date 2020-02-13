@@ -15,5 +15,5 @@ MonoBehaviour:
   isGameFirstPlayed: 1
   currentLevelNumber: 1
   maximumNumberOfLevelCompletedByUser: 1
-  amountOfLife: 0
+  amountOfLife: 3
   bestScore: 0

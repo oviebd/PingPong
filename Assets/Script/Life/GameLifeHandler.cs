@@ -45,7 +45,7 @@ public class GameLifeHandler : MonoBehaviour {
         if (_gameLife <= 0)
             GameManager.instance.GameOver(false);  // LoseGame
         else
-            GameManager.instance.ResetBallOnADirection(nextWall);
+            GameManager.instance.ReviveGame();
     }
 
 	void OnLifeUpdated()

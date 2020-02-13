@@ -36,15 +36,11 @@ public class GameManager : MonoBehaviour {
         if (gameStateChanged != null) {
 			gameStateChanged(gameState);
 		}
-			
-
 	}
 
-    public void ResetBallOnADirection(GameEnums.Walls nextWallDirection)
+    public void ReviveGame()
 	{
-		SetCurrentGameState(GameEnums.GameState.Idle);
-		//BallController.instance.ResetBall(nextWallDirection);
-	    BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
+		SetCurrentGameState(GameEnums.GameState.Revive);
 		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
 	}
 
@@ -61,6 +57,9 @@ public class GameManager : MonoBehaviour {
 			case GameEnums.GameState.Resume:
 				PrepapreGameStage.instance.PrepareResumeGame();
 				break;
+			case GameEnums.GameState.Revive:
+				PrepapreGameStage.instance.PrepareReviveGame();
+				break;
 		}
 	}
 
@@ -73,9 +72,9 @@ public class GameManager : MonoBehaviour {
 
 	public void StartANewGame()
 	{
-		PrepapreGameStage.instance.PrepareNewGame();
-		//SetCurrentGameState(GameEnums.GameState.NewGame);
-		//GameSceneAnimationHandler.instance.PlayCountAnimation(3);
+		//PrepapreGameStage.instance.PrepareNewGame();
+		SetCurrentGameState(GameEnums.GameState.NewGame);
+		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
 	}
 	public void PauseGame()
 	{
