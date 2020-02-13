@@ -83,8 +83,8 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ResumeGame()
 	{
-		SetCurrentGameState(GameEnums.GameState.Resume);
-		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
+		GameSceneUIManager.instance.SetUiForResumeGame();
+		SetCurrentGameState(GameEnums.GameState.Running);
 	}
 	public void LoadNextLevel()
 	{
