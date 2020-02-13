@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 2006816237
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 52518343c4ef96b49a6ed393e41f1e3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5532acfb1c8db4190a4c96143527161d, type: 3}
   m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -166,8 +166,8 @@ MonoBehaviour:
   ballType: 1
   _ballMovement: {fileID: 114193703282294854}
   _rb: {fileID: 50834172861729008}
-  _initialVelocity: {x: 10, y: 10}
-  _maximumVelocity: {x: 50, y: 50}
+  _initialVelocity: {x: 8, y: -15}
+  _maximumVelocity: {x: 20, y: 40}
   _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-4733691560105101585
 MonoBehaviour:

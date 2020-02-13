@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour {
 	public delegate void onGameStateChanged(GameEnums.GameState gameState);
 	public static event onGameStateChanged gameStateChanged;
 
-
 	void Start () {
 		_gameCurrentState = GameEnums.GameState.Idle;
 
@@ -37,13 +36,6 @@ public class GameManager : MonoBehaviour {
 			gameStateChanged(gameState);
 		}
 	}
-
-    public void ReviveGame()
-	{
-		SetCurrentGameState(GameEnums.GameState.Revive);
-		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
-	}
-
 	void onCountAnimationCompleted()
 	{
         switch (_gameCurrentState)
@@ -72,7 +64,6 @@ public class GameManager : MonoBehaviour {
 
 	public void StartANewGame()
 	{
-		//PrepapreGameStage.instance.PrepareNewGame();
 		SetCurrentGameState(GameEnums.GameState.NewGame);
 		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
 	}
@@ -90,6 +81,11 @@ public class GameManager : MonoBehaviour {
 	{
 		SetCurrentGameState(GameEnums.GameState.LevelUp);
 		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
+	}
+	public void ReviveGame()
+	{
+		SetCurrentGameState(GameEnums.GameState.Revive);
+		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
 	}
 
 }

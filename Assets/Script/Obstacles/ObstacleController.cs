@@ -62,7 +62,7 @@ public class ObstacleController : MonoBehaviour {
 	{
 		int randomRange = Random.Range(0, 100);
 		GameEnums.ObstacleType type = GameEnums.ObstacleType.normal;
-		
+
 		if (randomRange < 60)
 			type = GameEnums.ObstacleType.normal;
 		else if( randomRange >= 60  && randomRange < 75 )

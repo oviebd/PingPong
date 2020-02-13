@@ -36,7 +36,7 @@ public class BallController : MonoBehaviour {
 	}
 	public BallBehaviour InstantiateBall(GameEnums.ballType ballType)
 	{
-        GameObject ball = GetSpecificBall(GameEnums.ballType.NormalBall_Type1);
+        GameObject ball = GetSpecificBall(ballType);
 		if (ball == null)
 			return null;
 	    GameObject ballObject = InstantiatorHelper.InstantiateObject(ball, _ballParent);

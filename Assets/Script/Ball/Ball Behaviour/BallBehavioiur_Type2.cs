@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallBehavioiur_Type2 : MonoBehaviour,IBallBehaviour
 {
-    private Vector2 initialVelocity = Vector2.zero;
+    private Vector2 initialVelocity =new Vector2(8,-15);
     private Rigidbody2D _rb;
 
     BallBehaviour _ballBehaviour;
@@ -42,10 +42,10 @@ public class BallBehavioiur_Type2 : MonoBehaviour,IBallBehaviour
     }
     void GoPreviousDirection()
     {
-        Debug.Log("Go prev direction .... befoere if initial vel : " + initialVelocity);
+       // Debug.Log("Go prev direction .... befoere if initial vel : " + initialVelocity);
         if (_rb != null)
         {
-            Debug.Log("Go prev direction .... in if ");
+          //  Debug.Log("Go prev direction .... in if ");
             _rb.velocity = Vector2.zero;
             _rb.velocity = initialVelocity;
             //_rb.AddForce (initialVelocity);

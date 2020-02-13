@@ -12,15 +12,10 @@ public class WinningConditionHandler : MonoBehaviour {
 		if (instance == null)
 			instance = new WinningConditionHandler();
 	}
-
-	void OnDestroy()
-	{
-	}
-
 	public void SetWinningPoint(int winningPoint)
 	{
 		this._winningPoint = winningPoint;
-		//this._winningPoint = 10;
+		this._winningPoint = 100;
 		ScoreManager.instance.UpdateScoreUI();
 	}
 
