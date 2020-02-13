@@ -19,13 +19,11 @@ public class BallBehavioiur_Type2 : MonoBehaviour,IBallBehaviour
     IEnumerator SetInitialValocity()
     {
         yield return new WaitForSeconds(.05f);
-        Debug.Log("SEtUp BAll .... ");
         initialVelocity = this._ballBehaviour.GetBallMovement().GetInitialVelocity();
     }
 
     public void OperationAfterCollision(Collision2D colidedObj2D)
     {
-        Debug.Log("obj name : " + colidedObj2D.gameObject.name);
         //GoPreviousDirection();
         if (colidedObj2D.gameObject.tag == GameEnums.Tag.obstacle.ToString())
             GoPreviousDirection();

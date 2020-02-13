@@ -29,7 +29,7 @@ public class BoundaryBehaviour : MonoBehaviour, IColliderEnter
 		if ( _wallName == GameEnums.Walls.right)
 		{
             //Debug.Log("Ball Hit on wall in if ");
-            onBallCollideWithLeftRightWall(_wallName, ballObj);
+           // onBallCollideWithLeftRightWall(_wallName, ballObj);
         }
 	}
 

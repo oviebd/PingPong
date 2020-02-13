@@ -73,8 +73,9 @@ public class GameManager : MonoBehaviour {
 
 	public void StartANewGame()
 	{
-		SetCurrentGameState(GameEnums.GameState.NewGame);
-		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
+		PrepapreGameStage.instance.PrepareNewGame();
+		//SetCurrentGameState(GameEnums.GameState.NewGame);
+		//GameSceneAnimationHandler.instance.PlayCountAnimation(3);
 	}
 	public void PauseGame()
 	{

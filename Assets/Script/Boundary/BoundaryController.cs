@@ -81,8 +81,8 @@ public class BoundaryController : MonoBehaviour {
         Vector3 worldPosWidth = GetWidthInWorldSpace();
         Vector3 worldPosHeight = GetHeightInWorldPosition();
         float offset = 1.0f;
-        _leftPaddlePosition.transform.position = new Vector3( (-1) * worldPosWidth.x + offset ,0,0);
-        _rightPaddlePosition.transform.position = new Vector3( worldPosWidth.x - offset , 0, 0);
+        _leftPaddlePosition.transform.position = new Vector3(0 , worldPosHeight.y - offset , 0);
+        _rightPaddlePosition.transform.position = new Vector3(0 ,( (-1) * worldPosHeight.y + offset) , 0);
     }
 
     public Vector3 GetWidthInWorldSpace()

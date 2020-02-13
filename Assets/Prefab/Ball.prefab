@@ -166,8 +166,8 @@ MonoBehaviour:
   ballType: 0
   _ballMovement: {fileID: 114193703282294854}
   _rb: {fileID: 50834172861729008}
-  _initialVelocity: {x: 15, y: 15}
-  _maximumVelocity: {x: 40, y: 40}
+  _initialVelocity: {x: 8, y: -15}
+  _maximumVelocity: {x: 20, y: 40}
   _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &6749930428230043177
 MonoBehaviour:

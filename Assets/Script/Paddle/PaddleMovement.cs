@@ -14,8 +14,8 @@ public class PaddleMovement : MonoBehaviour,IMove {
 
 	private void Start()
 	{
-		InputManager.onUpButtonPressed += MoveUp;
-		InputManager.onDownButtonPressed += MoveDown;
+		InputManager.onRightButtonPressed += MoveUp;
+		InputManager.onLeftButtonPressed += MoveDown;
 	}
 
 	void Update()
@@ -51,7 +51,7 @@ public class PaddleMovement : MonoBehaviour,IMove {
 		SetMovement(false);
 	}
 
-	public void SetMovement(bool isMoveUp)
+	public void SetMovement(bool isMoveRight)
 	{
 		if (CanMove() == false)
 		{
@@ -62,10 +62,10 @@ public class PaddleMovement : MonoBehaviour,IMove {
 		}
 
 		Vector3 position = this.transform.position;
-		if (isMoveUp)
-			position.y = position.y + (paddleSpeed * Time.deltaTime);
+		if (isMoveRight)
+			position.x = position.x + (paddleSpeed * Time.deltaTime);
 		else
-			position.y = position.y - (paddleSpeed * Time.deltaTime); ;
+			position.x = position.x - (paddleSpeed * Time.deltaTime); ;
 
 		this.transform.position = position;
 	}

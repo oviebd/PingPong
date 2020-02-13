@@ -85,7 +85,7 @@ public class BallMovement : MonoBehaviour
 	{
 		yield return new WaitForSeconds(.5f);
 
-        _initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(getBall().initialVelocity,getBall().maximumVelocity);
+       // _initialVelocity = BallPositionHandler.GenerateRandomPositiveVelocity(getBall().initialVelocity,getBall().maximumVelocity);
         _previousVelocity = BallPositionHandler.SetInitialVelocityBasedonDirection(nextWall,_initialVelocity);
 	}
 

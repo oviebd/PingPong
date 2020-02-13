@@ -4,43 +4,43 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour {
 
-	private bool _isUpButtonClicked = false;
-	private bool _isDownButtonClicked = false;
+	private bool _isRightButtonPressed = false;
+	private bool _isLeftButtonPressed = false;
 
-	public delegate void DownButtonPressed();
-	public static event DownButtonPressed onDownButtonPressed;
+	public delegate void LeftButtonPressed();
+	public static event LeftButtonPressed onLeftButtonPressed;
 
-	public delegate void UpButtonPressed();
-	public static event UpButtonPressed onUpButtonPressed;
+	public delegate void RightButtonPressed();
+	public static event RightButtonPressed onRightButtonPressed;
 
 	private void Update()
 	{
-		if (_isUpButtonClicked)
-			onUpButtonPressed();
-		if (_isDownButtonClicked)
-			onDownButtonPressed();
+		if (_isRightButtonPressed)
+			onRightButtonPressed();
+		if (_isLeftButtonPressed)
+			onLeftButtonPressed();
 
-		if (Input.GetKey(KeyCode.UpArrow))
-			onUpButtonPressed();
-		if (Input.GetKey(KeyCode.DownArrow))
-			onDownButtonPressed();
+		if (Input.GetKey(KeyCode.RightArrow))
+			onRightButtonPressed();
+		if (Input.GetKey(KeyCode.LeftArrow))
+			onLeftButtonPressed();
 		
 	}
-	public void UpButtonPointerDown()
+	public void RightButtonPointerDown()
 	{
-		_isUpButtonClicked = true;
+		_isRightButtonPressed = true;
 	}
-	public void UpButtonPointerUp()
+	public void RightButtonPointerUp()
 	{
-		_isUpButtonClicked = false;
+		_isRightButtonPressed = false;
 	}
-	public void DownButtonPointerDown()
+	public void LeftButtonPointerDown()
 	{
-		_isDownButtonClicked = true;
+		_isLeftButtonPressed = true;
 	}
-	public void DownButtonPointerUp()
+	public void LeftButtonPointerUp()
 	{
-		_isDownButtonClicked = false;
+		_isLeftButtonPressed = false;
 	}
 	
 

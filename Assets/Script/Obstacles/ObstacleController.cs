@@ -11,7 +11,7 @@ public class ObstacleController : MonoBehaviour {
 
     [SerializeField] private List<GameObject> _obstaclePrefabList;
 
-    private float _scale = 1.8f;
+    private float _scale = 1f;
 	private List<GameObject> obstacleList = new List<GameObject>();
 
     private void Awake()
@@ -39,6 +39,7 @@ public class ObstacleController : MonoBehaviour {
 		DestroyAllObstacle();
 		int maxPointInLevel = 0;
 		int objNumber = GameDataGeneratorHandler.GenerateObstacleBasedOnLevelNumber();
+		//objNumber = 100;
 		for (int i = 0; i < objNumber; i++)
 		{
 			GameObject obstacle = GetSpecificObstacle(GenerateRandomObstacleType());
