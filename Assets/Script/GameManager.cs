@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public delegate void onGameStateChanged(GameEnums.GameState gameState);
 	public static event onGameStateChanged gameStateChanged;
 
+
 	void Start () {
 		_gameCurrentState = GameEnums.GameState.Idle;
 
@@ -28,15 +29,18 @@ public class GameManager : MonoBehaviour {
 	{
 		return _gameCurrentState;
 	}
+
 	public void SetCurrentGameState(GameEnums.GameState gameState)
 	{
 		_gameCurrentState = gameState;
-
-		if (gameStateChanged != null)
+        if (gameStateChanged != null) {
 			gameStateChanged(gameState);
+		}
+			
 
 	}
-	public void ResetBallOnADirection(GameEnums.Walls nextWallDirection)
+
+    public void ResetBallOnADirection(GameEnums.Walls nextWallDirection)
 	{
 		SetCurrentGameState(GameEnums.GameState.Idle);
 		//BallController.instance.ResetBall(nextWallDirection);
@@ -46,16 +50,18 @@ public class GameManager : MonoBehaviour {
 
 	void onCountAnimationCompleted()
 	{
-		SetCurrentGameState(GameEnums.GameState.Running);
-	}
-
-	public void LoadNextLevel()
-	{
-		SetCurrentGameState(GameEnums.GameState.Over);
-		GameLevelDataHandler.instance.AddLevel();
-		//BallController.instance.DestroyAllExistingBalls();
-		StartANewGame();
-		//GameSceneUIManager.instance.SetGameOverUI(isWin);
+        switch (_gameCurrentState)
+        {
+			case GameEnums.GameState.NewGame:
+				PrepapreGameStage.instance.PrepareNewGame();
+				break;
+			case GameEnums.GameState.LevelUp:
+				PrepapreGameStage.instance.PrepareLevelUp();
+				break;
+			case GameEnums.GameState.Resume:
+				PrepapreGameStage.instance.PrepareResumeGame();
+				break;
+		}
 	}
 
 	public void GameOver(bool isWin)
@@ -67,11 +73,8 @@ public class GameManager : MonoBehaviour {
 
 	public void StartANewGame()
 	{
-		ScoreManager.instance.ResetScore();
-		ObstacleController.instance.PrepareObstacleControllerForNewGame();
-		BallController.instance.PrepareBallControllerForNewGame();
+		SetCurrentGameState(GameEnums.GameState.NewGame);
 		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
-		GameSceneUIManager.instance.SetUiForANewGame();
 	}
 	public void PauseGame()
 	{
@@ -80,8 +83,13 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ResumeGame()
 	{
+		SetCurrentGameState(GameEnums.GameState.Resume);
 		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
-		GameSceneUIManager.instance.SetUiForResumeGame();
+	}
+	public void LoadNextLevel()
+	{
+		SetCurrentGameState(GameEnums.GameState.LevelUp);
+		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
 	}
 
 }

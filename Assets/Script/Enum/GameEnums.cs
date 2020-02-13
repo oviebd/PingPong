@@ -11,7 +11,7 @@ public static class GameEnums  {
 	public enum ballType { NormalBall_Type1,SpecialBall_Type2 }
     public enum ObstacleType { normal,life, bomb,spawnBall}
 
-    public enum GameState { Idle,Running, Pause,Over }
+    public enum GameState { Idle,Running, Pause,Over,LevelUp,NewGame,Resume }
 
 
 }

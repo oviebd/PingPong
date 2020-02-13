@@ -7,7 +7,12 @@ public class BallBehaviour : BallBaseClass,IColliderEnter
 	//private Ball _ball = new Ball();
 	IBallBehaviour ballBehaviour;
 
-	void Start()
+    private void Awake()
+    {
+		//GameManager.gameStateChanged += onGameStateChanged;
+	}
+
+    void Start()
 	{
 		GameManager.gameStateChanged += onGameStateChanged;
 	}

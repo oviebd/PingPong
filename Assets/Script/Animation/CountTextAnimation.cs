@@ -22,7 +22,9 @@ public class CountTextAnimation : PanelUI {
 
 	public IEnumerator AnimateCounterText(int countNumber)
 	{
-		for(int i=countNumber; i >= 0; i--)
+		yield return new WaitForSeconds(1.5f); // wait for completation blink
+
+        for (int i=countNumber; i >= 0; i--)
 		{
 			if( i > 0 )
 				_countText.text = i + "";
