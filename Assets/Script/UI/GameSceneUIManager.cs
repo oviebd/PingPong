@@ -11,6 +11,7 @@ public class GameSceneUIManager : MonoBehaviour {
 	[SerializeField] private GameObject _resumeButton;
 	[SerializeField] private GameObject _pauseButtonObj;
 	[SerializeField] private GameObject _inputGamePanel;
+	[SerializeField] private GameObject _rootGameUiPanel;
 
 	void Start()
 	{
@@ -55,5 +56,10 @@ public class GameSceneUIManager : MonoBehaviour {
 		_winningPanel.ShowPanel();
 		_winningPanel.SetWinningPanel(isWin);
 	}
+
+    public void ShowHideAllGameUi(bool isShow)
+    {
+		_rootGameUiPanel.SetActive(isShow);
+    }
 
 }
