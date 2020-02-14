@@ -28,8 +28,9 @@ public class WinningConditionHandler : MonoBehaviour {
 	{
 		if (ScoreManager.instance.GetCurrentScore() >= _winningPoint)
 		{
-			GameManager.instance.LoadNextLevel();
-		//	GameManager.instance.GameOver(true);
+			Debug.Log("Lost game in winning condition");
+			//GameManager.instance.LoadNextLevel();
+			GameManager.instance.GameOver(true);
 		}
 	}
 

@@ -82,14 +82,24 @@ public class BallController : MonoBehaviour {
 
 	public void DestroyAllExistingBalls()
 	{
-		for(int i = 0;i< _inGameNormalBalls.Count; i++)
+		BallBehaviour[] behaviours = FindObjectsOfType<BallBehaviour>();
+		for (int i = 0; i < behaviours.Length; i++)
 		{
-			Destroy(_inGameNormalBalls[i].gameObject);
+				Destroy(behaviours[i].gameObject);
+		}
+		/*for(int i = 0;i< _inGameNormalBalls.Count; i++)
+		{
+			if (_inGameNormalBalls[i].gameObject !=null)
+				Destroy(_inGameNormalBalls[i].gameObject);
 		}
 		for (int i = 0; i < _inGameSpecialBalls.Count; i++)
 		{
-			Destroy(_inGameSpecialBalls[i].gameObject);
+			if(_inGameSpecialBalls[i].gameObject != null)
+				Destroy(_inGameSpecialBalls[i].gameObject);
 		}
+		_inGameNormalBalls = new List<BallBehaviour>();
+		_inGameSpecialBalls = new List<BallBehaviour>();*/
+
 		_inGameNormalBalls.Clear();
 		_inGameSpecialBalls.Clear();
 	}

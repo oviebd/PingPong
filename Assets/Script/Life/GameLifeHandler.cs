@@ -62,5 +62,9 @@ public class GameLifeHandler : MonoBehaviour {
 		DecreaseLife(1);
 		GameManager.instance.ReviveGame();
 	}
+	public void NotUseLifeButtonClicked()
+	{
+		GameManager.instance.GameOver(false);
+	}
 
 }

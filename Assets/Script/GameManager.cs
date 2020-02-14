@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour {
 		BallController.instance.DestroyAllExistingBalls();
 		SetCurrentGameState (GameEnums.GameState.Over);
 		GameSceneUIManager.instance.SetGameOverUI(isWin);
+		Debug.Log("Lost game in winning condition is win " + isWin);
 	}
 
 	public void StartANewGame()
