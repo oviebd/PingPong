@@ -41,17 +41,26 @@ public class GameLifeHandler : MonoBehaviour {
 
     public void onBallCollidedWithLeftRightWall(GameEnums.Walls nextWall)
     {
-        DecreaseLife(1);
-        if (_gameLife <= 0)
-            GameManager.instance.GameOver(false);  // LoseGame
+        //DecreaseLife(1);
+        if (_gameLife > 0)
+		{
+			GameManager.instance.SetCurrentGameState(GameEnums.GameState.Over);
+			GameSceneUIManager.instance.ShowLifePanelUI();
+		}
         else
-            GameManager.instance.ReviveGame();
+            GameManager.instance.GameOver(false);  // LoseGame
     }
 
 	void OnLifeUpdated()
 	{
 		GameDataHandler.instance.SetAmountOfLife(_gameLife);
 		_lifeCounterText.text = _gameLife + "";
+	}
+
+	public void UseLifeButtonClicked()
+	{
+		DecreaseLife(1);
+		GameManager.instance.ReviveGame();
 	}
 
 }

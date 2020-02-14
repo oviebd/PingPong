@@ -12,6 +12,7 @@ public class GameSceneUIManager : MonoBehaviour {
 	[SerializeField] private GameObject _pauseButtonObj;
 	[SerializeField] private GameObject _inputGamePanel;
 	[SerializeField] private GameObject _rootGameUiPanel;
+	[SerializeField] private GameObject _lifeUiPanel;
 
 	void Start()
 	{
@@ -24,27 +25,30 @@ public class GameSceneUIManager : MonoBehaviour {
 
 	public void InitialGameUI()
 	{
+		HideAllPanel();
 		_startGamePanel.ShowPanel();
-		_resumeButton.SetActive(false);
+		/*_resumeButton.SetActive(false);
 		_pauseButtonObj.SetActive(false);
 		_inputGamePanel.SetActive(false);
-		_winningPanel.HidePanel();
+		_winningPanel.HidePanel();*/
 	}
 
 	public void SetUiForANewGame()
 	{
-		_startGamePanel.HidePanel();
+		HideAllPanel();
+		/*_startGamePanel.HidePanel();
 		_winningPanel.HidePanel();
-		_resumeButton.SetActive(false);
+		_resumeButton.SetActive(false);*/
 		_pauseButtonObj.SetActive(true);
 		_inputGamePanel.SetActive(true);
 	}
 	public void SetUiForPauseGame()
 	{
+		HideAllPanel();
 		_startGamePanel.ShowPanel();
 		_resumeButton.SetActive(true);
-		_pauseButtonObj.SetActive(false);
-		_inputGamePanel.SetActive(false);
+		//_pauseButtonObj.SetActive(false);
+//		_inputGamePanel.SetActive(false);
 	}
 	public void SetUiForResumeGame()
 	{
@@ -61,5 +65,21 @@ public class GameSceneUIManager : MonoBehaviour {
     {
 		_rootGameUiPanel.SetActive(isShow);
     }
+	public void ShowLifePanelUI()
+	{
+		HideAllPanel();
+		_lifeUiPanel.SetActive(true);
+	}
+
+	void HideAllPanel()
+	{
+		_startGamePanel.HidePanel();
+		_winningPanel.HidePanel();
+		_resumeButton.SetActive(false);
+		_pauseButtonObj.SetActive(false);
+		_inputGamePanel.SetActive(false);
+		_lifeUiPanel.SetActive(false);
+
+	}
 
 }
