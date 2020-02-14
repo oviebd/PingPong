@@ -1718,7 +1718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727657a190e39417ebaecf95a358ca37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isItAutoMoveable: 0
 --- !u!1 &392238112
 GameObject:
   m_ObjectHideFlags: 0
@@ -3920,7 +3919,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1355310953}
-          m_MethodName: LeftButtonPointerUp
+          m_MethodName: RightButtonPointerUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4621,7 +4620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727657a190e39417ebaecf95a358ca37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isItAutoMoveable: 0
 --- !u!1 &1355310951
 GameObject:
   m_ObjectHideFlags: 0

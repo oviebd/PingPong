@@ -17,15 +17,15 @@ public class InputManager : MonoBehaviour {
 	{
 		if (_isRightButtonPressed)
 			onRightButtonPressed();
-		if (_isLeftButtonPressed)
+	    if (_isLeftButtonPressed)
 			onLeftButtonPressed();
 
-		if (Input.GetKey(KeyCode.RightArrow))
+	    if (Input.GetKey(KeyCode.RightArrow))
 			onRightButtonPressed();
-		if (Input.GetKey(KeyCode.LeftArrow))
+	    if (Input.GetKey(KeyCode.LeftArrow))
 			onLeftButtonPressed();
-		
 	}
+
 	public void RightButtonPointerDown()
 	{
 		_isRightButtonPressed = true;
@@ -42,8 +42,5 @@ public class InputManager : MonoBehaviour {
 	{
 		_isLeftButtonPressed = false;
 	}
-	
-
-
 
 }
