@@ -32,7 +32,6 @@ public class BombEffect :ObstacleEffectBaseClass, IObstacleCollisionEffect {
             {
                 effect.DoCollisionAfterEffect();
             }
-          
         }
     }
 }

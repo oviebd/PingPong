@@ -15,7 +15,7 @@ public class WinningConditionHandler : MonoBehaviour {
 	public void SetWinningPoint(int winningPoint)
 	{
 		this._winningPoint = winningPoint;
-		this._winningPoint = 100;
+		//this._winningPoint = 100;
 		ScoreManager.instance.UpdateScoreUI();
 	}
 

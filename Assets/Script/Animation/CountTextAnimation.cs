@@ -16,7 +16,8 @@ public class CountTextAnimation : PanelUI {
 
 	public void ShowCountTextWithAnimation( int countNum )
 	{
-		GameSceneUIManager.instance.ShowHideAllGameUi(false);
+		GameGraphicsController.instance.PrepareGraphicsForCounterAnimation(false);
+
 		ShowPanel();
 		StartCoroutine(AnimateCounterText(3));
 	}
@@ -34,7 +35,7 @@ public class CountTextAnimation : PanelUI {
 
 			yield return new WaitForSeconds(_perAnimationTime);
 		}
-		GameSceneUIManager.instance.ShowHideAllGameUi(true);
+		GameGraphicsController.instance.PrepareGraphicsForCounterAnimation(true);
 		OnCountAnimationFinished();
 		HidePanel();
 	}
