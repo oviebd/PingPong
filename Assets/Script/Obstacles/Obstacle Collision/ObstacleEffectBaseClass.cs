@@ -24,4 +24,9 @@ public class ObstacleEffectBaseClass : MonoBehaviour
 		Destroy(obstacleBehaviour.gameObject, destroyTime);
 	}
 
+    public void onCollisionHappened()
+    {
+        DestroyObject();
+    }
+
 }

@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleBehaviour: {fileID: 0}
-  destroyTime: 0.5
+  destroyTime: 3
   destructionPartuicle: {fileID: 9202244198424326734}
 --- !u!1 &1427102177044918
 GameObject:

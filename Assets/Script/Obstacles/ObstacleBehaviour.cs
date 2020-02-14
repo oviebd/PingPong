@@ -16,7 +16,6 @@ public class ObstacleBehaviour : ObstacleBaseClass, IColliderEnter
         InitializeObstacle();
         _obstacleCollisionEffect = gameObject.GetComponent<IObstacleCollisionEffect>();
 		_obstacleCollisionEffect.SetObstacleBehaviour(this);
-
 	}
 
     public void onCollide(Collision2D colidedObj2D)
@@ -31,8 +30,4 @@ public class ObstacleBehaviour : ObstacleBaseClass, IColliderEnter
 	{
 		updateScoreManagerData(GetObstacleClass().value);
 	}
-
-   
-
-    
 }

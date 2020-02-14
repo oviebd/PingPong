@@ -13,9 +13,5 @@ public class GeneralObstacleCollisionEffect : ObstacleEffectBaseClass, IObstacle
     {
         PlaySound(_obstacle.collisionClip);
         DestroyObject();
-
-       // BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
     }
-
-	
 }

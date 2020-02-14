@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
 			instance = this;
 
 		CountTextAnimation.OnCountAnimationFinished += onCountAnimationCompleted;
+		//PrepapreGameStage.instance.PrepareNewGame();
+
 	}
 
 	void OnDestroy()
