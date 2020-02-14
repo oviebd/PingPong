@@ -5,7 +5,6 @@ using UnityEngine;
 public class PaddleMovement : MonoBehaviour {
 
     float paddleSpeed = 10.0f;
-	private bool _canMovePaddle = true;
 
 	private void Start()
 	{
@@ -32,6 +31,8 @@ public class PaddleMovement : MonoBehaviour {
 
 	private void SetMovement(bool isMoveRight)
 	{
+		if (GameManager.instance.GetCurrentGameState() != GameEnums.GameState.Running)
+			return;
 
 		Vector3 position = this.transform.position;
 		if (isMoveRight)
@@ -45,11 +46,5 @@ public class PaddleMovement : MonoBehaviour {
 			position.x > ( BoundaryController.instance.GetLeftWallPosition().x + paddleOffset))
 			this.transform.position = position;
 	}
-
-	public bool CanMove()
-	{
-		return _canMovePaddle;
-	}
-
 	
 }
