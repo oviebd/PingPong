@@ -8,6 +8,7 @@ public class PaddleMovement : MonoBehaviour,IMove {
 	private bool _canMovePaddle = true;
 	private GameEnums.PaddleInput _paddleInputState;
 	private GameEnums.PaddleInput _stuckPaddleInputState = GameEnums.PaddleInput.none;
+	private Vector2 _movement = Vector2.zero;
 
 	BallMovement _ballMovement;
 	public bool isItAutoMoveable = false;
@@ -18,21 +19,35 @@ public class PaddleMovement : MonoBehaviour,IMove {
 		InputManager.onLeftButtonPressed += MoveLeft;
 	}
 
+	private void FixedUpdate()
+	{
+		if(GameManager.instance.GetCurrentGameState() == GameEnums.GameState.Running)
+		{
+			_movement.x = transform.position.x +  ( _movement.x * paddleSpeed * Time.deltaTime);
+			_movement.y = transform.position.y;
+			this.transform.position =  _movement;
+		}
+	}
+
 	public void MoveRight()
 	{
-		_paddleInputState = GameEnums.PaddleInput.inputRight;
-		SetMovement(true);
+		_movement = new Vector2(-1, 0);
+	
+		//_paddleInputState = GameEnums.PaddleInput.inputRight;
+		//SetMovement(true);
 	}
+
 
 	public void MoveLeft()
 	{
-		_paddleInputState = GameEnums.PaddleInput.inputLeft;
-		SetMovement(false);
+		_movement = new Vector2(-1, 0);
+		//_paddleInputState = GameEnums.PaddleInput.inputLeft;
+		//SetMovement(false);
 	}
 
 	public void SetMovement(bool isMoveRight)
 	{
-		if (CanMove() == false)
+		/*if (CanMove() == false)
 		{
 			if (_stuckPaddleInputState == _paddleInputState)
 				return;
@@ -46,7 +61,7 @@ public class PaddleMovement : MonoBehaviour,IMove {
 		else
 			position.x = position.x - (paddleSpeed * Time.deltaTime); ;
 
-		this.transform.position = position;
+		this.transform.position = position;*/
 	}
 
 	public bool CanMove()
