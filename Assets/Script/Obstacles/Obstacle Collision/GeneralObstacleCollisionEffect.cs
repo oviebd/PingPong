@@ -9,9 +9,12 @@ public class GeneralObstacleCollisionEffect : ObstacleEffectBaseClass, IObstacle
 		obstacleBehaviour = behaviour;
 		_obstacle = behaviour.GetObstacleClass();
 	}
-	public void DoCollisionAfterEffect()
+
+    public void DoCollisionAfterEffect()
     {
-        PlaySound(_obstacle.collisionClip);
-        DestroyObject();
-    }
+		//PlaySound(_obstacle.collisionClip);
+		//DestroyObject();
+		OperateObstacleCollisionEffect();
+
+	}
 }

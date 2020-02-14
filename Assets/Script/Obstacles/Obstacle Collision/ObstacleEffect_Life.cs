@@ -11,9 +11,8 @@ public class ObstacleEffect_Life : ObstacleEffectBaseClass, IObstacleCollisionEf
 	}
 	public void DoCollisionAfterEffect()
 	{
-		PlaySound(_obstacle.collisionClip);
-	    GameLifeHandler.instance.AddLife(1);
-		DestroyObject();
+		OperateObstacleCollisionEffect();
+		GameLifeHandler.instance.AddLife(1);
 	}
 
 	

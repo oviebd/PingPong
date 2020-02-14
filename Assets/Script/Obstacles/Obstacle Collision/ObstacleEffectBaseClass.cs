@@ -24,9 +24,17 @@ public class ObstacleEffectBaseClass : MonoBehaviour
 		Destroy(obstacleBehaviour.gameObject, destroyTime);
 	}
 
-    public void onCollisionHappened()
+	public void UpdateScoreManagerData()
+	{
+		ScoreManager.instance.updateScoreManagerData(obstacleBehaviour.GetObstacleClass().value);
+	}
+
+	public void OperateObstacleCollisionEffect()
     {
-        DestroyObject();
-    }
+		DestroyObject();
+		PlaySound(_obstacle.collisionClip);
+	
+		UpdateScoreManagerData();
+	}
 
 }

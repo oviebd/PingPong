@@ -14,10 +14,10 @@ public class BombEffect :ObstacleEffectBaseClass, IObstacleCollisionEffect {
 
     public void DoCollisionAfterEffect()
     {
-        PlaySound(_obstacle.collisionClip);
-        DestroyObject();
+        OperateObstacleCollisionEffect();
         DestroyAllObjectsInRadious();
 	}
+
 
 	void DestroyAllObjectsInRadious()
     {

@@ -15,18 +15,10 @@ public class ScoreManager : MonoBehaviour {
 	
 		if (instance == null)
 			instance = this;
-
-		//ResetScore();
-		ObstacleBehaviour.updateScoreManagerData += onUpdateScoreManagerData;
-	}
-	void OnDestroy()
-	{
-		ObstacleBehaviour.updateScoreManagerData -= onUpdateScoreManagerData;
 	}
 
-   void onUpdateScoreManagerData(int updatedScore)
+   public void updateScoreManagerData(int updatedScore)
 	{
-		//Debug.Log("Current Score : " + currentScore + "  Updated Score : " + updatedScore);
 		currentScore = currentScore + updatedScore;
 		UpdateScoreUI();
 		WinningConditionHandler.instance.CheckWinningPoint();
@@ -35,7 +27,6 @@ public class ScoreManager : MonoBehaviour {
 	public void UpdateScoreUI()
 	{
 		string scoreSTring = currentScore  + " / " + WinningConditionHandler.instance.GetWinningPoint() ;
-	//	string scoreSTring = currentScore + " / ";
 		scoreText.text = scoreSTring;
 	}
 

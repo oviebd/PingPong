@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ObstacleBehaviour : ObstacleBaseClass, IColliderEnter
 {
 
-	public delegate void OnBallCollideWithObstacle(int score);
-	public static event OnBallCollideWithObstacle updateScoreManagerData;
+	//public delegate void OnBallCollideWithObstacle(int score);
+	//public static event OnBallCollideWithObstacle updateScoreManagerData;
 
     private IObstacleCollisionEffect _obstacleCollisionEffect;
 
@@ -22,12 +22,7 @@ public class ObstacleBehaviour : ObstacleBaseClass, IColliderEnter
     {
         if(_obstacleCollisionEffect != null)
             _obstacleCollisionEffect.DoCollisionAfterEffect();
-
-        UpdateScoreManagerData();
     }
 
-	public void UpdateScoreManagerData()
-	{
-		updateScoreManagerData(GetObstacleClass().value);
-	}
+	
 }
