@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour {
 
 		CountTextAnimation.OnCountAnimationFinished += onCountAnimationCompleted;
 		//PrepapreGameStage.instance.PrepareNewGame();
-
 	}
 
 	void OnDestroy()
@@ -50,9 +49,6 @@ public class GameManager : MonoBehaviour {
 				break;
 			case GameEnums.GameState.Resume:
 				PrepapreGameStage.instance.PrepareResumeGame();
-				break;
-			case GameEnums.GameState.Revive:
-				PrepapreGameStage.instance.PrepareReviveGame();
 				break;
 		}
 	}
@@ -88,8 +84,7 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ReviveGame()
 	{
-		SetCurrentGameState(GameEnums.GameState.Revive);
-		GameSceneAnimationHandler.instance.PlayCountAnimation(2);
+		PrepapreGameStage.instance.PrepareReviveGame();
 	}
 
 }
