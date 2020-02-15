@@ -39,7 +39,7 @@ public class ObstacleController : MonoBehaviour {
 		DestroyAllObstacle();
 		int maxPointInLevel = 0;
 		int objNumber = GameDataGeneratorHandler.GenerateObstacleBasedOnLevelNumber();
-		objNumber = 100;
+	//	objNumber = 100;
 		for (int i = 0; i < objNumber; i++)
 		{
 			GameObject obstacle = GetSpecificObstacle(GenerateRandomObstacleType());
