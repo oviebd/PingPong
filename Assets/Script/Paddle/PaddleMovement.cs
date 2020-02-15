@@ -31,14 +31,15 @@ public class PaddleMovement : MonoBehaviour {
 
 	private void SetMovement(bool isMoveRight)
 	{
-		if (GameManager.instance.GetCurrentGameState() != GameEnums.GameState.Running)
+		/*if (GameManager.instance.GetCurrentGameState() != GameEnums.GameState.Running)
 			return;
+			*/
 
 		Vector3 position = this.transform.position;
 		if (isMoveRight)
 			position.x = position.x + (paddleSpeed * Time.deltaTime);
 		else
-			position.x = position.x - (paddleSpeed * Time.deltaTime); ;
+			position.x = position.x - (paddleSpeed * Time.deltaTime); 
 
 		float paddleOffset = this.transform.localScale.x /2.0f;
 
