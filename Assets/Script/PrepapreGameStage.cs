@@ -30,6 +30,7 @@ public class PrepapreGameStage : MonoBehaviour
 	public void PrepareReviveGame()
 	{
 		BallController.instance.InstantiateBall(GameEnums.ballType.NormalBall_Type1);
+		GameSceneUIManager.instance.SetUiForResumeGame();
 		StartCoroutine(SetGameStateRunning());
 	}
 	public void PrepareLevelUp()
