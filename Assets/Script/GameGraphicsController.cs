@@ -16,9 +16,16 @@ public class GameGraphicsController : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-    }
 
-    public void PrepareGraphicsForCounterAnimation(bool isFinishedAnimation)
+		
+	}
+
+	private void Start()
+	{
+		_paddleParentObject.SetActive(false);
+	}
+
+	public void PrepareGraphicsForCounterAnimation(bool isFinishedAnimation)
     {
         _obstacleParentObject.SetActive(isFinishedAnimation);
         _paddleParentObject.SetActive(isFinishedAnimation);
