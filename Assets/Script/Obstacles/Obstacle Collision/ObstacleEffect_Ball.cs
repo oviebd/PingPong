@@ -24,7 +24,7 @@ public class ObstacleEffect_Ball : ObstacleEffectBaseClass, IObstacleCollisionEf
 		int randomRange = Random.Range(0, 100);
 		GameEnums.ballType type;
 
-		if (randomRange < 50)
+		if (randomRange < 80)
 			type = GameEnums.ballType.NormalBall_Type1;
 		else 
 			type = GameEnums.ballType.SpecialBall_Type2;

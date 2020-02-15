@@ -66,11 +66,11 @@ public class ObstacleController : MonoBehaviour {
 		if (randomRange < 75)
 			type = GameEnums.ObstacleType.normal;
 		else if( randomRange >= 75  && randomRange < 85 )
-			type = GameEnums.ObstacleType.life;
+			type = GameEnums.ObstacleType.bomb;
 		else if (randomRange >= 85 && randomRange < 95)
 			type = GameEnums.ObstacleType.spawnBall;
 		else if (randomRange >= 95 && randomRange <= 100)
-			type = GameEnums.ObstacleType.bomb;
+			type = GameEnums.ObstacleType.life;
 
 		//Debug.Log("Random Range :   " + randomRange + "   Type ;  " + type);
 		return type;
