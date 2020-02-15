@@ -16,7 +16,7 @@ public class WinningUIPanel : PanelUI {
 		if(isWin)
 		{
 			_congratesText.text = "Congratulations";
-			_playerGameStatus.text = "Play next Level";
+			_playerGameStatus.text = "Play Level " + GameLevelDataHandler.instance.GetLevel() + 1 ;
 			_retryButtonObj.SetActive(false);
 			_nextButtonObj.SetActive(true);
 		}

@@ -8,6 +8,7 @@ public class GameLifeHandler : MonoBehaviour {
 	public static GameLifeHandler instance;
 	[SerializeField] private GameObject _lifePanel;
 	[SerializeField] private Text _lifeCounterText;
+	[SerializeField] private Text _lifePanelMessageText;
 
 	private int _gameLife = 4;
 
@@ -55,6 +56,7 @@ public class GameLifeHandler : MonoBehaviour {
 	{
 		GameDataHandler.instance.SetAmountOfLife(_gameLife);
 		_lifeCounterText.text = _gameLife + "";
+		_lifePanelMessageText.text = _gameLife + " life left";
 	}
 
 	public void UseLifeButtonClicked()
