@@ -328,6 +328,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleBehaviour: {fileID: 0}
   destroyTime: 3
+  _audioClipList:
+  - {fileID: 8300000, guid: 38e7487e049fa6a4ba1cd99e4347c7ae, type: 3}
+  - {fileID: 8300000, guid: 90cb2920fd7b8594ebbb9795c29bed1e, type: 3}
+  - {fileID: 8300000, guid: 847bc043cf6f01640ab76702f318323b, type: 3}
 --- !u!1 &1427102177044918
 GameObject:
   m_ObjectHideFlags: 0

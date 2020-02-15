@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
 		BallController.instance.DestroyAllExistingBalls();
 		SetCurrentGameState (GameEnums.GameState.Over);
 		GameSceneUIManager.instance.SetGameOverUI(isWin);
-		Debug.Log("Lost game in winning condition is win " + isWin);
+		//Debug.Log("Lost game in winning condition is win " + isWin);
 	}
 
 	public void StartANewGame()
@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour {
 	public void LoadNextLevel()
 	{
 		SetCurrentGameState(GameEnums.GameState.LevelUp);
+		GameLevelDataHandler.instance.AddLevel();
 		GameSceneAnimationHandler.instance.PlayCountAnimation(3);
 	}
 	public void ReviveGame()

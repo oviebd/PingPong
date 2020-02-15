@@ -10,12 +10,11 @@ public class WinningConditionHandler : MonoBehaviour {
 	void Start()
 	{
 		if (instance == null)
-			instance = new WinningConditionHandler();
+			instance = this;
 	}
 	public void SetWinningPoint(int winningPoint)
 	{
 		this._winningPoint = winningPoint;
-		//this._winningPoint = 100;
 		ScoreManager.instance.UpdateScoreUI();
 	}
 
@@ -28,8 +27,7 @@ public class WinningConditionHandler : MonoBehaviour {
 	{
 		if (ScoreManager.instance.GetCurrentScore() >= _winningPoint)
 		{
-			Debug.Log("Lost game in winning condition");
-			//GameManager.instance.LoadNextLevel();
+			//Win game
 			GameManager.instance.GameOver(true);
 		}
 	}

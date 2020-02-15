@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameLevelDataHandler : MonoBehaviour
 {
 	public static GameLevelDataHandler instance;
+	[SerializeField] private Text _levelNumberText_top;
 
 	private int _currentLevel = 1;
 	private void Awake()
@@ -16,6 +18,7 @@ public class GameLevelDataHandler : MonoBehaviour
 	private void Start()
 	{
 		_currentLevel = GameDataHandler.instance.GetCurrentLevel();
+		UpdateLevelText();
 	}
 
 	public void AddLevel()
@@ -37,7 +40,12 @@ public class GameLevelDataHandler : MonoBehaviour
 
 	void OnLevelDataChanged()
 	{
+		UpdateLevelText();
 		GameDataHandler.instance.setCurrentGameLevel(_currentLevel);
+	}
+	public void UpdateLevelText()
+	{
+		_levelNumberText_top.text = _currentLevel + " ";
 	}
 
 
