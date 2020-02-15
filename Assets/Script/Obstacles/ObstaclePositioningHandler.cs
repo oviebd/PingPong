@@ -38,8 +38,8 @@ public  static class ObstaclePositioningHandler
 
 	public static ObstacleBoundaryDataClass SetObstacleBoundaryData(float scale)
 	{
-		float xOffset = scale * 1.0f;
-		float yOffset = 2.0f;
+		float xOffset = 0 ;
+		float yOffset = 2.5f;
 		float yMax = BoundaryController.instance.GetTopWallPosition().y - yOffset;
 		float yMin = BoundaryController.instance.GetBottomWallPosition().y + yOffset;
 		float xMax = BoundaryController.instance.GetRightWallPosition().x - xOffset;

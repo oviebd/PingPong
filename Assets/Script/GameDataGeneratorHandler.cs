@@ -8,7 +8,7 @@ public  class GameDataGeneratorHandler
 	{
 		int levelNo = GameLevelDataHandler.instance.GetLevel() - 1 ;
 
-		int maxObstacle = 80;
+		int maxObstacle = 100;
 		int startingObstacleNumber = 20;
 		int increaseObstaclePerLevel = 10 ;
 

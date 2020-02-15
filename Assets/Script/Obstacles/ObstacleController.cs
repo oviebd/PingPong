@@ -39,7 +39,7 @@ public class ObstacleController : MonoBehaviour {
 		DestroyAllObstacle();
 		int maxPointInLevel = 0;
 		int objNumber = GameDataGeneratorHandler.GenerateObstacleBasedOnLevelNumber();
-		//objNumber = 100;
+		objNumber = 100;
 		for (int i = 0; i < objNumber; i++)
 		{
 			GameObject obstacle = GetSpecificObstacle(GenerateRandomObstacleType());
@@ -54,8 +54,8 @@ public class ObstacleController : MonoBehaviour {
             obstacleList.Add(obj);
 		}
 		ObstaclePositioningHandler.RespositioningGridItems(obstacleList, _scale, _parentObj);
-		maxPointInLevel = maxPointInLevel - 10;
-		WinningConditionHandler.instance.SetWinningPoint( maxPointInLevel - 5 );
+		//maxPointInLevel = maxPointInLevel - 10;
+		WinningConditionHandler.instance.SetWinningPoint( maxPointInLevel );
 	}
 
 	GameEnums.ObstacleType GenerateRandomObstacleType()
@@ -63,14 +63,14 @@ public class ObstacleController : MonoBehaviour {
 		int randomRange = Random.Range(0, 100);
 		GameEnums.ObstacleType type = GameEnums.ObstacleType.normal;
 
-		if (randomRange < 60)
+		if (randomRange < 75)
 			type = GameEnums.ObstacleType.normal;
-		else if( randomRange >= 60  && randomRange < 75 )
-			type = GameEnums.ObstacleType.spawnBall;
-		else if (randomRange >= 75 && randomRange < 90)
-			type = GameEnums.ObstacleType.bomb;
-		else if (randomRange >= 95 && randomRange <= 100)
+		else if( randomRange >= 75  && randomRange < 85 )
 			type = GameEnums.ObstacleType.life;
+		else if (randomRange >= 85 && randomRange < 95)
+			type = GameEnums.ObstacleType.spawnBall;
+		else if (randomRange >= 95 && randomRange <= 100)
+			type = GameEnums.ObstacleType.bomb;
 
 		//Debug.Log("Random Range :   " + randomRange + "   Type ;  " + type);
 		return type;
