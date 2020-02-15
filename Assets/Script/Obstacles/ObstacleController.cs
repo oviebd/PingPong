@@ -11,7 +11,7 @@ public class ObstacleController : MonoBehaviour {
 
     [SerializeField] private List<GameObject> _obstaclePrefabList;
 
-    private float _scale = 1f;
+    private float _scale = .75f;
 	private List<GameObject> obstacleList = new List<GameObject>();
 
     private void Awake()
