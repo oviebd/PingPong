@@ -29,6 +29,7 @@ public class InputManager : MonoBehaviour {
 	public void RightButtonPointerDown()
 	{
 		_isRightButtonPressed = true;
+		_isLeftButtonPressed  = false ;
 	}
 	public void RightButtonPointerUp()
 	{
@@ -37,6 +38,7 @@ public class InputManager : MonoBehaviour {
 	public void LeftButtonPointerDown()
 	{
 		_isLeftButtonPressed = true;
+		_isRightButtonPressed = false;
 	}
 	public void LeftButtonPointerUp()
 	{

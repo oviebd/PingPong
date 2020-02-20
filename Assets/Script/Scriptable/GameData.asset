@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   isGameFirstPlayed: 1
-  currentLevelNumber: 1
-  maximumNumberOfLevelCompletedByUser: 1
+  currentLevelNumber: 2
+  maximumNumberOfLevelCompletedByUser: 2
   amountOfLife: 3
   bestScore: 0

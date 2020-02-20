@@ -20,6 +20,8 @@ public class PaddleMovement : MonoBehaviour {
 
     private void MoveRight()
 	{
+		if (GameManager.instance.GetCurrentGameState() != GameEnums.GameState.Running)
+			return;
 		SetMovement(true);
 	}
 
