@@ -1,6 +1,5 @@
 # PingPong
 Traditional and addictive Ping Pong Game developing by Unity3D Game engine. 
-I Tried to follow the SOLID principle and write clean code.
 
 <img src="ScreenShots/image1.png" width="200"  height="400" >
 
