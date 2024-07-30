@@ -183,7 +183,7 @@ TextureImporter:
       213: 21300118
     second: toggle1
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -200,9 +200,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -213,7 +216,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 2
     aniso: 16
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -234,9 +237,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -248,6 +257,72 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1523,9 +1598,69 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      arrow: 21300000
+      arrow2: 21300016
+      arrow3: 21300002
+      arrow4: 21300004
+      arrow5: 21300006
+      arrow6: 21300008
+      background_bar: 21300018
+      background_scroll_bar: 21300010
+      bronze_medal: 21300030
+      button: 21300024
+      button_pressed: 21300026
+      coin_back: 21300034
+      coin_front: 21300050
+      coin_side1: 21300056
+      coin_side2: 21300064
+      coin_side3: 21300076
+      gameover: 21300028
+      getready: 21300032
+      gold_medal: 21300088
+      hand: 21300022
+      joystick: 21300044
+      joystick1: 21300096
+      medal_substrate: 21300012
+      menu: 21300038
+      menu_pressed: 21300048
+      new: 21300066
+      ok: 21300054
+      ok_pressed: 21300062
+      pause: 21300078
+      pause_pressed: 21300090
+      play: 21300080
+      play_pressed: 21300092
+      progrees_bar1: 21300036
+      progrees_bar2: 21300046
+      progrees_bar3: 21300052
+      progrees_bar4: 21300058
+      progrees_bar5: 21300060
+      rate: 21300068
+      rate_pressed: 21300082
+      score: 21300094
+      score_pressed: 21300104
+      share: 21300110
+      share_pressed: 21300116
+      silver_medal: 21300102
+      start: 21300070
+      start_pressed: 21300084
+      tap1: 21300072
+      tap2: 21300074
+      text_field: 21300020
+      thumb: 21300014
+      thumb1: 21300112
+      thumb2: 21300098
+      toggle: 21300114
+      toggle1: 21300118
+      toggle2: 21300100
+      toggle3: 21300086
+      toggle4: 21300106
+      window: 21300108
+      window2: 21300040
+      window3: 21300042
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
